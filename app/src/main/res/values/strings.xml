@@ -1,3 +1,38 @@
 <resources>
     <string name="app_name">SoFit</string>
+
+
+    <!-- _________________ MY PROGRESS _________________ -->
+
+    <string name="my_progress_title">My Progress</string>
+
+    <string name="my_progress_tab_weight">My Weight (kg)</string>
+    <string name="my_progress_tab_body_fat">My Body Fat (%)</string>
+    <string name="my_progress_tab_body_muscle_mass">My Muscle Mass (%)</string>
+    <string name="my_progress_tab_body_body_water">My Body Water (%)</string>
+
+    <string name="my_progress_add_data">Add data for today</string>
+
+    <!-- _______________________________________________ -->
+
+
+
+    <!-- _________________ ADD DATA _________________ -->
+
+    <string name="add_data_title">My Progress</string>
+
+    <string name="TextView_add_data_weight">Weight (kg):</string>
+    <string name="TextView_add_data_muscle">Muscle mass (%):</string>
+    <string name="TextView_add_data_fat">Body fat (%):</string>
+    <string name="TextView_add_data_water">Body water (%):</string>
+
+    <string name="EditText_add_data_weight">90</string>
+    <string name="EditText_add_data_muscle">35</string>
+    <string name="EditText_add_data_fat">20</string>
+    <string name="EditText_add_data_water">40</string>
+
+    <string name="Button_add_data_confirm">Confirm</string>
+    <string name="Button_add_data_cancel">Cancel</string>
+
+    <!-- _______________________________________________ -->
 </resources>
