@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976">
+
+
+        <Button
+            android:id="@+id/Button02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_weight="1"
+            android:text="Apply"></Button>
+
+        <Button
+            android:id="@+id/Button03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_weight="1"
+            android:text="Cancel"></Button>
+    </LinearLayout>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/add_data_gridlayout"
+        android:layout_width="match_parent"
+        android:layout_height="312dp"
+        android:layout_margin="5dp"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.155"
+        app:useDefaultMargins="true">
+
+        <TextView
+            android:id="@+id/TextView_add_data_fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TextView_add_data_fat"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_row="1" />
+
+        <TextView
+            android:id="@+id/TextView_add_data_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TextView_add_data_weight"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <TextView
+            android:id="@+id/TextView_add_data_muscle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TextView_add_data_muscle"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_row="2" />
+
+        <EditText
+            android:id="@+id/EditText_add_data_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="@string/EditText_add_data_weight"
+            app:layout_column="1"
+            app:layout_row="0" />
+
+        <EditText
+            android:id="@+id/EditText_add_data_fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="@string/EditText_add_data_fat"
+            app:layout_column="1"
+            app:layout_row="1" />
+
+        <EditText
+            android:id="@+id/EditText_add_data_muscle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="@string/EditText_add_data_muscle"
+            app:layout_column="1"
+            app:layout_row="2" />
+
+        <EditText
+            android:id="@+id/EditText_add_data_water"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="@string/EditText_add_data_water"
+            app:layout_column="1"
+            app:layout_row="3" />
+
+        <TextView
+            android:id="@+id/TextView_add_data_water"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TextView_add_data_water"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_row="3"
+            tools:layout_editor_absoluteX="67dp"
+            tools:layout_editor_absoluteY="550dp" />
+
+
+    </androidx.gridlayout.widget.GridLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
