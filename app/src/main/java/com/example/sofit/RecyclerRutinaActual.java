@@ -1,13 +1,13 @@
 package com.example.sofit;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListDiasViewAdapter;
 import com.example.sofit.model.Dia;
@@ -50,7 +50,7 @@ public class RecyclerRutinaActual extends AppCompatActivity {
     }
 
     public void clikonItem (Dia dia){
-       startActivity(new Intent(RecyclerRutinaActual.this,AnadirSesion.class));
+        startActivity(new Intent(RecyclerRutinaActual.this,AnadirSesion.class));
     }
 
 
