@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="208dp"
-        android:text="Actualizar\nDatos"
+        android:text="@string/updateData"
         app:layout_constraintEnd_toStartOf="@+id/button_fotoPerfil"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,11 +74,11 @@
 
     <Button
         android:id="@+id/button_fotoPerfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
         android:layout_marginTop="208dp"
-        android:layout_marginEnd="40dp"
-        android:text="Cambiar Foto\nde Perfil"
+        android:layout_marginEnd="32dp"
+        android:text="@string/changeProfilePic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="Ver Progreso"
+        android:text="@string/showProgress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -26,6 +26,14 @@ public class MiPerfilPrincipal extends AppCompatActivity {
             }
         });
 
+        Button b2 = (Button)findViewById(R.id.button_verProgreso);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MiPerfilPrincipal.this,MainActivity.class));
+            }
+        });
+
 
     }
 
@@ -39,7 +47,7 @@ public class MiPerfilPrincipal extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_perfilPrincipal_Inicio) {
-            return true;
+            startActivity(new Intent(MiPerfilPrincipal.this,RecyclerMisRutinas.class));
         }
         return super.onOptionsItemSelected(item);
     }

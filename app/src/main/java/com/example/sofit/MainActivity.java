@@ -1,9 +1,9 @@
 package com.example.sofit;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         graphView.addSeries(series);
 
         if(button){
-            //Intent myIntent = new Intent(this, AddDataForTodayActivity.class);
-            //startActivity(myIntent);
+            Intent myIntent = new Intent(this, MyProgressActivity.class);
+            startActivity(myIntent);
         }
     }
 }

@@ -62,7 +62,7 @@ public class EditarPerfil extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_editPerfil_inicio) {
-            return true;
+            startActivity(new Intent(EditarPerfil.this,RecyclerMisRutinas.class));
         }
         if(item.getItemId()==R.id.menuItem_editPerfil_perfil){
             startActivity(new Intent(EditarPerfil.this,MiPerfilPrincipal.class));

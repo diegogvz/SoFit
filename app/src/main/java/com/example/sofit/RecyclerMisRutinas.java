@@ -69,7 +69,7 @@ public class RecyclerMisRutinas extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(RecyclerMisRutinas.this, RecyclerMisRutinas.class));
+            startActivity(new Intent(RecyclerMisRutinas.this, RecyclerRutinaActual.class));
         }
         if(id == R.id.menuItem_misRutinas_perfil){
             startActivity(new Intent(RecyclerMisRutinas.this, MiPerfilPrincipal.class));
