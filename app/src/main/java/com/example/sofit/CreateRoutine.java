@@ -1,20 +1,30 @@
-
 package com.example.sofit;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
-
-public class MyProgressActivity extends AppCompatActivity {
+public class CreateRoutine extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_data_for_today);
+        setContentView(R.layout.activity_create_routine);
+
+        setTitle("Crear Rutina");
+
+        Button btnAceptar = (Button) findViewById(R.id.btnAceptar);
+        btnAceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CreateRoutine.this, RecyclerMyRoutines.class));
+            }
+        });
     }
 
     @Override
@@ -28,13 +38,13 @@ public class MyProgressActivity extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(MyProgressActivity.this, RecyclerMyRoutines.class));
+            startActivity(new Intent(CreateRoutine.this, RecyclerMyRoutines.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(MyProgressActivity.this, MyProfile.class));
+            startActivity(new Intent(CreateRoutine.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(MyProgressActivity.this, RecyclerActualRoutine.class));
+            startActivity(new Intent(CreateRoutine.this, RecyclerActualRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);

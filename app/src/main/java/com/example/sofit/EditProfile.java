@@ -9,7 +9,7 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EditarPerfil extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
     String[] edades;
     String[] pesos;
     String[]alturas;
@@ -17,7 +17,7 @@ public class EditarPerfil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editar_perfil);
+        setContentView(R.layout.activity_edit_profile);
 
         edades = new String[120];
         for(int i=0;i< edades.length;i++){
@@ -54,19 +54,24 @@ public class EditarPerfil extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
 // Inflate the menu
-        getMenuInflater().inflate(R.menu.menu_editperfil, menu);
+        getMenuInflater().inflate(R.menu.menu_misrutinas, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
-        if (id == R.id.menuItem_editPerfil_inicio) {
-            startActivity(new Intent(EditarPerfil.this,RecyclerMisRutinas.class));
+        if (id == R.id.menuItem_misRutinas_misRutinas) {
+            startActivity(new Intent(EditProfile.this, RecyclerMyRoutines.class));
         }
-        if(item.getItemId()==R.id.menuItem_editPerfil_perfil){
-            startActivity(new Intent(EditarPerfil.this,MiPerfilPrincipal.class));
+        if (id==R.id.menuItem_misRutinas_perfil){
+            startActivity(new Intent(EditProfile.this, MyProfile.class));
         }
+        if (id==R.id.menuItem_misRutinas_rutinas){
+            startActivity(new Intent(EditProfile.this, RecyclerActualRoutine.class));
+        }
+
         return super.onOptionsItemSelected(item);
+
     }
 }

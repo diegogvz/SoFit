@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CrearRutinas">
+    tools:context=".CreateRoutine">
 
     <EditText
         android:id="@+id/editTextNombreRutina"
@@ -12,7 +12,7 @@
         android:layout_height="48dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nombre"
+        android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
@@ -25,7 +25,7 @@
         android:layout_width="328dp"
         android:layout_height="48dp"
         android:layout_marginBottom="44dp"
-        android:text="Aceptar"
+        android:text="@string/confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"

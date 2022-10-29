@@ -31,7 +31,7 @@ public class ListRutinasViewAdapter extends RecyclerView.Adapter<ListRutinasView
     @Override
     public RutinaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.linea_recyclerview_rutina, parent, false);
+                .inflate(R.layout.linea_recyclerview_rutine, parent, false);
         return new RutinaViewHolder(itemView);
     }
 

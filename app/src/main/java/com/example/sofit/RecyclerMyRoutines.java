@@ -16,7 +16,7 @@ import com.example.sofit.model.Rutina;
 
 import java.util.ArrayList;
 
-public class RecyclerMisRutinas extends AppCompatActivity {
+public class RecyclerMyRoutines extends AppCompatActivity {
 
     ArrayList<Rutina> rutinas = new ArrayList<Rutina>();
     private RecyclerView listRutinasView;
@@ -24,7 +24,7 @@ public class RecyclerMisRutinas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_mis_rutinas);
+        setContentView(R.layout.activity_recycler_my_routines);
 
         setTitle("Mis Rutinas");
 
@@ -50,7 +50,7 @@ public class RecyclerMisRutinas extends AppCompatActivity {
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RecyclerMisRutinas.this,CrearRutinas.class));
+                startActivity(new Intent(RecyclerMyRoutines.this, CreateRoutine.class));
             }
         });
     }
@@ -60,20 +60,26 @@ public class RecyclerMisRutinas extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(final Menu menu){
+    public boolean onCreateOptionsMenu(final Menu menu) {
+// Inflate the menu
         getMenuInflater().inflate(R.menu.menu_misrutinas, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+//noinspection SimplifiableIfStatement
+        if (id == R.id.menuItem_misRutinas_misRutinas) {
+            startActivity(new Intent(RecyclerMyRoutines.this, RecyclerMyRoutines.class));
+        }
+        if (id==R.id.menuItem_misRutinas_perfil){
+            startActivity(new Intent(RecyclerMyRoutines.this, MyProfile.class));
+        }
+        if (id==R.id.menuItem_misRutinas_rutinas){
+            startActivity(new Intent(RecyclerMyRoutines.this, RecyclerActualRoutine.class));
+        }
 
-        if(id == R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(RecyclerMisRutinas.this, RecyclerRutinaActual.class));
-        }
-        if(id == R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(RecyclerMisRutinas.this, MiPerfilPrincipal.class));
-        }
         return super.onOptionsItemSelected(item);
+
     }
 }

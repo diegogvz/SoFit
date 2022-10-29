@@ -14,7 +14,7 @@ import com.example.sofit.model.Dia;
 
 import java.util.ArrayList;
 
-public class RecyclerRutinaActual extends AppCompatActivity {
+public class RecyclerActualRoutine extends AppCompatActivity {
 
     ArrayList<Dia> dias=new ArrayList<Dia>();
     private RecyclerView listDiasView;
@@ -22,7 +22,7 @@ public class RecyclerRutinaActual extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_rutina_actual);
+        setContentView(R.layout.activity_recycler_actual_routine);
 
         dias.add(new Dia("Lunes"));
         dias.add(new Dia("Martes"));
@@ -50,7 +50,7 @@ public class RecyclerRutinaActual extends AppCompatActivity {
     }
 
     public void clikonItem (Dia dia){
-        startActivity(new Intent(RecyclerRutinaActual.this,AnadirSesion.class));
+        startActivity(new Intent(RecyclerActualRoutine.this, AddSession.class));
     }
 
 
@@ -58,19 +58,23 @@ public class RecyclerRutinaActual extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
 // Inflate the menu
-        getMenuInflater().inflate(R.menu.menu_editperfil, menu);
+        getMenuInflater().inflate(R.menu.menu_misrutinas, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
-        if (id == R.id.menuItem_editPerfil_inicio) {
-            startActivity(new Intent(RecyclerRutinaActual.this,RecyclerMisRutinas.class));
+        if (id == R.id.menuItem_misRutinas_misRutinas) {
+            startActivity(new Intent(RecyclerActualRoutine.this, RecyclerMyRoutines.class));
         }
-        if(item.getItemId()==R.id.menuItem_editPerfil_perfil){
-            startActivity(new Intent(RecyclerRutinaActual.this,MiPerfilPrincipal.class));
+        if (id==R.id.menuItem_misRutinas_perfil){
+            startActivity(new Intent(RecyclerActualRoutine.this, MyProfile.class));
         }
+        if (id==R.id.menuItem_misRutinas_rutinas){
+            startActivity(new Intent(RecyclerActualRoutine.this, RecyclerActualRoutine.class));
+        }
+
         return super.onOptionsItemSelected(item);
 
     }

@@ -16,7 +16,6 @@
     <!-- _______________________________________________ -->
 
 
-
     <!-- _________________ ADD DATA _________________ -->
 
     <string name="add_data_title">My Progress</string>
@@ -33,6 +32,9 @@
 
     <string name="Button_add_data_confirm">Confirm</string>
     <string name="Button_add_data_cancel">Cancel</string>
+
+    <string name="Series_add_data">3</string>
+    <string name="Repetitions_add_data">15</string>
 
     <!-- _______________________________________________ -->
 
@@ -61,4 +63,27 @@
     <string name="addExercise">Add Exercise</string>
     <string name="title">Title</string>
 
+    <!-- _______________________________________________ -->
+
+    <!-- _________________ INICIO SESION _________________ -->
+    <string name="name">Name:</string>
+    <string name="logIn">Log In</string>
+
+    <!-- _______________________________________________ -->
+
+    <!-- _________________ AÑADIR EJERCICIO _________________ -->
+    <string name="repetitions">Repetitions</string>
+    <string name="series">Series</string>
+
+    <!-- _______________________________________________ -->
+
+    <!-- _________________ MENU _________________ -->
+    <string name="current_rutine">My Current Routine</string>
+    <string name="profile">My profile</string>
+    <string name="routines">My routines</string>
+
+    <!-- _______________________________________________ -->
+
+    <!-- _________________ MIS RUTINAS _________________ -->
+    <string name="create">Create Routine</string>
 </resources>

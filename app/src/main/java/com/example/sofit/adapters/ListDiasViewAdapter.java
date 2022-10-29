@@ -30,7 +30,7 @@ public class ListDiasViewAdapter extends RecyclerView.Adapter<ListDiasViewAdapte
     @Override
     public ListDiasViewAdapter.DayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.linea_recyclerview_dia, parent, false);
+                .inflate(R.layout.line_recyclerview_day, parent, false);
         return new DayViewHolder(itemView);
     }
 

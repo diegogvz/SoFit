@@ -13,7 +13,7 @@ import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 
 import java.util.ArrayList;
 
-public class AnadirSesion extends AppCompatActivity {
+public class AddSession extends AppCompatActivity {
 
     private ArrayList<String> ejercicios = new ArrayList<>();
     private RecyclerView listEjerciciosView;
@@ -21,7 +21,7 @@ public class AnadirSesion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anadir_sesion);
+        setContentView(R.layout.activity_add_session);
 
         ejercicios.add("ejercicio1");
         ejercicios.add("ejercicio2");
@@ -53,19 +53,23 @@ public class AnadirSesion extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
 // Inflate the menu
-        getMenuInflater().inflate(R.menu.menu_editperfil, menu);
+        getMenuInflater().inflate(R.menu.menu_misrutinas, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
-        if (id == R.id.menuItem_editPerfil_inicio) {
-            return true;
+        if (id == R.id.menuItem_misRutinas_misRutinas) {
+            startActivity(new Intent(AddSession.this, RecyclerMyRoutines.class));
         }
-        if(item.getItemId()==R.id.menuItem_editPerfil_perfil){
-            startActivity(new Intent(AnadirSesion.this,MiPerfilPrincipal.class));
+        if (id==R.id.menuItem_misRutinas_perfil){
+            startActivity(new Intent(AddSession.this, MyProfile.class));
         }
+        if (id==R.id.menuItem_misRutinas_rutinas){
+            startActivity(new Intent(AddSession.this, RecyclerActualRoutine.class));
+        }
+
         return super.onOptionsItemSelected(item);
 
     }

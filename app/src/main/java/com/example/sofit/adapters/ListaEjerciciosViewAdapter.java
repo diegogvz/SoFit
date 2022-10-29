@@ -29,7 +29,7 @@ public class ListaEjerciciosViewAdapter extends RecyclerView.Adapter<ListaEjerci
     @Override
     public ListaEjerciciosViewAdapter.EjercicioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.linea_recycler_anadirejercicio, parent, false);
+                .inflate(R.layout.line_recycler_addexercise, parent, false);
         return new EjercicioViewHolder(itemView);
     }
 

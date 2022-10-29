@@ -4,8 +4,11 @@
 
     <item
         android:id="@+id/menuItem_misRutinas_rutinas"
-        android:title="Mi Rutina Actual" />
+        android:title="@string/current_rutine" />
     <item
         android:id="@+id/menuItem_misRutinas_perfil"
-        android:title="Mi Perfil" />
+        android:title="@string/profile" />
+    <item
+        android:id="@+id/menuItem_misRutinas_misRutinas"
+        android:title="@string/routines" />
 </menu>
