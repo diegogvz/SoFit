@@ -26,7 +26,7 @@ public class RecyclerMyRoutines extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_my_routines);
 
-        setTitle("Mis Rutinas");
+        setTitle("My Routines");
 
         rutinas.add(new Routine("Strength"));
         rutinas.add(new Routine("Muscle Growth"));
