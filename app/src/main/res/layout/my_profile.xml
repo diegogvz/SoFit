@@ -52,7 +52,7 @@
 
         <EditText
             android:id="@+id/TextEdit_series"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="numberDecimal"
@@ -61,7 +61,7 @@
 
         <EditText
             android:id="@+id/TextEdit_repetitions"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="numberDecimal"
@@ -70,7 +70,7 @@
 
         <EditText
             android:id="@+id/TextEdit_weight"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="numberDecimal"
@@ -79,7 +79,7 @@
 
         <EditText
             android:id="@+id/EditText_sex"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="numberDecimal"
@@ -104,7 +104,7 @@
     <LinearLayout
         android:id="@+id/LinearLayout02"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/button_height"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,16 +116,16 @@
 
         <Button
             android:id="@+id/button_actualizar_datos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_marginHorizontal="12dp"
             android:layout_weight="1"
             android:text="@string/updateData"></Button>
 
         <Button
             android:id="@+id/button_fotoPerfil"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_marginHorizontal="12dp"
             android:layout_weight="1"
             android:text="@string/changeProfilePic"></Button>
@@ -145,9 +145,10 @@
 
     <Button
         android:id="@+id/button_verProgreso"
-        android:layout_width="281dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:text="@string/showProgress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
