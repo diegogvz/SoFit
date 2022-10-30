@@ -19,25 +19,13 @@
 
     <Button
         android:id="@+id/button_recycler_añadir"
-        android:layout_width="111dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="60dp"
-        android:text="@string/add"
+        android:layout_width="303dp"
+        android:layout_height="53dp"
+        android:text="@string/add_new_session"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
         app:layout_constraintVertical_bias="0.411" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="121dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="80dp"
-        android:text="@string/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button_recycler_añadir"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.404" />
 </androidx.constraintlayout.widget.ConstraintLayout>
