@@ -6,55 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".EditProfile">
 
-    <TextView
-        android:id="@+id/textView_editEdad"
-        android:layout_width="97dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="88dp"
-        android:focusableInTouchMode="false"
-        android:text="@string/age"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_editPeso"
-        android:layout_width="99dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="80dp"
-        android:text="@string/weight"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/spPeso"
-        app:layout_constraintHorizontal_bias="0.74"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_editEdad" />
-
-    <TextView
-        android:id="@+id/textView_editAltura"
-        android:layout_width="103dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="68dp"
-        android:text="@string/height"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_editPeso" />
-
-    <TextView
-        android:id="@+id/textView_editSexo"
-        android:layout_width="103dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/sex"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.185"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_editAltura"
-        app:layout_constraintVertical_bias="0.0" />
-
     <Button
         android:id="@+id/button_confirmar"
         android:layout_width="wrap_content"
@@ -66,48 +17,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_editSexo"
         app:layout_constraintVertical_bias="0.458" />
 
-    <Spinner
-        android:id="@+id/spEdad"
-        android:layout_width="221dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView_editEdad"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spPeso"
-        android:layout_width="227dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spEdad"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Spinner
-        android:id="@+id/spAltura"
-        android:layout_width="228dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toEndOf="@+id/textView_editAltura"
-        app:layout_constraintTop_toBottomOf="@+id/spPeso" />
-
-    <Spinner
-        android:id="@+id/spSexo"
-        android:layout_width="227dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView_editSexo"
-        app:layout_constraintTop_toBottomOf="@+id/spAltura" />
-
     <Button
         android:id="@+id/button_actEditPerfil_cancelar"
         android:layout_width="wrap_content"
@@ -118,4 +27,94 @@
         app:layout_constraintStart_toEndOf="@+id/button_confirmar"
         app:layout_constraintTop_toBottomOf="@+id/textView_editSexo"
         app:layout_constraintVertical_bias="0.458" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="335dp"
+        android:layout_height="194dp"
+        app:columnCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.167"
+        app:rowCount="4">
+
+        <Spinner
+            android:id="@+id/spSexo"
+            android:layout_width="227dp"
+            android:layout_height="48dp"
+            app:layout_column="1"
+            app:layout_gravity="center_vertical"
+            app:layout_row="0" />
+
+        <TextView
+            android:id="@+id/textView_editSexo"
+            android:layout_width="103dp"
+            android:layout_height="33dp"
+            android:gravity="center_vertical"
+            android:text="@string/sex"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_gravity="center_vertical"
+            app:layout_row="0" />
+
+        <TextView
+            android:id="@+id/textView_editEdad"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:text="@string/age"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_gravity="center_vertical"
+            app:layout_row="1" />
+
+        <TextView
+            android:id="@+id/textView_editPeso"
+            android:layout_width="99dp"
+            android:layout_height="34dp"
+            android:gravity="center_vertical"
+            android:text="@string/weight"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_gravity="center_vertical"
+            app:layout_row="2" />
+
+        <Spinner
+            android:id="@+id/spPeso"
+            android:layout_width="227dp"
+            android:layout_height="48dp"
+            app:layout_column="1"
+            app:layout_gravity="center_vertical"
+            app:layout_row="2" />
+
+        <TextView
+            android:id="@+id/textView_editAltura"
+            android:layout_width="103dp"
+            android:layout_height="32dp"
+            android:gravity="center_vertical"
+            android:text="@string/height"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_gravity="center_vertical"
+            app:layout_row="3" />
+
+        <Spinner
+            android:id="@+id/spAltura"
+            android:layout_width="228dp"
+            android:layout_height="48dp"
+            app:layout_column="1"
+            app:layout_gravity="center_vertical"
+            app:layout_row="3" />
+
+        <Spinner
+            android:id="@+id/spEdad"
+            android:layout_width="227dp"
+            android:layout_height="48dp"
+            app:layout_column="1"
+            app:layout_gravity="center_vertical"
+            app:layout_row="1" />
+    </androidx.gridlayout.widget.GridLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

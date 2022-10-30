@@ -9,12 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class SetExercise extends AppCompatActivity {
+public class AddExercise extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_exercise);
+        setContentView(R.layout.activity_add_exercise);
 
         setTitle("Añadir Ejercicio");
 
@@ -23,7 +23,7 @@ public class SetExercise extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(validarCampos())
-                    startActivity(new Intent(SetExercise.this, AddSession.class));
+                    startActivity(new Intent(AddExercise.this, AddSession.class));
             }
         });
 
@@ -31,13 +31,13 @@ public class SetExercise extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(new Intent(SetExercise.this, AddSession.class));
+                startActivity(new Intent(AddExercise.this, AddSession.class));
             }
         });
     }
 
     private boolean validarCampos(){
-        if(R.id.editTextSeries>0 && R.id.editTextRepetitions>0 && R.id.editTextWeight>0){
+        if(R.id.TextEdit_series>0 && R.id.TextEdit_repetitions>0 && R.id.TextEdit_weight>0){
             return true;
         }
 
@@ -55,13 +55,13 @@ public class SetExercise extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(SetExercise.this, RecyclerMyRoutines.class));
+            startActivity(new Intent(AddExercise.this, RecyclerMyRoutines.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(SetExercise.this, MyProfile.class));
+            startActivity(new Intent(AddExercise.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(SetExercise.this, RecyclerActualRoutine.class));
+            startActivity(new Intent(AddExercise.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);

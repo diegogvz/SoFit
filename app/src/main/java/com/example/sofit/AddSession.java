@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,9 +25,27 @@ public class AddSession extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_session);
 
-        ejercicios.add("ejercicio1");
-        ejercicios.add("ejercicio2");
-        ejercicios.add("...");
+        Button btnConfirm = (Button) findViewById(R.id.btn_addsession_confirm);
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddSession.this, MyCurrentRoutine.class));
+            }
+        });
+
+        Button btnAddExecise = (Button) findViewById(R.id.btn_addsession_addExecise);
+        btnAddExecise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddSession.this, AddExercise.class));
+            }
+        });
+
+        setTitle("Add new session");
+
+        ejercicios.add("exercise1");
+        ejercicios.add("exercise2");
+        ejercicios.add("exercise3");
 
         listEjerciciosView =(RecyclerView) findViewById(R.id.recyclerView_anadirsesion);
         listEjerciciosView.setHasFixedSize(true);
@@ -67,7 +87,7 @@ public class AddSession extends AppCompatActivity {
             startActivity(new Intent(AddSession.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(AddSession.this, RecyclerActualRoutine.class));
+            startActivity(new Intent(AddSession.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);

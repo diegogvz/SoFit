@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SoFit"
         tools:targetApi="31">
         <activity
-            android:name=".SetExercise"
+            android:name=".AddExercise"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -26,6 +26,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".CreateRoutine"
             android:exported="false">
@@ -34,7 +35,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RecyclerActualRoutine"
+            android:name=".MyCurrentRoutine"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -74,9 +75,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".MyProgressActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MyProgress"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AddDataForToday"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

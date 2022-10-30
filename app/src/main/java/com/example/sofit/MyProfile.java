@@ -16,7 +16,7 @@ public class MyProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_profile);
 
-
+        setTitle("My Profile");
 
         Button b = (Button)findViewById(R.id.button_actualizar_datos);
         b.setOnClickListener(new View.OnClickListener() {
@@ -30,7 +30,7 @@ public class MyProfile extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MyProfile.this,MainActivity.class));
+                startActivity(new Intent(MyProfile.this, MyProgress.class));
             }
         });
 
@@ -54,7 +54,7 @@ public class MyProfile extends AppCompatActivity {
             startActivity(new Intent(MyProfile.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(MyProfile.this, RecyclerActualRoutine.class));
+            startActivity(new Intent(MyProfile.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);

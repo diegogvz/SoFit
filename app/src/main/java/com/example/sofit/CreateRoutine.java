@@ -44,7 +44,7 @@ public class CreateRoutine extends AppCompatActivity {
             startActivity(new Intent(CreateRoutine.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(CreateRoutine.this, RecyclerActualRoutine.class));
+            startActivity(new Intent(CreateRoutine.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);

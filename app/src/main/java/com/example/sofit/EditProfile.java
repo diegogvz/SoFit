@@ -18,6 +18,7 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        setTitle("Edit Profile");
 
         edades = new String[120];
         for(int i=0;i< edades.length;i++){
@@ -68,7 +69,7 @@ public class EditProfile extends AppCompatActivity {
             startActivity(new Intent(EditProfile.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(EditProfile.this, RecyclerActualRoutine.class));
+            startActivity(new Intent(EditProfile.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);

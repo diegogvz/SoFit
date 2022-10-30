@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +13,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-public class MainActivity extends AppCompatActivity {
+public class MyProgress extends AppCompatActivity {
 
     boolean button=false;
     // creating a variable
@@ -22,6 +24,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_progress);
 
+        setTitle("My Progress");
+
+        Button b = (Button)findViewById(R.id.my_progress_add_data);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyProgress.this, AddDataForToday.class));
+            }
+        });
         // on below line we are initializing our graph view.
         graphView = findViewById(R.id.idGraphView);
         System.out.println(graphView);
@@ -59,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         graphView.addSeries(series);
 
         if(button){
-            Intent myIntent = new Intent(this, MyProgressActivity.class);
+            Intent myIntent = new Intent(this, MyProgress.class);
             startActivity(myIntent);
         }
     }
@@ -75,13 +86,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(MainActivity.this, RecyclerMyRoutines.class));
+            startActivity(new Intent(MyProgress.this, RecyclerMyRoutines.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(MainActivity.this, MyProfile.class));
+            startActivity(new Intent(MyProgress.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(MainActivity.this, RecyclerActualRoutine.class));
+            startActivity(new Intent(MyProgress.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);

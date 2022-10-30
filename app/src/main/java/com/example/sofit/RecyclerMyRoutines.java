@@ -77,7 +77,7 @@ public class RecyclerMyRoutines extends AppCompatActivity {
             startActivity(new Intent(RecyclerMyRoutines.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(RecyclerMyRoutines.this, RecyclerActualRoutine.class));
+            startActivity(new Intent(RecyclerMyRoutines.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);

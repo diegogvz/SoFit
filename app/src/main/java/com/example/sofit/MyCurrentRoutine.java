@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +16,7 @@ import com.example.sofit.model.Day;
 
 import java.util.ArrayList;
 
-public class RecyclerActualRoutine extends AppCompatActivity {
+public class MyCurrentRoutine extends AppCompatActivity {
 
     ArrayList<Day> days =new ArrayList<Day>();
     private RecyclerView listDiasView;
@@ -22,15 +24,16 @@ public class RecyclerActualRoutine extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_actual_routine);
+        setContentView(R.layout.my_current_routine);
+        setTitle("My current routine");
 
-        days.add(new Day("Lunes"));
-        days.add(new Day("Martes"));
-        days.add(new Day("Miercoles"));
-        days.add(new Day("Jueves"));
-        days.add(new Day("Viernes"));
-        days.add(new Day("Sabado"));
-        days.add(new Day("Domingo"));
+        days.add(new Day("Monday"));
+        days.add(new Day("Tuesday"));
+        days.add(new Day("Wednesday"));
+        days.add(new Day("Thursday"));
+        days.add(new Day("Leg"));
+        days.add(new Day("Arms"));
+        days.add(new Day("Chest"));
 
         listDiasView=(RecyclerView) findViewById(R.id.recyclerView);
         listDiasView.setHasFixedSize(true);
@@ -42,15 +45,19 @@ public class RecyclerActualRoutine extends AppCompatActivity {
                 new ListDiasViewAdapter.OnItemClickListener(){
                     @Override
                     public void onItemClick(Day item) {
-                        clikonItem(item);
+                        /* Change current routine to the one clicked */
                     }
                 });
 
         listDiasView.setAdapter(lpAdapter);
-    }
 
-    public void clikonItem (Day day){
-        startActivity(new Intent(RecyclerActualRoutine.this, AddSession.class));
+        Button b = (Button)findViewById(R.id.my_current_routine_add_session);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyCurrentRoutine.this, AddSession.class));
+            }
+        });
     }
 
 
@@ -66,13 +73,13 @@ public class RecyclerActualRoutine extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(RecyclerActualRoutine.this, RecyclerMyRoutines.class));
+            startActivity(new Intent(MyCurrentRoutine.this, RecyclerMyRoutines.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(RecyclerActualRoutine.this, MyProfile.class));
+            startActivity(new Intent(MyCurrentRoutine.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(RecyclerActualRoutine.this, RecyclerActualRoutine.class));
+            startActivity(new Intent(MyCurrentRoutine.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);
