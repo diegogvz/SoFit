@@ -9,20 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.R;
-import com.example.sofit.model.Dia;
+import com.example.sofit.model.Day;
 
 import java.util.List;
 
 public class ListDiasViewAdapter extends RecyclerView.Adapter<ListDiasViewAdapter.DayViewHolder> {
 
     public interface OnItemClickListener {
-        void onItemClick(Dia item);
+        void onItemClick(Day item);
     }
-    private List<Dia> dias;
+    private List<Day> days;
     private final OnItemClickListener listener;
 
-    public ListDiasViewAdapter(List<Dia> listaDias, OnItemClickListener listener) {
-        this.dias = listaDias;
+    public ListDiasViewAdapter(List<Day> listaDays, OnItemClickListener listener) {
+        this.days = listaDays;
         this.listener = listener;
     }
 
@@ -36,14 +36,14 @@ public class ListDiasViewAdapter extends RecyclerView.Adapter<ListDiasViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull DayViewHolder holder, int position) {
-        Dia dia= dias.get(position);
-        holder.bindUser(dia, listener);
+        Day day = days.get(position);
+        holder.bindUser(day, listener);
 
     }
 
     @Override
     public int getItemCount() {
-        return dias.size();
+        return days.size();
     }
 
 
@@ -53,17 +53,17 @@ public class ListDiasViewAdapter extends RecyclerView.Adapter<ListDiasViewAdapte
 
         public DayViewHolder(@NonNull View itemView) {
             super(itemView);
-            diaTextView=(TextView)itemView.findViewById(R.id.dia);
+            diaTextView=(TextView)itemView.findViewById(R.id.day);
         }
 
-         public void bindUser(final Dia dia, final OnItemClickListener listener) {
+         public void bindUser(final Day day, final OnItemClickListener listener) {
 
-            diaTextView.setText(dia.getNombre());
+            diaTextView.setText(day.getNombre());
 
              itemView.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                     listener.onItemClick(dia);
+                     listener.onItemClick(day);
                  }
              });
          }

@@ -1,13 +1,13 @@
 package com.example.sofit.model;
 
-public class Dia {
+public class Day {
     String nombre;
 
     public String getNombre() {
         return nombre;
     }
 
-    public Dia(String nombre) {
+    public Day(String nombre) {
         this.nombre = nombre;
     }
 }

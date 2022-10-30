@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListDiasViewAdapter;
-import com.example.sofit.model.Dia;
+import com.example.sofit.model.Day;
 
 import java.util.ArrayList;
 
 public class RecyclerActualRoutine extends AppCompatActivity {
 
-    ArrayList<Dia> dias=new ArrayList<Dia>();
+    ArrayList<Day> days =new ArrayList<Day>();
     private RecyclerView listDiasView;
 
     @Override
@@ -24,13 +24,13 @@ public class RecyclerActualRoutine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_actual_routine);
 
-        dias.add(new Dia("Lunes"));
-        dias.add(new Dia("Martes"));
-        dias.add(new Dia("Miercoles"));
-        dias.add(new Dia("Jueves"));
-        dias.add(new Dia("Viernes"));
-        dias.add(new Dia("Sabado"));
-        dias.add(new Dia("Domingo"));
+        days.add(new Day("Lunes"));
+        days.add(new Day("Martes"));
+        days.add(new Day("Miercoles"));
+        days.add(new Day("Jueves"));
+        days.add(new Day("Viernes"));
+        days.add(new Day("Sabado"));
+        days.add(new Day("Domingo"));
 
         listDiasView=(RecyclerView) findViewById(R.id.recyclerView);
         listDiasView.setHasFixedSize(true);
@@ -38,10 +38,10 @@ public class RecyclerActualRoutine extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         listDiasView.setLayoutManager(layoutManager);
 
-        ListDiasViewAdapter lpAdapter=new ListDiasViewAdapter(dias,
+        ListDiasViewAdapter lpAdapter=new ListDiasViewAdapter(days,
                 new ListDiasViewAdapter.OnItemClickListener(){
                     @Override
-                    public void onItemClick(Dia item) {
+                    public void onItemClick(Day item) {
                         clikonItem(item);
                     }
                 });
@@ -49,7 +49,7 @@ public class RecyclerActualRoutine extends AppCompatActivity {
         listDiasView.setAdapter(lpAdapter);
     }
 
-    public void clikonItem (Dia dia){
+    public void clikonItem (Day day){
         startActivity(new Intent(RecyclerActualRoutine.this, AddSession.class));
     }
 

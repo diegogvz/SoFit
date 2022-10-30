@@ -1,9 +1,9 @@
 package com.example.sofit.model;
 
-public class Rutina {
+public class Routine {
     String nombre;
 
-    public Rutina(String nombre){
+    public Routine(String nombre){
         this.nombre = nombre;
     }
 

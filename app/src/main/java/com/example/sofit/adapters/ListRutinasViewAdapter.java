@@ -9,21 +9,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.R;
-import com.example.sofit.model.Rutina;
+import com.example.sofit.model.Routine;
 
 import java.util.List;
 
 public class ListRutinasViewAdapter extends RecyclerView.Adapter<ListRutinasViewAdapter.RutinaViewHolder>{
 
     public interface OnItemClickListener{
-        void onItemClick(Rutina rutina);
+        void onItemClick(Routine rutina);
     }
 
-    private List<Rutina> rutinas;
+    private List<Routine> rutinas;
     private final OnItemClickListener listener;
 
-    public ListRutinasViewAdapter(List<Rutina> listRutinas, OnItemClickListener listener){
-        this.rutinas = listRutinas;
+    public ListRutinasViewAdapter(List<Routine> listRoutines, OnItemClickListener listener){
+        this.rutinas = listRoutines;
         this.listener = listener;
     }
 
@@ -37,7 +37,7 @@ public class ListRutinasViewAdapter extends RecyclerView.Adapter<ListRutinasView
 
     @Override
     public void onBindViewHolder(@NonNull RutinaViewHolder holder, int position) {
-        Rutina rutina = rutinas.get(position);
+        Routine rutina = rutinas.get(position);
         holder.bindUser(rutina, listener);
     }
 
@@ -48,14 +48,14 @@ public class ListRutinasViewAdapter extends RecyclerView.Adapter<ListRutinasView
 
     protected class RutinaViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView diaTextView;
+        private TextView rutinaTextView;
 
         public RutinaViewHolder(@NonNull View itemView) {
             super(itemView);
-            diaTextView=(TextView)itemView.findViewById(R.id.dia);
+            rutinaTextView=(TextView)itemView.findViewById(R.id.rutina);
         }
 
-        public void bindUser(final Rutina rutina, final OnItemClickListener listener) {
+        public void bindUser(final Routine rutina, final OnItemClickListener listener) {
 
 //            diaTextView.setText(/*rutina.getNombre()*/"");
 

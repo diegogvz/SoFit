@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListRutinasViewAdapter;
-import com.example.sofit.model.Rutina;
+import com.example.sofit.model.Routine;
 
 import java.util.ArrayList;
 
 public class RecyclerMyRoutines extends AppCompatActivity {
 
-    ArrayList<Rutina> rutinas = new ArrayList<Rutina>();
+    ArrayList<Routine> rutinas = new ArrayList<Routine>();
     private RecyclerView listRutinasView;
 
     @Override
@@ -28,8 +28,9 @@ public class RecyclerMyRoutines extends AppCompatActivity {
 
         setTitle("Mis Rutinas");
 
-        rutinas.add(new Rutina("Fuerza"));
-        rutinas.add(new Rutina("Resistencia"));
+        rutinas.add(new Routine("Strength"));
+        rutinas.add(new Routine("Muscle Growth"));
+        rutinas.add(new Routine("Resistance"));
 
         listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
         listRutinasView.setHasFixedSize(true);
@@ -40,7 +41,7 @@ public class RecyclerMyRoutines extends AppCompatActivity {
         ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas,
                 new ListRutinasViewAdapter.OnItemClickListener() {
                     @Override
-                    public void onItemClick(Rutina rutina) {
+                    public void onItemClick(Routine rutina) {
                         clickonItem(rutina);
                     }
                 });
@@ -55,7 +56,7 @@ public class RecyclerMyRoutines extends AppCompatActivity {
         });
     }
 
-    public void clickonItem(Rutina rutina){
+    public void clickonItem(Routine rutina){
         
     }
 
