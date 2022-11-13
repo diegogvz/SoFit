@@ -55,7 +55,7 @@ public class AddExercise extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(AddExercise.this, RecyclerMyRoutines.class));
+            startActivity(new Intent(AddExercise.this, MyRoutines.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
             startActivity(new Intent(AddExercise.this, MyProfile.class));
