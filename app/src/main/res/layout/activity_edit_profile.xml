@@ -110,8 +110,8 @@
             android:id="@+id/btn_editprofile_confirm"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
+            android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
             android:layout_weight="1"
             android:text="@string/confirm" />
 

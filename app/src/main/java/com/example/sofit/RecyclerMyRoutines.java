@@ -28,10 +28,6 @@ public class RecyclerMyRoutines extends AppCompatActivity {
 
         setTitle("My Routines");
 
-        rutinas.add(new Routine("Strength"));
-        rutinas.add(new Routine("Muscle Growth"));
-        rutinas.add(new Routine("Resistance"));
-
         listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
         listRutinasView.setHasFixedSize(true);
 
