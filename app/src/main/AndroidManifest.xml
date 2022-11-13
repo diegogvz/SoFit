@@ -42,7 +42,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RecyclerMyRoutines"
+            android:name=".MyRoutines"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
