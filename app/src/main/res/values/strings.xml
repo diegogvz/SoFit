@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">SoFit</string>
+    <!-- _________________ EXERCISE _________________ -->
 
+    <string name="exercise_reps">Reps</string>
+    <string name="exercise_weight">Weight</string>
+    <!-- _______________________________________________ -->
 
     <!-- _________________ MY PROGRESS _________________ -->
 

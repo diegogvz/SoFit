@@ -74,7 +74,7 @@ public class MyCurrentRoutine extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(MyCurrentRoutine.this, RecyclerMyRoutines.class));
+            startActivity(new Intent(MyCurrentRoutine.this, MyRoutines.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
             startActivity(new Intent(MyCurrentRoutine.this, MyProfile.class));

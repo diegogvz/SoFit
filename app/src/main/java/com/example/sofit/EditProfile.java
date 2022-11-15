@@ -78,7 +78,7 @@ public class EditProfile extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(EditProfile.this, RecyclerMyRoutines.class));
+            startActivity(new Intent(EditProfile.this, MyRoutines.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
             startActivity(new Intent(EditProfile.this, MyProfile.class));

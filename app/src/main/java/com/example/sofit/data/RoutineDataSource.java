@@ -1,4 +1,4 @@
-package com.example.sofit.bbdd;
+package com.example.sofit.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,17 +10,8 @@ import com.example.sofit.model.Routine;
 
 import java.util.ArrayList;
 
-public class RoutineDataSource {
-    /**
-     * Referencia para manejar la base de datos. Este objeto lo obtenemos a partir de MyDBHelper
-     * y nos proporciona metodos para hacer operaciones
-     * CRUD (create, read, update and delete)
-     */
-    private SQLiteDatabase database;
-    /**
-     * Referencia al helper que se encarga de crear y actualizar la base de datos.
-     */
-    private MyDBHelper dbHelper;
+public class RoutineDataSource extends DataSource{
+
     /**
      * Columnas de la tabla
      */
@@ -37,26 +28,8 @@ public class RoutineDataSource {
     }
 
     /**
-     * Abre una conexion para escritura con la base de datos.
-     * Esto lo hace a traves del helper con la llamada a getWritableDatabase. Si la base de
-     * datos no esta creada, el helper se encargara de llamar a onCreate
-     *
-     * @throws SQLException
-     */
-    public void open() throws SQLException {
-        database = dbHelper.getWritableDatabase();
-
-    }
-
-    /**
-     * Cierra la conexion con la base de datos
-     */
-    public void close() {
-        dbHelper.close();
-    }
-
-    /**
      * Recibe la película y crea el registro en la base de datos.
+     *
      * @param routineToInsert
      * @return
      */

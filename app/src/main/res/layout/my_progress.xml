@@ -5,70 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="411dp"
-        android:layout_height="71dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/TabItem_progress_weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/my_progress_tab_weight"
-            tools:layout_editor_absoluteX="2dp"
-            tools:layout_editor_absoluteY="112dp" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/TabItem_progress_fat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/my_progress_tab_body_fat"
-            tools:layout_editor_absoluteX="143dp"
-            tools:layout_editor_absoluteY="79dp" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/TabItem_progress_muscle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/my_progress_tab_body_muscle_mass" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/TabItem_progress_water"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/my_progress_tab_body_body_water" />
-    </com.google.android.material.tabs.TabLayout>
-
-
-    <Button
-        android:id="@+id/my_progress_add_data"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/button_height"
-        android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
-        android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
-        android:text="@string/my_progress_add_data"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.092">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="432dp"
-        app:layout_constraintBottom_toBottomOf="@+id/my_progress_add_data"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tabLayout"
-        app:layout_constraintVertical_bias="0.25">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="411dp"
+            android:layout_height="71dp">
 
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/idGraphView"
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/TabItem_progress_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_progress_tab_weight"
+                tools:layout_editor_absoluteX="-9dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/TabItem_progress_fat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_progress_tab_body_fat"
+                tools:layout_editor_absoluteX="143dp"
+                tools:layout_editor_absoluteY="79dp" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/TabItem_progress_muscle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_progress_tab_body_muscle_mass" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/TabItem_progress_water"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_progress_tab_body_body_water" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+            android:layout_height="432dp"
+            android:layout_weight="1">
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/idGraphView"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent" />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/my_progress_add_data"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
+            android:layout_marginBottom="30dp"
+            android:text="@string/my_progress_add_data"
+            android:textSize="@dimen/small_font_size" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

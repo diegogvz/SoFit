@@ -22,7 +22,7 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validarCampos()){
-                    startActivity(new Intent(LogIn.this, RecyclerMyRoutines.class));
+                    startActivity(new Intent(LogIn.this, MyRoutines.class));
                 }
             }
 

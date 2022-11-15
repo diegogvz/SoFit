@@ -22,7 +22,7 @@ public class CreateRoutine extends AppCompatActivity {
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreateRoutine.this, RecyclerMyRoutines.class));
+                startActivity(new Intent(CreateRoutine.this, MyRoutines.class));
             }
         });
     }
@@ -38,7 +38,7 @@ public class CreateRoutine extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(CreateRoutine.this, RecyclerMyRoutines.class));
+            startActivity(new Intent(CreateRoutine.this, MyRoutines.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
             startActivity(new Intent(CreateRoutine.this, MyProfile.class));

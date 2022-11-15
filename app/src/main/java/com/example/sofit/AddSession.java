@@ -81,7 +81,7 @@ public class AddSession extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(AddSession.this, RecyclerMyRoutines.class));
+            startActivity(new Intent(AddSession.this, MyRoutines.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
             startActivity(new Intent(AddSession.this, MyProfile.class));
