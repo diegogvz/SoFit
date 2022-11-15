@@ -1,4 +1,4 @@
-package com.example.sofit.bbdd;
+package com.example.sofit.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
