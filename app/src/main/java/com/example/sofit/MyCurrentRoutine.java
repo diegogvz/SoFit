@@ -46,7 +46,7 @@ public class MyCurrentRoutine extends AppCompatActivity {
                     @Override
                     public void onItemClick(Day item) {
                         /* Change current routine to the one clicked */
-                        startActivity(new Intent(MyCurrentRoutine.this,ExercisesOfADay.class));
+                        startActivity(new Intent(MyCurrentRoutine.this, SessionActivity.class));
                     }
                 });
 

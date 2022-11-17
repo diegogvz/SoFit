@@ -13,7 +13,7 @@ import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 
 import java.util.ArrayList;
 
-public class ExercisesOfADay extends AppCompatActivity {
+public class SessionActivity extends AppCompatActivity {
 
     ArrayList<String> exercises = new ArrayList<String>();
     private RecyclerView listaExsView;
@@ -37,7 +37,7 @@ public class ExercisesOfADay extends AppCompatActivity {
                 new ListaEjerciciosViewAdapter.OnItemClickListener(){
                     @Override
                     public void onItemClick(String item) {
-                        startActivity(new Intent(ExercisesOfADay.this,ExerciseActivity.class));
+                        startActivity(new Intent(SessionActivity.this,ExerciseActivity.class));
                     }
                 });
 
@@ -54,13 +54,13 @@ public class ExercisesOfADay extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(ExercisesOfADay.this, AddSession.class));
+            startActivity(new Intent(SessionActivity.this, AddSession.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(ExercisesOfADay.this, MyProfile.class));
+            startActivity(new Intent(SessionActivity.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(ExercisesOfADay.this, MyCurrentRoutine.class));
+            startActivity(new Intent(SessionActivity.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);
