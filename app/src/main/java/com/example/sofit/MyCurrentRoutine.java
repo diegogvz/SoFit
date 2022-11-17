@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListDiasViewAdapter;
+import com.example.sofit.data.SessionDataSource;
 import com.example.sofit.model.Day;
 
 import java.util.ArrayList;
 
 public class MyCurrentRoutine extends AppCompatActivity {
-
     ArrayList<Day> days =new ArrayList<Day>();
     private RecyclerView listDiasView;
 
