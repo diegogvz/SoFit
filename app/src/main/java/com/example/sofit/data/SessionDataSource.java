@@ -8,7 +8,7 @@ import com.example.sofit.model.Exercise;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExerciseDataSource extends DataSource{
+public class SessionDataSource extends DataSource{
     private final String[] allColumns =
             {MyDBHelper.COL_EXERCISES_NAME,
                     MyDBHelper.COL_EXERCISES_NAME,
@@ -19,18 +19,17 @@ public class ExerciseDataSource extends DataSource{
      *
      * @param context
      */
-    public ExerciseDataSource(Context context) {
+    public SessionDataSource(Context context) {
         //el último parámetro es la versión
         dbHelper = new MyDBHelper(context, null, null, 1);
     }
-
-    public List<Exercise> getExercisesForSession(String sessionId){
+    public List<Exercise> getSessionsForRoutine(String routineId){
         ArrayList<Exercise> exercises = new ArrayList<>();
-        String whereClause = "SESSION_ID = ?";
+        String whereClause = "ROUTINE_ID = ?";
         String[] whereArgs = new String[] {
-                sessionId
+                routineId
         };
-        Cursor cursor = database.query(MyDBHelper.TABLE_EXERCISES, allColumns,
+        Cursor cursor = database.query(MyDBHelper.TABLE_SESSIONS, allColumns,
                 whereClause, whereArgs, null, null, null);
 
         cursor.moveToFirst();

@@ -8,11 +8,14 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sofit.data.SessionDataSource;
+
 public class LogIn extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_log_in);
 
         setTitle("Log In");
@@ -35,4 +38,5 @@ public class LogIn extends AppCompatActivity {
             }
         });
     }
+
 }

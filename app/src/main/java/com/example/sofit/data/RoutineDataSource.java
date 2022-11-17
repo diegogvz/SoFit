@@ -3,8 +3,6 @@ package com.example.sofit.data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.example.sofit.model.Routine;
 
@@ -15,7 +13,7 @@ public class RoutineDataSource extends DataSource{
     /**
      * Columnas de la tabla
      */
-    private final String[] allColumns = {MyDBHelper.COLUMNA_NOMBRE_RUTINA, MyDBHelper.COLUMNA_NOMBRE_EJERCICIOS};
+    private final String[] allColumns = {MyDBHelper.COL_ROUTINE_NAME, MyDBHelper.COL_EXERCISES_NAME};
 
     /**
      * Constructor.
@@ -37,13 +35,13 @@ public class RoutineDataSource extends DataSource{
         // Establecemos los valores que se insertaran
         ContentValues values = new ContentValues();
 
-        values.put(MyDBHelper.COLUMNA_NOMBRE_RUTINA, routineToInsert.getNombre_rutina());
-        values.put(MyDBHelper.COLUMNA_NOMBRE_EJERCICIOS, routineToInsert.getNombre_ejercicio());
+        values.put(MyDBHelper.COL_ROUTINE_NAME, routineToInsert.getNombre_rutina());
+        values.put(MyDBHelper.COL_EXERCISES_NAME, routineToInsert.getNombre_ejercicio());
 
 
         // Insertamos la valoracion
         long insertId =
-                database.insert(MyDBHelper.TABLA_RUTINAS, null, values);
+                database.insert(MyDBHelper.TABLE_ROUTINES, null, values);
 
         return insertId;
     }
@@ -58,7 +56,7 @@ public class RoutineDataSource extends DataSource{
         ArrayList<Routine> rutinaList = new ArrayList<Routine>();
         //hacemos una query porque queremos devolver un cursor
 
-        Cursor cursor = database.query(MyDBHelper.TABLA_RUTINAS, allColumns,
+        Cursor cursor = database.query(MyDBHelper.TABLE_ROUTINES, allColumns,
                 null, null, null, null, null);
 
         cursor.moveToFirst();

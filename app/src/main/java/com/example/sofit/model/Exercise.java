@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Exercise implements Serializable {
     private int reps;
-    private float weight;
     private String name;
 
     public int getReps() {
@@ -13,14 +12,6 @@ public class Exercise implements Serializable {
 
     public void setReps(int reps) {
         this.reps = reps;
-    }
-
-    public float getWeight() {
-        return weight;
-    }
-
-    public void setWeight(float weight) {
-        this.weight = weight;
     }
 
     public String getName() {
