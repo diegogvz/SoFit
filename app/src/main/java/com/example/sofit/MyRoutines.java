@@ -6,12 +6,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListRutinasViewAdapter;
+import com.example.sofit.data.RoutineDataSource;
 import com.example.sofit.model.Routine;
 
 import java.util.ArrayList;
@@ -28,20 +30,30 @@ public class MyRoutines extends AppCompatActivity {
 
         setTitle("My Routines");
 
-        listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
-        listRutinasView.setHasFixedSize(true);
+        RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
+        routineDataSource.open();
+        rutinas = routineDataSource.getAllValorations();
+        routineDataSource.close();
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        listRutinasView.setLayoutManager(layoutManager);
+        if(rutinas.size() > 0) {
+            listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
+            listRutinasView.setHasFixedSize(true);
 
-        ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas,
-                new ListRutinasViewAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Routine rutina) {
-                        clickonItem(rutina);
-                    }
-                });
-        listRutinasView.setAdapter(lpAdapter);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+            listRutinasView.setLayoutManager(layoutManager);
+
+            ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas,
+                    new ListRutinasViewAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Routine rutina) {
+                            clickonItem(rutina);
+                        }
+                    });
+            listRutinasView.setAdapter(lpAdapter);
+        } else{
+            Toast.makeText(getApplicationContext(),
+                    getString(R.string.empty), Toast.LENGTH_LONG).show();
+        }
 
         Button btnCrear = (Button) findViewById(R.id.btnCrearRutia);
         btnCrear.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +65,7 @@ public class MyRoutines extends AppCompatActivity {
     }
 
     public void clickonItem(Routine rutina){
-        
+        startActivity(new Intent(MyRoutines.this, MyCurrentRoutine.class));
     }
 
     @Override
@@ -65,7 +77,7 @@ public class MyRoutines extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-//noinspection SimplifiableIfStatement
+    //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
             startActivity(new Intent(MyRoutines.this, MyRoutines.class));
         }

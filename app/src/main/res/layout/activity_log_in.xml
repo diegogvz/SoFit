@@ -54,16 +54,6 @@
             app:layout_gravity="right|center_vertical"
             app:layout_row="2" />
 
-        <Spinner
-            android:id="@+id/EditText_EditProfile_Weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/EditText_add_data_weight"
-            android:minHeight="48dp"
-            app:layout_column="1"
-            app:layout_gravity="center|center_vertical"
-            app:layout_row="2" />
-
         <TextView
             android:id="@+id/textView_editAltura"
             android:layout_width="wrap_content"
@@ -75,34 +65,50 @@
             app:layout_gravity="right|center_vertical"
             app:layout_row="3" />
 
-        <Spinner
-            android:id="@+id/EditText_EditProfile_Height"
+        <EditText
+            android:id="@+id/editTextSex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/EditText_add_data_height"
+            android:ems="10"
+            android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:text="Sex"
             app:layout_column="1"
-            app:layout_gravity="center|fill_vertical"
-            app:layout_row="3" />
+            app:layout_row="0" />
 
-        <Spinner
-            android:id="@+id/EditText_EditProfile_Edad"
+        <EditText
+            android:id="@+id/editTextAge"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/EditText_add_data_age"
+            android:ems="10"
+            android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:text="Age"
             app:layout_column="1"
-            app:layout_gravity="center|center_vertical"
             app:layout_row="1" />
 
-        <Spinner
-            android:id="@+id/EditText_EditProfile_Sexo"
+        <EditText
+            android:id="@+id/editTextWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/EditText_add_data_sex"
+            android:ems="10"
+            android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:text="Weight"
             app:layout_column="1"
-            app:layout_gravity="center|center_vertical"
-            app:layout_row="0" />
+            app:layout_row="2" />
+
+        <EditText
+            android:id="@+id/editTextHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="Height"
+            app:layout_column="1"
+            app:layout_row="3" />
+
     </androidx.gridlayout.widget.GridLayout>
 
     <TextView

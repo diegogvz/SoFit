@@ -94,4 +94,6 @@
 
     <!-- _________________ MIS RUTINAS _________________ -->
     <string name="create">Create Routine</string>
+    <string name="complete">Complete all the data</string>
+    <string name="empty">No routines yet, create one</string>
 </resources>
