@@ -1,21 +1,23 @@
 package com.example.sofit.model;
 
 public class Session {
-    String name;
+    private String id;
+    private String name;
 
-    public Session() {
-
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public Session(String nombre) {
-        this.name = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
+
 }

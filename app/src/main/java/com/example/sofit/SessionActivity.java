@@ -10,22 +10,27 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
+import com.example.sofit.data.ExerciseDataSource;
+import com.example.sofit.data.SessionDataSource;
+import com.example.sofit.model.Exercise;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ExercisesOfADay extends AppCompatActivity {
+public class SessionActivity extends AppCompatActivity {
 
     ArrayList<String> exercises = new ArrayList<String>();
+    ExerciseDataSource exerciseDataSource=new ExerciseDataSource(getApplicationContext());
     private RecyclerView listaExsView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises_of_aday);
 
-        exercises.add("Squads");
-        exercises.add("Leg press");
-        exercises.add("Cardio");
-        exercises.add("Stretching");
+        exercises.add("Squads - hardcoded");
+        exercises.add("Leg press - hardcoded");
+        exercises.add("Cardio - hardcoded");
+        exercises.add("Stretching - hardcoded");
 
         listaExsView=(RecyclerView) findViewById(R.id.recyclerView);
         listaExsView.setHasFixedSize(true);
@@ -37,7 +42,7 @@ public class ExercisesOfADay extends AppCompatActivity {
                 new ListaEjerciciosViewAdapter.OnItemClickListener(){
                     @Override
                     public void onItemClick(String item) {
-                        startActivity(new Intent(ExercisesOfADay.this,ExerciseActivity.class));
+                        startActivity(new Intent(SessionActivity.this,ExerciseActivity.class));
                     }
                 });
 
@@ -54,13 +59,13 @@ public class ExercisesOfADay extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(ExercisesOfADay.this, AddSession.class));
+            startActivity(new Intent(SessionActivity.this, AddSession.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(ExercisesOfADay.this, MyProfile.class));
+            startActivity(new Intent(SessionActivity.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(ExercisesOfADay.this, MyCurrentRoutine.class));
+            startActivity(new Intent(SessionActivity.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);
