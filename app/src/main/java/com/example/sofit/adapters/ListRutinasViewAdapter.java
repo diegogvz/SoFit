@@ -57,7 +57,7 @@ public class ListRutinasViewAdapter extends RecyclerView.Adapter<ListRutinasView
 
         public void bindUser(final Routine rutina, final OnItemClickListener listener) {
 
-            rutinaTextView.setText(rutina.getNombre());
+            //rutinaTextView.setText(rutina.getNombre());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

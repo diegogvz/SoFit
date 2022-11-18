@@ -1,4 +1,4 @@
-package com.example.sofit.bbdd;
+package com.example.sofit.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,8 +24,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public static final String TABLA_USUARIO = "tabla_usuario";
 
     public static final String COLUMNA_NOMBRE_USUARIO = "nombre_usuario";
-    public static final String COLUMNA_CORREO_USUARIO = "correo_usuario";
-    public static final String COLUMNA_CONTRAEÑA_USUARIO = "argumento_usuario";
     public static final String COLUMNA_ALTURA_USUARIO = "altura_usuario";
     public static final String COLUMNA_PESO_USUARIO = "peso_usuario";
     public static final String COLUMNA_EDAD_USUARIO = "edad_usuario";
@@ -78,8 +76,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLA_USUARIO = "create table if not exists " + TABLA_USUARIO
             + "( " +
             COLUMNA_NOMBRE_USUARIO + " " + "text not null, " +
-            COLUMNA_CORREO_USUARIO + " text primary key not null, " +
-            COLUMNA_CONTRAEÑA_USUARIO + " text not null, " +
             COLUMNA_ALTURA_USUARIO + " integer not null, " +
             COLUMNA_PESO_USUARIO + " integer not null, " +
             COLUMNA_EDAD_USUARIO + " integer not null, " +

@@ -16,7 +16,7 @@ import com.example.sofit.model.Routine;
 
 import java.util.ArrayList;
 
-public class RecyclerMyRoutines extends AppCompatActivity {
+public class MyRoutines extends AppCompatActivity {
 
     ArrayList<Routine> rutinas = new ArrayList<Routine>();
     private RecyclerView listRutinasView;
@@ -47,7 +47,7 @@ public class RecyclerMyRoutines extends AppCompatActivity {
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RecyclerMyRoutines.this, CreateRoutine.class));
+                startActivity(new Intent(MyRoutines.this, CreateRoutine.class));
             }
         });
     }
@@ -67,13 +67,13 @@ public class RecyclerMyRoutines extends AppCompatActivity {
         int id = item.getItemId();
 //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(RecyclerMyRoutines.this, RecyclerMyRoutines.class));
+            startActivity(new Intent(MyRoutines.this, MyRoutines.class));
         }
         if (id==R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(RecyclerMyRoutines.this, MyProfile.class));
+            startActivity(new Intent(MyRoutines.this, MyProfile.class));
         }
         if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(RecyclerMyRoutines.this, MyCurrentRoutine.class));
+            startActivity(new Intent(MyRoutines.this, MyCurrentRoutine.class));
         }
 
         return super.onOptionsItemSelected(item);
