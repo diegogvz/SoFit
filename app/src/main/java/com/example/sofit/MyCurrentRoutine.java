@@ -11,14 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sofit.adapters.ListDiasViewAdapter;
-import com.example.sofit.model.Day;
+import com.example.sofit.adapters.ListSessionViewAdapter;
+import com.example.sofit.data.SessionDataSource;
+import com.example.sofit.model.Session;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyCurrentRoutine extends AppCompatActivity {
 
-    ArrayList<Day> days =new ArrayList<Day>();
+    List<Session> sessions =new ArrayList<Session>();
     private RecyclerView listDiasView;
 
     @Override
@@ -27,13 +29,34 @@ public class MyCurrentRoutine extends AppCompatActivity {
         setContentView(R.layout.my_current_routine);
         setTitle("My current routine");
 
-        days.add(new Day("Monday"));
-        days.add(new Day("Tuesday"));
-        days.add(new Day("Wednesday"));
-        days.add(new Day("Thursday"));
-        days.add(new Day("Leg"));
-        days.add(new Day("Arms"));
-        days.add(new Day("Chest"));
+//        sessions.add(new Session("Monday"));
+//        sessions.add(new Session("Tuesday"));
+//        sessions.add(new Session("Wednesday"));
+//        sessions.add(new Session("Thursday"));
+//        sessions.add(new Session("Leg"));
+//        sessions.add(new Session("Arms"));
+//        sessions.add(new Session("Chest"));
+
+    }
+
+
+    public void cargarSesiones(){
+        SessionDataSource sessionDataSource = new SessionDataSource(getApplicationContext());
+        sessionDataSource.open();
+        sessionDataSource.createSession(new Session("Una rutina"));
+        sessionDataSource.createSession(new Session("Otra rutina"));
+        sessionDataSource.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        cargarSesiones();
+
+        SessionDataSource sds = new SessionDataSource(getApplicationContext());
+        sessions = sds.getAllSessions();
+        sds.close();
 
         listDiasView=(RecyclerView) findViewById(R.id.recyclerView);
         listDiasView.setHasFixedSize(true);
@@ -41,10 +64,10 @@ public class MyCurrentRoutine extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         listDiasView.setLayoutManager(layoutManager);
 
-        ListDiasViewAdapter lpAdapter=new ListDiasViewAdapter(days,
-                new ListDiasViewAdapter.OnItemClickListener(){
+        ListSessionViewAdapter lpAdapter=new ListSessionViewAdapter(sessions,
+                new ListSessionViewAdapter.OnItemClickListener(){
                     @Override
-                    public void onItemClick(Day item) {
+                    public void onItemClick(Session item) {
                         /* Change current routine to the one clicked */
                         startActivity(new Intent(MyCurrentRoutine.this,ExercisesOfADay.class));
                     }
@@ -60,8 +83,6 @@ public class MyCurrentRoutine extends AppCompatActivity {
             }
         });
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {

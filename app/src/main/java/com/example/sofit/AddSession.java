@@ -6,12 +6,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
+import com.example.sofit.data.SessionDataSource;
+import com.example.sofit.model.Session;
 
 import java.util.ArrayList;
 
@@ -25,10 +28,28 @@ public class AddSession extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_session);
 
+
+    }
+
+    private void addingSession(Session s){
+        SessionDataSource sds = new SessionDataSource(getApplicationContext());
+        sds.open();
+        sds.createSession(s);
+        sds.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         Button btnConfirm = (Button) findViewById(R.id.btn_addsession_confirm);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Session s = new Session();
+                EditText et = (EditText)findViewById(R.id.editTextTituloSesion) ;
+                s.setName("Una rutina");
+                addingSession(s);
+
                 startActivity(new Intent(AddSession.this, MyCurrentRoutine.class));
             }
         });
