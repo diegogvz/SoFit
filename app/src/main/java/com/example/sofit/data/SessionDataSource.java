@@ -36,7 +36,6 @@ public class SessionDataSource extends DataSource{
         while (!cursor.isAfterLast()) {
             final Exercise exercise = new Exercise();
             exercise.setName(cursor.getString(0));
-            exercise.setReps(cursor.getInt(1));
             cursor.moveToNext();
         }
         cursor.close();

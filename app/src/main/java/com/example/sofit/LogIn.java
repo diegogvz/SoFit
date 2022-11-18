@@ -8,7 +8,11 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sofit.data.ExerciseDataSource;
 import com.example.sofit.data.SessionDataSource;
+import com.example.sofit.model.Exercise;
+
+import java.util.List;
 
 public class LogIn extends AppCompatActivity {
 
@@ -19,24 +23,34 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         setTitle("Log In");
-
+        printDataForTesting();
         Button btnEntrar = (Button) findViewById(R.id.btnEntrar);
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validarCampos()){
+                if (validarCampos()) {
                     startActivity(new Intent(LogIn.this, MyRoutines.class));
                 }
             }
 
-            private boolean validarCampos(){
+            private boolean validarCampos() {
                 EditText nombre = (EditText) findViewById(R.id.editTextNombre);
-                if(nombre != null)
+                if (nombre != null)
                     return true;
                 else
                     return false;
             }
         });
-    }
 
+    }
+    private void printDataForTesting(){
+        ExerciseDataSource exerciseDataSource = new ExerciseDataSource(getApplicationContext());
+        exerciseDataSource.open();
+        List<Exercise> exerciseList = exerciseDataSource.getAllExercises();
+
+        for (Exercise exercise : exerciseList) {
+            System.out.println("\n\n--------------------"+exercise);
+        }
+        exerciseDataSource.close();
+    }
 }
