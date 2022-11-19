@@ -2,6 +2,8 @@ package com.example.sofit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,35 +21,45 @@ import java.util.List;
 
 public class SessionActivity extends AppCompatActivity {
 
-    ArrayList<String> exercises = new ArrayList<String>();
-    ExerciseDataSource exerciseDataSource=new ExerciseDataSource(getApplicationContext());
+    List<Exercise> exercises;
+    ExerciseDataSource exerciseDataSource;
     private RecyclerView listaExsView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises_of_aday);
+        exerciseDataSource = new ExerciseDataSource(getApplicationContext());
+        exercises = exerciseDataSource.getExercisesForSession(savedInstanceState.getString("sessionId"));
 
-        exercises.add("Squads - hardcoded");
-        exercises.add("Leg press - hardcoded");
-        exercises.add("Cardio - hardcoded");
-        exercises.add("Stretching - hardcoded");
+        exercises.add(new Exercise("Squads - hardcoded"));
+        exercises.add(new Exercise("Leg press - hardcoded"));
+        exercises.add(new Exercise("Cardio - hardcoded"));
+        exercises.add(new Exercise("Stretching - hardcoded"));
 
-        listaExsView=(RecyclerView) findViewById(R.id.recyclerView);
+        listaExsView = (RecyclerView) findViewById(R.id.recyclerView);
         listaExsView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         listaExsView.setLayoutManager(layoutManager);
 
-        ListaEjerciciosViewAdapter lpAdapter=new ListaEjerciciosViewAdapter(exercises,
-                new ListaEjerciciosViewAdapter.OnItemClickListener(){
+        List<String> exercisesButtons=new ArrayList<>();
+        for (Exercise ex: exercises) {
+            exercisesButtons.add(ex.getName());
+        }
+        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons,
+                new ListaEjerciciosViewAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(String item) {
-                        startActivity(new Intent(SessionActivity.this,ExerciseActivity.class));
+                        Intent i=new Intent(SessionActivity.this, ExerciseActivity.class);
+                        i.putExtra("exerciseId",item);
+                        startActivity(i);
                     }
                 });
 
         listaExsView.setAdapter(lpAdapter);
     }
+
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
 // Inflate the menu
@@ -61,10 +73,10 @@ public class SessionActivity extends AppCompatActivity {
         if (id == R.id.menuItem_misRutinas_misRutinas) {
             startActivity(new Intent(SessionActivity.this, AddSession.class));
         }
-        if (id==R.id.menuItem_misRutinas_perfil){
+        if (id == R.id.menuItem_misRutinas_perfil) {
             startActivity(new Intent(SessionActivity.this, MyProfile.class));
         }
-        if (id==R.id.menuItem_misRutinas_rutinas){
+        if (id == R.id.menuItem_misRutinas_rutinas) {
             startActivity(new Intent(SessionActivity.this, MyCurrentRoutine.class));
         }
 

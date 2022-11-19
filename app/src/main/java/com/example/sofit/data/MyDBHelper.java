@@ -1,5 +1,6 @@
 package com.example.sofit.data;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -251,6 +252,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
         Log.i("ONCREATE", "EJECUTO CREACION");
     }
+    @SuppressLint("Range")
     public String getTableAsString(SQLiteDatabase db, String tableName) {
         String tableString = String.format("Table %s columns:\n", tableName);
         Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);

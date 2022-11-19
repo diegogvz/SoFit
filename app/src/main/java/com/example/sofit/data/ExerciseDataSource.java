@@ -35,11 +35,12 @@ public class ExerciseDataSource extends DataSource{
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            final Exercise exercise = new Exercise();
-            exercise.setName(cursor.getString(0));
-
+            final Exercise exercise = new Exercise(cursor.getString(0));
+            exercises.add(exercise);
+            cursor.moveToNext();
         }
         cursor.close();
+
         return exercises;
     }
     public List<Exercise> getAllExercises(){
@@ -50,8 +51,7 @@ public class ExerciseDataSource extends DataSource{
         System.out.println(cursor.getCount());
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            Exercise exercise = new Exercise();
-            exercise.setName(cursor.getString(0));
+            Exercise exercise = new Exercise(cursor.getString(0));
             exercises.add(exercise);
             cursor.moveToNext();
         }
