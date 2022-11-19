@@ -64,6 +64,47 @@ public class MyRoutines extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setContentView(R.layout.activity_recycler_my_routines);
+
+        setTitle("My Routines");
+
+        RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
+        routineDataSource.open();
+        rutinas = routineDataSource.getAllValorations();
+        routineDataSource.close();
+
+        if (rutinas.size() > 0) {
+            listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
+            listRutinasView.setHasFixedSize(true);
+
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+            listRutinasView.setLayoutManager(layoutManager);
+
+            ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas,
+                    new ListRutinasViewAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Routine rutina) {
+                            clickonItem(rutina);
+                        }
+                    });
+            listRutinasView.setAdapter(lpAdapter);
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    getString(R.string.empty), Toast.LENGTH_LONG).show();
+        }
+
+        Button btnCrear = (Button) findViewById(R.id.btnCrearRutia);
+        btnCrear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyRoutines.this, CreateRoutine.class));
+            }
+        });
+    }
+
     public void clickonItem(Routine rutina){
         startActivity(new Intent(MyRoutines.this, MyCurrentRoutine.class));
     }
