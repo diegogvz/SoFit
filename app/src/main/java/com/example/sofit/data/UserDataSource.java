@@ -12,8 +12,8 @@ public class UserDataSource extends DataSource{
     /**
      * Columnas de la tabla
      */
-    private final String[] allColumns = {MyDBHelper.COLUMNA_NOMBRE_USUARIO, MyDBHelper.COLUMNA_EDAD_USUARIO,
-    MyDBHelper.COLUMNA_ALTURA_USUARIO, MyDBHelper.COLUMNA_PESO_USUARIO, MyDBHelper.COLUMNA_SEXO_USUARIO};
+    private final String[] allColumns = {MyDBHelper.COL_USER_NAME, MyDBHelper.COL_USER_AGE,
+    MyDBHelper.COL_USER_HEIGHT, MyDBHelper.COL_PROGRESS_WEIGHT, MyDBHelper.COL_USER_AGE};
 
     /**
      * Constructor.
@@ -35,16 +35,16 @@ public class UserDataSource extends DataSource{
         // Establecemos los valores que se insertaran
         ContentValues values = new ContentValues();
 
-        values.put(MyDBHelper.COLUMNA_NOMBRE_USUARIO, userToInsert.getName());
-        values.put(MyDBHelper.COLUMNA_EDAD_USUARIO, userToInsert.getAge());
-        values.put(MyDBHelper.COLUMNA_ALTURA_USUARIO, userToInsert.getHeight());
-        values.put(MyDBHelper.COLUMNA_PESO_USUARIO, userToInsert.getWeight());
-        values.put(MyDBHelper.COLUMNA_SEXO_USUARIO, userToInsert.isSex());
+        values.put(MyDBHelper.COL_USER_NAME, userToInsert.getName());
+        values.put(MyDBHelper.COL_USER_AGE, userToInsert.getAge());
+        values.put(MyDBHelper.COL_USER_HEIGHT, userToInsert.getHeight());
+        values.put(MyDBHelper.COL_USER_WEIGHT, userToInsert.getWeight());
+        values.put(MyDBHelper.COL_USER_SEX, userToInsert.isSex());
 
 
         // Insertamos la valoracion
         long insertId =
-                database.insert(MyDBHelper.TABLA_USUARIO, null, values);
+                database.insert(MyDBHelper.TABLE_USER, null, values);
 
         return insertId;
     }
@@ -59,7 +59,7 @@ public class UserDataSource extends DataSource{
         ArrayList<User> userList = new ArrayList<User>();
         //hacemos una query porque queremos devolver un cursor
 
-        Cursor cursor = database.query(MyDBHelper.TABLA_USUARIO, allColumns,
+        Cursor cursor = database.query(MyDBHelper.TABLE_USER, allColumns,
                 null, null, null, null, null);
 
         cursor.moveToFirst();

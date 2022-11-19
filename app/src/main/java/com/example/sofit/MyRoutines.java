@@ -69,7 +69,9 @@ public class MyRoutines extends AppCompatActivity {
     }
 
     public void clickonItem(Routine rutina){
-        startActivity(new Intent(MyRoutines.this, MyCurrentRoutine.class));
+        Intent i = new Intent(MyRoutines.this, MyCurrentRoutine.class);
+        i.putExtra("routine", rutina.getNombre_rutina());
+        startActivity(i);
     }
 
     @Override
