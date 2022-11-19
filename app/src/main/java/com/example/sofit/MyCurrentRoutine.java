@@ -1,6 +1,10 @@
 package com.example.sofit;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,17 +12,20 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sofit.adapters.ListDiasViewAdapter;
+import com.example.sofit.adapters.ListSessionViewAdapter;
 import com.example.sofit.data.SessionDataSource;
-import com.example.sofit.model.Day;
+import com.example.sofit.model.Session;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyCurrentRoutine extends AppCompatActivity {
-    ArrayList<Day> days =new ArrayList<Day>();
+
+    List<Session> sessions =new ArrayList<Session>();
     private RecyclerView listDiasView;
 
     @Override
@@ -27,13 +34,48 @@ public class MyCurrentRoutine extends AppCompatActivity {
         setContentView(R.layout.my_current_routine);
         setTitle("My current routine");
 
-        days.add(new Day("Monday"));
-        days.add(new Day("Tuesday"));
-        days.add(new Day("Wednesday"));
-        days.add(new Day("Thursday"));
-        days.add(new Day("Leg"));
-        days.add(new Day("Arms"));
-        days.add(new Day("Chest"));
+//        sessions.add(new Session("Monday"));
+//        sessions.add(new Session("Tuesday"));
+//        sessions.add(new Session("Wednesday"));
+//        sessions.add(new Session("Thursday"));
+//        sessions.add(new Session("Leg"));
+//        sessions.add(new Session("Arms"));
+//        sessions.add(new Session("Chest"));
+
+    }
+
+
+    public void cargarSesiones(){
+        SessionDataSource sds = new SessionDataSource(getApplicationContext());
+        sessions = sds.getAllSessions();
+        if(sessions.isEmpty()){
+            crearNotificationChannel();
+            NotificationManager mNotificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "M_CH_ID");
+            mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
+                    .setContentTitle("NO HAY SESIONES EN ESTA RUTINA")
+                    .setContentText("Añada una sesión a la rutina si así lo desea");
+            mNotificationManager.notify(001,mBuilder.build());
+            }
+        sds.close();
+    }
+    private void crearNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "CANAL";
+            String description = "DESCRIPCION CANAL";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("M_CH_ID", name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+       cargarSesiones();
 
         listDiasView=(RecyclerView) findViewById(R.id.recyclerView);
         listDiasView.setHasFixedSize(true);
@@ -41,12 +83,12 @@ public class MyCurrentRoutine extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         listDiasView.setLayoutManager(layoutManager);
 
-        ListDiasViewAdapter lpAdapter=new ListDiasViewAdapter(days,
-                new ListDiasViewAdapter.OnItemClickListener(){
+        ListSessionViewAdapter lpAdapter=new ListSessionViewAdapter(sessions,
+                new ListSessionViewAdapter.OnItemClickListener(){
                     @Override
-                    public void onItemClick(Day item) {
+                    public void onItemClick(Session item) {
                         /* Change current routine to the one clicked */
-                        startActivity(new Intent(MyCurrentRoutine.this, SessionActivity.class));
+                        startActivity(new Intent(MyCurrentRoutine.this,SessionActivity.class));
                     }
                 });
 
@@ -60,8 +102,6 @@ public class MyCurrentRoutine extends AppCompatActivity {
             }
         });
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {

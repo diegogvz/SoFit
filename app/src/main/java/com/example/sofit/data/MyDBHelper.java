@@ -1,5 +1,7 @@
 package com.example.sofit.data;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

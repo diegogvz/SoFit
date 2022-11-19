@@ -9,26 +9,26 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.R;
-import com.example.sofit.model.Day;
+import com.example.sofit.model.Session;
 
 import java.util.List;
 
-public class ListDiasViewAdapter extends RecyclerView.Adapter<ListDiasViewAdapter.DayViewHolder> {
+public class ListSessionViewAdapter extends RecyclerView.Adapter<ListSessionViewAdapter.DayViewHolder> {
 
     public interface OnItemClickListener {
-        void onItemClick(Day item);
+        void onItemClick(Session item);
     }
-    private List<Day> days;
+    private List<Session> sessions;
     private final OnItemClickListener listener;
 
-    public ListDiasViewAdapter(List<Day> listaDays, OnItemClickListener listener) {
-        this.days = listaDays;
+    public ListSessionViewAdapter(List<Session> listaSessions, OnItemClickListener listener) {
+        this.sessions = listaSessions;
         this.listener = listener;
     }
 
     @NonNull
     @Override
-    public ListDiasViewAdapter.DayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListSessionViewAdapter.DayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.line_recyclerview_day, parent, false);
         return new DayViewHolder(itemView);
@@ -36,14 +36,14 @@ public class ListDiasViewAdapter extends RecyclerView.Adapter<ListDiasViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull DayViewHolder holder, int position) {
-        Day day = days.get(position);
-        holder.bindUser(day, listener);
+        Session session = sessions.get(position);
+        holder.bindUser(session, listener);
 
     }
 
     @Override
     public int getItemCount() {
-        return days.size();
+        return sessions.size();
     }
 
 
@@ -53,17 +53,17 @@ public class ListDiasViewAdapter extends RecyclerView.Adapter<ListDiasViewAdapte
 
         public DayViewHolder(@NonNull View itemView) {
             super(itemView);
-            diaTextView=(TextView)itemView.findViewById(R.id.day);
+            diaTextView=(TextView)itemView.findViewById(R.id.session);
         }
 
-         public void bindUser(final Day day, final OnItemClickListener listener) {
+         public void bindUser(final Session session, final OnItemClickListener listener) {
 
-            diaTextView.setText(day.getNombre());
+            diaTextView.setText(session.getName());
 
              itemView.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                     listener.onItemClick(day);
+                     listener.onItemClick(session);
                  }
              });
          }

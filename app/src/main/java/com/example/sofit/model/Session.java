@@ -1,15 +1,24 @@
 package com.example.sofit.model;
 
 public class Session {
-    private String id;
     private String name;
+    private String routine;
 
-    public String getId() {
-        return id;
+    public Session(){
+
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getRoutine() {
+        return routine;
+    }
+
+    public void setRoutine(String routine) {
+        this.routine = routine;
+    }
+
+    public Session(String name, String routine){
+        this.name=name;
+        this.routine=routine;
     }
 
     public String getName() {
