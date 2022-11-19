@@ -1,17 +1,18 @@
 package com.example.sofit.data;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
+import android.database.Cursor;
+
+import com.example.sofit.model.Exercise;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExerciseDataSource extends DataSource{
-
-    private final String[] allColumns =
-            {MyDBHelper.COLUMNA_NOMBRE_EJERCICIOS,
-                    MyDBHelper.COLUMNA_NOMBRE_EJERCICIOS,
-                    MyDBHelper.COLUMNA_SERIES_EJERCICIOS,
-                    MyDBHelper.COLUMNA_REPETICIONES_EJERCICIOS,
-                    MyDBHelper.COLUMNA_PESO_EJERCICIOS,
-                    MyDBHelper.COLUMNA_IMAGEN_EJERCICIOS
+    private final String[] allColumns = {
+                    MyDBHelper.COL_EXERCISES_NAME,
+                    MyDBHelper.COL_EXERCISES_IMG,
+                    MyDBHelper.COL_EXERCISES_SESSION
             };
     /**
      * Constructor.
@@ -20,7 +21,42 @@ public class ExerciseDataSource extends DataSource{
      */
     public ExerciseDataSource(Context context) {
         //el último parámetro es la versión
-        dbHelper = new MyDBHelper(context, null, null, 1);
+        dbHelper = new MyDBHelper(context, null, null, 3);
+    }
+
+    public List<Exercise> getExercisesForSession(String sessionId){
+        ArrayList<Exercise> exercises = new ArrayList<>();
+        String whereClause = "SESSION_ID = ?";
+        String[] whereArgs = new String[] {
+                sessionId
+        };
+        Cursor cursor = database.query(MyDBHelper.TABLE_EXERCISES, allColumns,
+                whereClause, whereArgs, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            final Exercise exercise = new Exercise();
+            exercise.setName(cursor.getString(0));
+
+        }
+        cursor.close();
+        return exercises;
+    }
+    public List<Exercise> getAllExercises(){
+        ArrayList<Exercise> exercises = new ArrayList<>();
+        Cursor cursor = database.query(MyDBHelper.TABLE_EXERCISES, null,
+                null, null, null, null, null);
+
+        System.out.println(cursor.getCount());
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Exercise exercise = new Exercise();
+            exercise.setName(cursor.getString(0));
+            exercises.add(exercise);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return exercises;
     }
 
 }
