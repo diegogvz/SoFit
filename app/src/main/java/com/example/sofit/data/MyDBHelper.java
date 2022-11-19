@@ -163,12 +163,12 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         ContentValues values;
         //invocamos execSQL pq no devuelve ningún tipo de dataset
-//        db.execSQL(CREATE_TABLE_USER);
-//        db.execSQL(CREATE_TABLE_ROUTINE);
+        db.execSQL(CREATE_TABLE_USER);
+        db.execSQL(CREATE_TABLE_ROUTINE);
         db.execSQL(CREATE_TABLE_SESSIONS);
-//        db.execSQL(CREATE_TABLE_EXERCISES);
-//        db.execSQL(CREATE_TABLE_PROGRESS);
-//        db.execSQL(CREATE_TABLE_SERIES);
+        db.execSQL(CREATE_TABLE_EXERCISES);
+        db.execSQL(CREATE_TABLE_PROGRESS);
+        db.execSQL(CREATE_TABLE_SERIES);
         Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name NOT IN ('android_metadata', 'sqlite_sequence', 'room_master_table') ",null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
@@ -180,57 +180,57 @@ public class MyDBHelper extends SQLiteOpenHelper {
         /**
          * ----Rutinas----
          */
-//        values = new ContentValues();
-//        values.put(COL_ROUTINE_NAME, "Strength");
-//        db.insert(TABLE_ROUTINES, null, values);
+        values = new ContentValues();
+        values.put(COL_ROUTINE_NAME, "Strength");
+        db.insert(TABLE_ROUTINES, null, values);
 
 
         /**
          * ----SESIONES----
          * Debe incluir la clave foranea de nombre de rutina
          */
-//        values = new ContentValues();
-//        values.put(COL_SESSIONS_NAME, "Chest");
-//        values.put(COL_SESSIONS_ROUTINE, "Strength");
-//        db.insert(TABLE_SESSIONS, null, values);
-//        values.put(COL_SESSIONS_NAME, "Arms");
-//        values.put(COL_SESSIONS_ROUTINE, "Strength");
-//        db.insert(TABLE_SESSIONS, null, values);
-//        values.put(COL_SESSIONS_NAME, "Legs");
-//        values.put(COL_SESSIONS_ROUTINE, "Strength");
-//        db.insert(TABLE_SESSIONS, null, values);
+        values = new ContentValues();
+        values.put(COL_SESSIONS_NAME, "Chest");
+        values.put(COL_SESSIONS_ROUTINE, "Strength");
+        db.insert(TABLE_SESSIONS, null, values);
+        values.put(COL_SESSIONS_NAME, "Arms");
+        values.put(COL_SESSIONS_ROUTINE, "Strength");
+        db.insert(TABLE_SESSIONS, null, values);
+        values.put(COL_SESSIONS_NAME, "Legs");
+        values.put(COL_SESSIONS_ROUTINE, "Strength");
+        db.insert(TABLE_SESSIONS, null, values);
 
         /**
          * ----Ejercicios----
          * Debe incluir la clave foranea de nombre de sesion
          */
-//        values = new ContentValues();
-//        values.put(COL_EXERCISES_IMG, "bench_press");
-//        values.put(COL_EXERCISES_NAME, "Bench Press");
-//        values.put(COL_EXERCISES_SESSION, "Chest");
-//        db.insert(TABLE_EXERCISES, null, values);
+        values = new ContentValues();
+        values.put(COL_EXERCISES_IMG, "bench_press");
+        values.put(COL_EXERCISES_NAME, "Bench Press");
+        values.put(COL_EXERCISES_SESSION, "Chest");
+        db.insert(TABLE_EXERCISES, null, values);
 
         /**
          * ----SERIES----
          * Debe incluir la clave foranea de nombre de ejercicio
          */
-//        values = new ContentValues();
-//        values.put(COL_SERIES_WEIGHT, 30);
-//        values.put(COL_SERIES_REPS, 10);
-//        values.put(COL_SERIES_EXERCISE, "Bench Press");
-//        db.insert(TABLA_SERIES, null, values);
-//        values.put(COL_SERIES_WEIGHT, 30);
-//        values.put(COL_SERIES_REPS, 9);
-//        values.put(COL_SERIES_EXERCISE, "Bench Press");
-//        db.insert(TABLA_SERIES, null, values);
-//        values.put(COL_SERIES_WEIGHT, 30);
-//        values.put(COL_SERIES_REPS, 8);
-//        values.put(COL_SERIES_EXERCISE, "Bench Press");
-//        db.insert(TABLA_SERIES, null, values);
-//        values.put(COL_SERIES_WEIGHT, 30);
-//        values.put(COL_SERIES_REPS, 8);
-//        values.put(COL_SERIES_EXERCISE, "Bench Press");
-//        db.insert(TABLA_SERIES, null, values);
+        values = new ContentValues();
+        values.put(COL_SERIES_WEIGHT, 30);
+        values.put(COL_SERIES_REPS, 10);
+        values.put(COL_SERIES_EXERCISE, "Bench Press");
+        db.insert(TABLA_SERIES, null, values);
+        values.put(COL_SERIES_WEIGHT, 30);
+        values.put(COL_SERIES_REPS, 9);
+        values.put(COL_SERIES_EXERCISE, "Bench Press");
+        db.insert(TABLA_SERIES, null, values);
+        values.put(COL_SERIES_WEIGHT, 30);
+        values.put(COL_SERIES_REPS, 8);
+        values.put(COL_SERIES_EXERCISE, "Bench Press");
+        db.insert(TABLA_SERIES, null, values);
+        values.put(COL_SERIES_WEIGHT, 30);
+        values.put(COL_SERIES_REPS, 8);
+        values.put(COL_SERIES_EXERCISE, "Bench Press");
+        db.insert(TABLA_SERIES, null, values);
 
         Log.i("ONCREATE", "EJECUTO CREACION");
     }
