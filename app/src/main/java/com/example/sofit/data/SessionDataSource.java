@@ -11,8 +11,8 @@ import java.util.List;
 
 public class SessionDataSource extends DataSource{
     private final String[] allColumns =
-            {MyDBHelper.COLUMNA_NOMBRE_SESION,
-                    MyDBHelper.COLUMNA_NOMBRE_EJERCICIOS
+            {MyDBHelper.COL_SESSIONS_NAME,
+                    MyDBHelper.COL_EXERCISES_NAME
             };
     /**
      * Constructor.
@@ -24,11 +24,12 @@ public class SessionDataSource extends DataSource{
         dbHelper = new MyDBHelper(context, null, null, 1);
     }
 
-    public long createSession(Session sesion){
+    public long createSession(Session session){
         ContentValues values =new ContentValues();
-        values.put(MyDBHelper.COLUMNA_NOMBRE_SESION,sesion.getName());
+        values.put(MyDBHelper.COL_SESSIONS_NAME,session.getName());
+        values.put(MyDBHelper.COL_SESSIONS_ROUTINE,session.getRoutine());
         open();
-        long insertId = database.insert(MyDBHelper.TABLA_SESIONES,null,values);
+        long insertId = database.insert(MyDBHelper.TABLE_SESSIONS,null,values);
         close();
         return insertId;
     }
@@ -36,13 +37,14 @@ public class SessionDataSource extends DataSource{
     public List<Session> getAllSessions(){
         List<Session> sessionsList = new ArrayList<>();
         open();
-        Cursor cursor = database.query(MyDBHelper.TABLA_SESIONES, allColumns,
+        Cursor cursor = database.query(MyDBHelper.TABLE_SESSIONS, allColumns,
                 null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             final Session session = new Session();
 
             session.setName(cursor.getString(0));
+            session.setRoutine(cursor.getString(1));
 
             sessionsList.add(session);
             cursor.moveToNext();

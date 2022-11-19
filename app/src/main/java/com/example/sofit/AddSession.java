@@ -47,7 +47,8 @@ public class AddSession extends AppCompatActivity {
             public void onClick(View view) {
                 Session s = new Session();
                 EditText et = (EditText)findViewById(R.id.editTextTituloSesion) ;
-                s.setName("Una rutina");
+                s.setName(et.getText().toString());
+                s.setRoutine("");
                 addingSession(s);
 
                 startActivity(new Intent(AddSession.this, MyCurrentRoutine.class));

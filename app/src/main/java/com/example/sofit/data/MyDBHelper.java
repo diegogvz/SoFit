@@ -1,7 +1,6 @@
 package com.example.sofit.data;
 
-import static android.content.ContentValues.TAG;
-
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -93,7 +92,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_USER = "create table "
             + USER_TABLE
             + "( " +
-            COL_USER_NAME + "text not null, " +
+            COL_USER_NAME + " text not null, " +
             COL_USER_EMAIL + " text primary key not null, " +
             COL_USER_PASS + " text not null, " +
             COL_USER_HEIGHT + " integer not null, " +
@@ -105,16 +104,16 @@ public class MyDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_ROUTINE = " create table "
             + TABLE_ROUTINES
             + "( " +
-            COL_ROUTINE_NAME + "text primary key not null," +
-            COL_ROUTINE_USER + "text not null" +
+            COL_ROUTINE_NAME + " text primary key not null," +
+            COL_ROUTINE_USER + " text not null" +
             ");";
 
 
-    private static final String CREATE_TABLE_SESSIONS = "create table "
+    private static final String CREATE_TABLE_SESSIONS = " create table "
             + TABLE_SESSIONS
             + "( " +
-            COL_SESSIONS_NAME + "text primary key not null, " +
-            COL_SESSIONS_ROUTINE + " text not null" +
+            COL_SESSIONS_NAME + " text primary key not null, " +
+            COL_SESSIONS_ROUTINE + " text" +
             ");";
 
     private static final String CREATE_TABLE_EXERCISES = " create table "
@@ -122,7 +121,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             + "( " +
             COL_EXERCISES_NAME + "text primary key not null, " +
             COL_EXERCISES_IMG + " text not null," +
-            COL_EXERCISES_SESSION + "text not null" +
+            COL_EXERCISES_SESSION + " text not null" +
             ");";
     private static final String CREATE_TABLE_SERIES = " create table "
             + TABLA_SERIES
@@ -130,17 +129,17 @@ public class MyDBHelper extends SQLiteOpenHelper {
             " ID integer primary key not null, " +
             COL_SERIES_WEIGHT + " real not null," +
             COL_SERIES_REPS + " integer not null, " +
-            COL_SERIES_EXERCISE + "text not null" +
+            COL_SERIES_EXERCISE + " text not null" +
             ");";
     private static final String CREATE_TABLE_PROGRESS =
             " create table if not exists "
             + TABLE_PROGRESS
             + "( " +
-            COL_PROGRESS_WEIGHT + "text primary key not null, " +
+            COL_PROGRESS_WEIGHT + " text primary key not null, " +
             COL_PROGRESS_FAT + " real not null, " +
             COL_PROGRESS_MUSCLE + " real not null, " +
             COL_PROGRESS_WATER + " real not null," +
-            COL_PROGRESS_USER + "text not null" +
+            COL_PROGRESS_USER + " text not null" +
             ");";
 
 
@@ -164,12 +163,12 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         ContentValues values;
         //invocamos execSQL pq no devuelve ningún tipo de dataset
-        db.execSQL(CREATE_TABLE_USER);
-        db.execSQL(CREATE_TABLE_ROUTINE);
+//        db.execSQL(CREATE_TABLE_USER);
+//        db.execSQL(CREATE_TABLE_ROUTINE);
         db.execSQL(CREATE_TABLE_SESSIONS);
-        db.execSQL(CREATE_TABLE_EXERCISES);
-        db.execSQL(CREATE_TABLE_PROGRESS);
-        db.execSQL(CREATE_TABLE_SERIES);
+//        db.execSQL(CREATE_TABLE_EXERCISES);
+//        db.execSQL(CREATE_TABLE_PROGRESS);
+//        db.execSQL(CREATE_TABLE_SERIES);
         Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name NOT IN ('android_metadata', 'sqlite_sequence', 'room_master_table') ",null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
@@ -181,60 +180,61 @@ public class MyDBHelper extends SQLiteOpenHelper {
         /**
          * ----Rutinas----
          */
-        values = new ContentValues();
-        values.put(COL_ROUTINE_NAME, "Strength");
-        db.insert(TABLE_ROUTINES, null, values);
+//        values = new ContentValues();
+//        values.put(COL_ROUTINE_NAME, "Strength");
+//        db.insert(TABLE_ROUTINES, null, values);
 
 
         /**
          * ----SESIONES----
          * Debe incluir la clave foranea de nombre de rutina
          */
-        values = new ContentValues();
-        values.put(COL_SESSIONS_NAME, "Chest");
-        values.put(COL_ROUTINE_NAME, "Strength");
-        db.insert(TABLE_SESSIONS, null, values);
-        values.put(COL_SESSIONS_NAME, "Arms");
-        values.put(COL_ROUTINE_NAME, "Strength");
-        db.insert(TABLE_SESSIONS, null, values);
-        values.put(COL_SESSIONS_NAME, "Legs");
-        values.put(COL_ROUTINE_NAME, "Strength");
-        db.insert(TABLE_SESSIONS, null, values);
+//        values = new ContentValues();
+//        values.put(COL_SESSIONS_NAME, "Chest");
+//        values.put(COL_SESSIONS_ROUTINE, "Strength");
+//        db.insert(TABLE_SESSIONS, null, values);
+//        values.put(COL_SESSIONS_NAME, "Arms");
+//        values.put(COL_SESSIONS_ROUTINE, "Strength");
+//        db.insert(TABLE_SESSIONS, null, values);
+//        values.put(COL_SESSIONS_NAME, "Legs");
+//        values.put(COL_SESSIONS_ROUTINE, "Strength");
+//        db.insert(TABLE_SESSIONS, null, values);
 
         /**
          * ----Ejercicios----
          * Debe incluir la clave foranea de nombre de sesion
          */
-        values = new ContentValues();
-        values.put(COL_EXERCISES_IMG, "bench_press");
-        values.put(COL_EXERCISES_NAME, "Bench Press");
-        values.put(COL_EXERCISES_SESSION, "Chest");
-        db.insert(TABLE_EXERCISES, null, values);
+//        values = new ContentValues();
+//        values.put(COL_EXERCISES_IMG, "bench_press");
+//        values.put(COL_EXERCISES_NAME, "Bench Press");
+//        values.put(COL_EXERCISES_SESSION, "Chest");
+//        db.insert(TABLE_EXERCISES, null, values);
 
         /**
          * ----SERIES----
          * Debe incluir la clave foranea de nombre de ejercicio
          */
-        values = new ContentValues();
-        values.put(COL_SERIES_WEIGHT, 30);
-        values.put(COL_SERIES_REPS, 10);
-        values.put(COL_SERIES_EXERCISE, "Bench Press");
-        db.insert(TABLA_SERIES, null, values);
-        values.put(COL_SERIES_WEIGHT, 30);
-        values.put(COL_SERIES_REPS, 9);
-        values.put(COL_SERIES_EXERCISE, "Bench Press");
-        db.insert(TABLA_SERIES, null, values);
-        values.put(COL_SERIES_WEIGHT, 30);
-        values.put(COL_SERIES_REPS, 8);
-        values.put(COL_SERIES_EXERCISE, "Bench Press");
-        db.insert(TABLA_SERIES, null, values);
-        values.put(COL_SERIES_WEIGHT, 30);
-        values.put(COL_SERIES_REPS, 8);
-        values.put(COL_SERIES_EXERCISE, "Bench Press");
-        db.insert(TABLA_SERIES, null, values);
+//        values = new ContentValues();
+//        values.put(COL_SERIES_WEIGHT, 30);
+//        values.put(COL_SERIES_REPS, 10);
+//        values.put(COL_SERIES_EXERCISE, "Bench Press");
+//        db.insert(TABLA_SERIES, null, values);
+//        values.put(COL_SERIES_WEIGHT, 30);
+//        values.put(COL_SERIES_REPS, 9);
+//        values.put(COL_SERIES_EXERCISE, "Bench Press");
+//        db.insert(TABLA_SERIES, null, values);
+//        values.put(COL_SERIES_WEIGHT, 30);
+//        values.put(COL_SERIES_REPS, 8);
+//        values.put(COL_SERIES_EXERCISE, "Bench Press");
+//        db.insert(TABLA_SERIES, null, values);
+//        values.put(COL_SERIES_WEIGHT, 30);
+//        values.put(COL_SERIES_REPS, 8);
+//        values.put(COL_SERIES_EXERCISE, "Bench Press");
+//        db.insert(TABLA_SERIES, null, values);
 
         Log.i("ONCREATE", "EJECUTO CREACION");
     }
+    @SuppressLint("Range")
     public String getTableAsString(SQLiteDatabase db, String tableName) {
         String tableString = String.format("Table %s columns:\n", tableName);
         Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);

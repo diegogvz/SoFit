@@ -1,6 +1,10 @@
 package com.example.sofit;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,22 +46,36 @@ public class MyCurrentRoutine extends AppCompatActivity {
 
 
     public void cargarSesiones(){
-        SessionDataSource sessionDataSource = new SessionDataSource(getApplicationContext());
-        sessionDataSource.open();
-        sessionDataSource.createSession(new Session("Una rutina"));
-        sessionDataSource.createSession(new Session("Otra rutina"));
-        sessionDataSource.close();
+        SessionDataSource sds = new SessionDataSource(getApplicationContext());
+        sessions = sds.getAllSessions();
+        if(sessions.isEmpty()){
+            crearNotificationChannel();
+            NotificationManager mNotificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "M_CH_ID");
+            mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
+                    .setContentTitle("NO HAY SESIONES EN ESTA RUTINA")
+                    .setContentText("Añada una sesión a la rutina si así lo desea");
+            mNotificationManager.notify(001,mBuilder.build());
+            }
+        sds.close();
     }
-
+    private void crearNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "CANAL";
+            String description = "DESCRIPCION CANAL";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("M_CH_ID", name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
     @Override
     protected void onResume() {
         super.onResume();
 
-        cargarSesiones();
-
-        SessionDataSource sds = new SessionDataSource(getApplicationContext());
-        sessions = sds.getAllSessions();
-        sds.close();
+       cargarSesiones();
 
         listDiasView=(RecyclerView) findViewById(R.id.recyclerView);
         listDiasView.setHasFixedSize(true);
@@ -69,7 +88,7 @@ public class MyCurrentRoutine extends AppCompatActivity {
                     @Override
                     public void onItemClick(Session item) {
                         /* Change current routine to the one clicked */
-                        startActivity(new Intent(MyCurrentRoutine.this,ExercisesOfADay.class));
+                        startActivity(new Intent(MyCurrentRoutine.this,SessionActivity.class));
                     }
                 });
 
