@@ -29,31 +29,28 @@ public class MyRoutines extends AppCompatActivity {
         setContentView(R.layout.activity_recycler_my_routines);
 
         setTitle("My Routines");
+    }
 
-        RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
-        routineDataSource.open();
-        rutinas = routineDataSource.getAllValorations();
-        routineDataSource.close();
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-        if(rutinas.size() > 0) {
-            listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
-            listRutinasView.setHasFixedSize(true);
+        chargeRoutines();
 
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-            listRutinasView.setLayoutManager(layoutManager);
+        listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
+        listRutinasView.setHasFixedSize(true);
 
-            ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas,
-                    new ListRutinasViewAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(Routine rutina) {
-                            clickonItem(rutina);
-                        }
-                    });
-            listRutinasView.setAdapter(lpAdapter);
-        } else{
-            Toast.makeText(getApplicationContext(),
-                    getString(R.string.empty), Toast.LENGTH_LONG).show();
-        }
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        listRutinasView.setLayoutManager(layoutManager);
+
+        ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas,
+                new ListRutinasViewAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Routine rutina) {
+                        clickonItem(rutina);
+                    }
+                });
+        listRutinasView.setAdapter(lpAdapter);
 
         Button btnCrear = (Button) findViewById(R.id.btnCrearRutia);
         btnCrear.setOnClickListener(new View.OnClickListener() {
@@ -64,45 +61,11 @@ public class MyRoutines extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setContentView(R.layout.activity_recycler_my_routines);
-
-        setTitle("My Routines");
-
+    private void chargeRoutines(){
         RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
         routineDataSource.open();
         rutinas = routineDataSource.getAllValorations();
         routineDataSource.close();
-
-        if (rutinas.size() > 0) {
-            listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
-            listRutinasView.setHasFixedSize(true);
-
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-            listRutinasView.setLayoutManager(layoutManager);
-
-            ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas,
-                    new ListRutinasViewAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(Routine rutina) {
-                            clickonItem(rutina);
-                        }
-                    });
-            listRutinasView.setAdapter(lpAdapter);
-        } else {
-            Toast.makeText(getApplicationContext(),
-                    getString(R.string.empty), Toast.LENGTH_LONG).show();
-        }
-
-        Button btnCrear = (Button) findViewById(R.id.btnCrearRutia);
-        btnCrear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyRoutines.this, CreateRoutine.class));
-            }
-        });
     }
 
     public void clickonItem(Routine rutina){

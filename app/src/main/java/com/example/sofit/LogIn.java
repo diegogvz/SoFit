@@ -49,6 +49,7 @@ public class LogIn extends AppCompatActivity {
         }else{
             Toast.makeText(getApplicationContext(), getString(R.string.complete), Toast.LENGTH_SHORT).show();
         }
+        userDataSource.close();
         startActivity(new Intent(LogIn.this, MyRoutines.class));
     }
 }
