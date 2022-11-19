@@ -58,7 +58,7 @@ public class ListSessionViewAdapter extends RecyclerView.Adapter<ListSessionView
 
          public void bindUser(final Session session, final OnItemClickListener listener) {
 
-            diaTextView.setText(session.getName());
+             diaTextView.setText(session.getName());
 
              itemView.setOnClickListener(new View.OnClickListener() {
                  @Override

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sofit.data.ExerciseDataSource;
 import com.example.sofit.data.SessionDataSource;
 import com.example.sofit.model.Exercise;
+import com.example.sofit.model.Session;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         setTitle("Log In");
-        printDataForTesting();
+        printDataForTesting2();
         Button btnEntrar = (Button) findViewById(R.id.btnEntrar);
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,5 +53,16 @@ public class LogIn extends AppCompatActivity {
             System.out.println("\n\n--------------------"+exercise);
         }
         exerciseDataSource.close();
+    }
+
+    private void printDataForTesting2(){
+        SessionDataSource sessionDataSource = new SessionDataSource(getApplicationContext());
+        sessionDataSource.open();
+        List<Session> sessionList = sessionDataSource.getAllSessions();
+
+        for (Session session : sessionList) {
+            System.out.println("\n\n--------------------"+session);
+        }
+        sessionDataSource.close();
     }
 }

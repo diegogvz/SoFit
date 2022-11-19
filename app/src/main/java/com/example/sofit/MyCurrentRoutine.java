@@ -2,7 +2,6 @@ package com.example.sofit;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,14 +47,14 @@ public class MyCurrentRoutine extends AppCompatActivity {
         SessionDataSource sds = new SessionDataSource(getApplicationContext());
         sessions = sds.getAllSessions();
         if(sessions.isEmpty()){
-            crearNotificationChannel();
-            NotificationManager mNotificationManager =
-                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "M_CH_ID");
-            mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
-                    .setContentTitle("NO HAY SESIONES EN ESTA RUTINA")
-                    .setContentText("Añada una sesión a la rutina si así lo desea");
-            mNotificationManager.notify(001,mBuilder.build());
+//            crearNotificationChannel();
+//            NotificationManager mNotificationManager =
+//                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "M_CH_ID");
+//            mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
+//                    .setContentTitle("NO HAY SESIONES EN ESTA RUTINA")
+//                    .setContentText("Añada una sesión a la rutina si así lo desea");
+//            mNotificationManager.notify(001,mBuilder.build());
             }
         sds.close();
     }

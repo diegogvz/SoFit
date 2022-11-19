@@ -18,8 +18,8 @@ public class ExerciseActivity extends AppCompatActivity {
         //exercise=(Exercise) getIntent().getSerializableExtra("EX_OBJ");
 
 
-        setTitle(exercise.getName());
-
+//        setTitle(exercise.getName());
+          setTitle("Ejercicio X");
     }
 
 }

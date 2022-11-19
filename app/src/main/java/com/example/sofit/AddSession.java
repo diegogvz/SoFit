@@ -45,12 +45,14 @@ public class AddSession extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Session s = new Session();
                 EditText et = (EditText)findViewById(R.id.editTextTituloSesion) ;
-                s.setName(et.getText().toString());
-                s.setRoutine("");
-                addingSession(s);
+                if(!et.getText().toString().isEmpty()){
+                    Session s = new Session();
+                    s.setName(et.getText().toString());
+                    s.setRoutine("");
+                    addingSession(s);
 
+                }
                 startActivity(new Intent(AddSession.this, MyCurrentRoutine.class));
             }
         });
