@@ -66,7 +66,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     /**
      * Nombre de la tabla series y sus columnas
      */
-    public static final String TABLA_SERIES = "series";
+    public static final String TABLE_SERIES = "series";
 
     public static final String COL_SERIES_REPS = "reps";
     public static final String COL_SERIES_WEIGHT = "weight";
@@ -121,7 +121,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             COL_EXERCISES_SESSION + " text not null" +
             ");";
     private static final String CREATE_TABLE_SERIES = " create table "
-            + TABLA_SERIES
+            + TABLE_SERIES
             + "( " +
             " ID integer primary key autoincrement not null, " +
             COL_SERIES_WEIGHT + " real not null, " +
@@ -148,7 +148,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_DROP_SESSIONS = "DROP TABLE IF EXISTS " + TABLE_SESSIONS;
     private static final String DATABASE_DROP_EXERCISES = "DROP TABLE IF EXISTS " + TABLE_EXERCISES;
     private static final String DATABASE_DROP_PROGRESS = "DROP TABLE IF EXISTS " + TABLE_PROGRESS;
-    private static final String DATABASE_DROP_SERIES = "DROP TABLE IF EXISTS " + TABLA_SERIES;
+    private static final String DATABASE_DROP_SERIES = "DROP TABLE IF EXISTS " + TABLE_SERIES;
 
 
     public MyDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory,
@@ -232,19 +232,19 @@ public class MyDBHelper extends SQLiteOpenHelper {
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 10);
         values.put(COL_SERIES_EXERCISE, "Bench Press");
-        db.insert(TABLA_SERIES, null, values);
+        db.insert(TABLE_SERIES, null, values);
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 9);
         values.put(COL_SERIES_EXERCISE, "Bench Press");
-        db.insert(TABLA_SERIES, null, values);
+        db.insert(TABLE_SERIES, null, values);
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 8);
         values.put(COL_SERIES_EXERCISE, "Bench Press");
-        db.insert(TABLA_SERIES, null, values);
+        db.insert(TABLE_SERIES, null, values);
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 8);
         values.put(COL_SERIES_EXERCISE, "Bench Press");
-        db.insert(TABLA_SERIES, null, values);
+        db.insert(TABLE_SERIES, null, values);
 
         Log.i("ONCREATE", "EJECUTO CREACION");
     }

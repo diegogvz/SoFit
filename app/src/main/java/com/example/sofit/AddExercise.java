@@ -9,13 +9,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AddExercise extends AppCompatActivity {
+public class AddExercise extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_exercise);
-
+        createDrawer(this);
         setTitle("Add Exercise");
 
         Button btnAceptar = (Button) findViewById(R.id.buttonAceptarEjercicio);

@@ -125,5 +125,7 @@
             android:layout_weight="1"
             android:text="@string/cancel" />
     </LinearLayout>
+    <!-- the root view must be the DrawerLayout -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

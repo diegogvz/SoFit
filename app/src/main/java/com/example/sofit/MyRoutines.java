@@ -6,20 +6,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListRutinasViewAdapter;
 import com.example.sofit.data.RoutineDataSource;
 import com.example.sofit.model.Routine;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
-public class MyRoutines extends AppCompatActivity {
+public class MyRoutines extends BaseActivity {
 
     ArrayList<Routine> rutinas = new ArrayList<Routine>();
     private RecyclerView listRutinasView;
@@ -27,9 +24,10 @@ public class MyRoutines extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_my_routines);
+        setContentView(R.layout.activity_my_routines);
 
         setTitle("My Routines");
+        createDrawer(this);
     }
 
     @Override

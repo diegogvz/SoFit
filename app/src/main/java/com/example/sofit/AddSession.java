@@ -18,7 +18,7 @@ import com.example.sofit.model.Session;
 
 import java.util.ArrayList;
 
-public class AddSession extends AppCompatActivity {
+public class AddSession extends BaseActivity {
 
     private ArrayList<String> ejercicios = new ArrayList<>();
     private RecyclerView listEjerciciosView;
@@ -27,7 +27,7 @@ public class AddSession extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_session);
-
+        createDrawer(this);
 
     }
 

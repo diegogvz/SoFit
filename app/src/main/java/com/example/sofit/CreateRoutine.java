@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sofit.data.RoutineDataSource;
 import com.example.sofit.model.Routine;
 
-public class CreateRoutine extends AppCompatActivity {
+public class CreateRoutine extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class CreateRoutine extends AppCompatActivity {
         setContentView(R.layout.activity_create_routine);
 
         setTitle("Create Routine");
+        createDrawer(this);
 
         Button btnAceptar = (Button) findViewById(R.id.btnAceptar);
         EditText name = (EditText) findViewById(R.id.editTextNombreRutina);

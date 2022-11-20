@@ -13,7 +13,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-public class MyProgress extends AppCompatActivity {
+public class MyProgress extends BaseActivity {
 
     boolean button=false;
     // creating a variable
@@ -25,7 +25,7 @@ public class MyProgress extends AppCompatActivity {
         setContentView(R.layout.my_progress);
 
         setTitle("My Progress");
-
+        createDrawer(this);
         Button b = (Button)findViewById(R.id.my_progress_add_data);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
