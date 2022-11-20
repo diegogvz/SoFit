@@ -1,6 +1,7 @@
 package com.example.sofit.data;
 
-import android.annotation.SuppressLint;
+import static android.content.ContentValues.TAG;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -24,9 +25,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
      * nombre_usuario;correo_usuario;contraseña_usuario;altura_usuario;
      * peso_usuario;edad_usuario;sexo_usuario;nombre_rutina(FOREIGN_KEY)
      */
-    public static final String USER_TABLE = "user";
+    public static final String TABLE_USER = "user";
 
-    public static final String COL_USER_NAME = "nombre_usuario";
+    public static final String COL_USER_NAME = "name";
     public static final String COL_USER_EMAIL = "email";
     public static final String COL_USER_PASS = "password";
     public static final String COL_USER_HEIGHT = "height";
@@ -90,7 +91,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
      * Script para crear la base datos en SQL
      */
     private static final String CREATE_TABLE_USER = "create table "
-            + USER_TABLE
+            + TABLE_USER
             + "( " +
             COL_USER_NAME + " text not null, " +
             COL_USER_EMAIL + " text primary key not null, " +
@@ -104,38 +105,37 @@ public class MyDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_ROUTINE = " create table "
             + TABLE_ROUTINES
             + "( " +
-            COL_ROUTINE_NAME + " text primary key not null," +
-            COL_ROUTINE_USER + " text not null" +
+            COL_ROUTINE_NAME + " text primary key not null, " +
+            COL_ROUTINE_USER + " text not null " +
             ");";
 
-
-    private static final String CREATE_TABLE_SESSIONS = " create table "
+    private static final String CREATE_TABLE_SESSIONS = "create table "
             + TABLE_SESSIONS
             + "( " +
             COL_SESSIONS_NAME + " text primary key not null, " +
-            COL_SESSIONS_ROUTINE + " text" +
+            COL_SESSIONS_ROUTINE + " text not null" +
             ");";
 
     private static final String CREATE_TABLE_EXERCISES = " create table "
             + TABLE_EXERCISES
             + "( " +
-            COL_EXERCISES_NAME + "text primary key not null, " +
+            COL_EXERCISES_NAME + " text primary key not null, " +
             COL_EXERCISES_IMG + " text not null," +
             COL_EXERCISES_SESSION + " text not null" +
             ");";
     private static final String CREATE_TABLE_SERIES = " create table "
             + TABLA_SERIES
             + "( " +
-            " ID integer primary key not null, " +
+            " ID integer primary key autoincrement not null, " +
             COL_SERIES_WEIGHT + " real not null," +
-            COL_SERIES_REPS + " integer not null, " +
-            COL_SERIES_EXERCISE + " text not null" +
+            COL_SERIES_EXERCISE + " text not null," +
+            COL_SERIES_REPS + " integer not null " +
             ");";
     private static final String CREATE_TABLE_PROGRESS =
-            " create table if not exists "
+            " create table "
             + TABLE_PROGRESS
-            + "( " +
-            COL_PROGRESS_WEIGHT + " text primary key not null, " +
+            + "( " + " ID integer primary key autoincrement not null, " +
+            COL_PROGRESS_WEIGHT + " text not null, " +
             COL_PROGRESS_FAT + " real not null, " +
             COL_PROGRESS_MUSCLE + " real not null, " +
             COL_PROGRESS_WATER + " real not null," +
@@ -146,7 +146,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     /**
      * Script para borrar la base de datos (SQL)
      */
-    private static final String DATABASE_DROP_USER = "DROP TABLE IF EXISTS " + USER_TABLE;
+    private static final String DATABASE_DROP_USER = "DROP TABLE IF EXISTS " + TABLE_USER;
     private static final String DATABASE_DROP_ROUTINES = "DROP TABLE IF EXISTS " + TABLE_ROUTINES;
     private static final String DATABASE_DROP_SESSIONS = "DROP TABLE IF EXISTS " + TABLE_SESSIONS;
     private static final String DATABASE_DROP_EXERCISES = "DROP TABLE IF EXISTS " + TABLE_EXERCISES;
@@ -156,7 +156,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public MyDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory,
                       int version) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, version);
     }
 
     @Override
@@ -169,6 +169,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_EXERCISES);
         db.execSQL(CREATE_TABLE_PROGRESS);
         db.execSQL(CREATE_TABLE_SERIES);
+
         Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name NOT IN ('android_metadata', 'sqlite_sequence', 'room_master_table') ",null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
@@ -177,11 +178,25 @@ public class MyDBHelper extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
 
+
+        /**
+         * ---Usuario---
+         */
+        values = new ContentValues();
+        values.put(COL_USER_NAME, "Pepe");
+        values.put(COL_USER_AGE, 21);
+        values.put(COL_USER_EMAIL, "Pepe");
+        values.put(COL_USER_HEIGHT, 187);
+        values.put(COL_USER_PASS, "Pepe");
+        values.put(COL_USER_SEX, "Pepe");
+        values.put(COL_USER_WEIGHT, 80);
+        db.insert(TABLE_USER, null, values);
         /**
          * ----Rutinas----
          */
         values = new ContentValues();
         values.put(COL_ROUTINE_NAME, "Strength");
+        values.put(COL_ROUTINE_USER,"Pepe");
         db.insert(TABLE_ROUTINES, null, values);
 
 
@@ -209,6 +224,10 @@ public class MyDBHelper extends SQLiteOpenHelper {
         values.put(COL_EXERCISES_NAME, "Bench Press");
         values.put(COL_EXERCISES_SESSION, "Chest");
         db.insert(TABLE_EXERCISES, null, values);
+        values.put(COL_EXERCISES_IMG, "bench_press2");
+        values.put(COL_EXERCISES_NAME, "Bench Press 2");
+        values.put(COL_EXERCISES_SESSION, "Chest");
+        db.insert(TABLE_EXERCISES, null, values);
 
         /**
          * ----SERIES----
@@ -234,7 +253,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
         Log.i("ONCREATE", "EJECUTO CREACION");
     }
-    @SuppressLint("Range")
     public String getTableAsString(SQLiteDatabase db, String tableName) {
         String tableString = String.format("Table %s columns:\n", tableName);
         Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);

@@ -21,7 +21,7 @@ public class ExerciseDataSource extends DataSource{
      */
     public ExerciseDataSource(Context context) {
         //el último parámetro es la versión
-        dbHelper = new MyDBHelper(context, null, null, 1);
+        dbHelper = new MyDBHelper(context, null, null, 3);
     }
 
     public List<Exercise> getExercisesForSession(String sessionId){
@@ -50,9 +50,9 @@ public class ExerciseDataSource extends DataSource{
         System.out.println(cursor.getCount());
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            System.out.println("HELLO1");
-            final Exercise exercise = new Exercise();
+            Exercise exercise = new Exercise();
             exercise.setName(cursor.getString(0));
+            exercises.add(exercise);
             cursor.moveToNext();
         }
         cursor.close();
