@@ -47,6 +47,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/exercise_series_item_table_height"
                     android:layout_weight="1"
+                    android:background="#00FFFFFF"
                     android:gravity="center_vertical"
                     android:text="@string/exercise_weight"
                     android:textAlignment="center"
@@ -55,8 +56,8 @@
             </TableRow>
 
             <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <ScrollView
