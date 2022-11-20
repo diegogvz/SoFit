@@ -21,7 +21,7 @@ public class ExerciseDataSource extends DataSource{
      */
     public ExerciseDataSource(Context context) {
         //el último parámetro es la versión
-        dbHelper = new MyDBHelper(context, null, null, 3);
+        dbHelper = new MyDBHelper(context, null, null, 1);
     }
 
     public List<Exercise> getExercisesForSession(String sessionId){

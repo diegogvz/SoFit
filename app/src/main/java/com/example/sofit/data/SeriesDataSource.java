@@ -21,7 +21,7 @@ public class SeriesDataSource extends DataSource{
      */
     public SeriesDataSource(Context context) {
         //el último parámetro es la versión
-        dbHelper = new MyDBHelper(context, null, null, 3);
+        dbHelper = new MyDBHelper(context, null, null, 1);
     }
 
     public List<Serie> getSeriesForExercise(String exerciseId){
