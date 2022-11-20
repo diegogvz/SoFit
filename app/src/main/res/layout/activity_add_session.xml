@@ -32,9 +32,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.326" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTituloSesion"
+        app:layout_constraintVertical_bias="0.181" />
 
     <Button
         android:id="@+id/btn_addsession_addExecise"
@@ -43,10 +44,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="@string/addExercise"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_anadirsesion" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_anadirsesion"
+        app:layout_constraintVertical_bias="0.062" />
 
     <Button
         android:id="@+id/btn_addsession_confirm"
