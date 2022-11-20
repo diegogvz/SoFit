@@ -59,14 +59,10 @@ public class LogIn extends AppCompatActivity {
         UserDataSource userDataSource = new UserDataSource(getApplicationContext());
         userDataSource.open();
 
-        if(!(name.getText().equals(" ")) && !(sex.getText().equals(" ")) && !(weight.getText().equals(" ")) &&
-                !(height.getText().equals(" ")) && !(age.getText().equals(" "))) {
-            User user = new User(name.getText().toString(), sex.getText().toString(), Integer.parseInt(weight.getText().toString()),
-                    Integer.parseInt(height.getText().toString()), Integer.parseInt(age.getText().toString()));
-            userDataSource.createUser(user);
-        }else{
-            Toast.makeText(getApplicationContext(), getString(R.string.complete), Toast.LENGTH_SHORT).show();
-        }
+        User user = new User(name.getText().toString(), sex.getText().toString(), Integer.parseInt(weight.getText().toString()),
+                Integer.parseInt(height.getText().toString()), Integer.parseInt(age.getText().toString()));
+        userDataSource.createUser(user);
+
         userDataSource.close();
         startActivity(new Intent(LogIn.this, MyRoutines.class));
     }
