@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.sofit.model.Exercise;
 import com.example.sofit.model.Session;
 
 import java.util.ArrayList;
@@ -52,6 +53,28 @@ public class SessionDataSource extends DataSource{
 
         cursor.close();
         close();
+        return sessionsList;
+    }
+    public List<Session> getSessionsForRoutine(String routineId){
+        List<Session> sessionsList = new ArrayList<>();
+        String whereClause = "ROUTINE_ID = ?";
+        String[] whereArgs = new String[] {
+                routineId
+        };
+        Cursor cursor = database.query(MyDBHelper.TABLE_SESSIONS, allColumns,
+                whereClause, whereArgs, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            final Session session = new Session();
+
+            session.setName(cursor.getString(0));
+            session.setRoutine(cursor.getString(1));
+
+            sessionsList.add(session);
+            cursor.moveToNext();
+        }
+        cursor.close();
         return sessionsList;
     }
 }

@@ -10,5 +10,5 @@
     <dimen name="distance_margin_of_button_bottom">20dp</dimen>
     <dimen name="distance_margin_of_button_top">30dp</dimen>
     <dimen name="height_edit_text">60dp</dimen>
-
+    <dimen name="height_recycler_element">50dp</dimen>
 </resources>
