@@ -6,83 +6,111 @@
     android:layout_height="match_parent"
     tools:context=".AddSession">
 
-    <EditText
-        android:id="@+id/editTextTituloSesion"
-        android:layout_width="fill_parent"
-        android:layout_height="74dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:fontFamily="@font/rocknroll_one"
-        android:hint="@string/title"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textColor="@color/purple_500"
-        android:textSize="@dimen/big_font_size"
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/my_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161" />
+        tools:context=".MainActivity"
+        tools:ignore="HardcodedText">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/rocknroll_one"
-        android:text="Create a session!"
-        android:textColor="@color/purple_700"
-        android:textSize="@dimen/very_big_text"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="37dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".AddSession">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_anadirsesion"
-        android:layout_width="fill_parent"
-        android:layout_height="315dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:padding="10dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524"
-        tools:listitem="@layout/line_recycler_exercise" />
+            <EditText
+                android:id="@+id/editTextTituloSesion"
+                android:layout_width="fill_parent"
+                android:layout_height="74dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:ems="10"
+                android:fontFamily="@font/rocknroll_one"
+                android:hint="@string/title"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColor="@color/purple_500"
+                android:textSize="@dimen/big_font_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.161" />
 
-    <Button
-        android:id="@+id/btn_addsession_addExecise"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/button_height"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/rocknroll_one"
-        android:text="@string/addExercise"
-        android:textSize="@dimen/small_font_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_anadirsesion"
-        app:layout_constraintVertical_bias="0.062" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rocknroll_one"
+                android:text="Create a session!"
+                android:textColor="@color/purple_700"
+                android:textSize="@dimen/very_big_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.149"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.055" />
 
-    <Button
-        android:id="@+id/btn_addsession_confirm"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/button_height"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/rocknroll_one"
-        android:text="@string/confirm"
-        android:textSize="@dimen/small_font_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_anadirsesion"
+                android:layout_width="fill_parent"
+                android:layout_height="315dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:padding="10dp"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.524"
+                tools:listitem="@layout/line_recycler_exercise" />
 
+            <Button
+                android:id="@+id/btn_addsession_addExecise"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/rocknroll_one"
+                android:text="@string/addExercise"
+                android:textSize="@dimen/small_font_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_anadirsesion"
+                app:layout_constraintVertical_bias="0.062" />
+
+            <Button
+                android:id="@+id/btn_addsession_confirm"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/rocknroll_one"
+                android:text="@string/confirm"
+                android:textSize="@dimen/small_font_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.944" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/menu_misrutinas" />
+    </androidx.drawerlayout.widget.DrawerLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

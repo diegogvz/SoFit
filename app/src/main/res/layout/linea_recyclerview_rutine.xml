@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="4"
         android:background="@android:color/transparent"
+        android:minHeight="48dp"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </LinearLayout>

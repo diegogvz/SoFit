@@ -6,126 +6,153 @@
     android:layout_height="match_parent"
     tools:context=".EditProfile">
 
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
-        android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
-        app:columnCount="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298"
-        app:rowCount="4">
-
-        <TextView
-            android:id="@+id/textView_editSexo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="@string/sex"
-            android:textSize="20sp"
-            app:layout_column="0"
-            app:layout_gravity="right|center_vertical"
-            app:layout_row="0" />
-
-        <TextView
-            android:id="@+id/textView_editEdad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:focusableInTouchMode="false"
-            android:gravity="center_vertical"
-            android:text="@string/age"
-            android:textSize="20sp"
-            app:layout_column="0"
-            app:layout_gravity="right|center_vertical"
-            app:layout_row="1" />
-
-        <TextView
-            android:id="@+id/textView_editPeso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="@string/weight"
-            android:textSize="20sp"
-            app:layout_column="0"
-            app:layout_gravity="right|center_vertical"
-            app:layout_row="2" />
-
-        <Spinner
-            android:id="@+id/EditText_EditProfile_Weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_column="1"
-            app:layout_gravity="center|center_vertical"
-            app:layout_row="2" />
-
-        <TextView
-            android:id="@+id/textView_editAltura"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="@string/height"
-            android:textSize="20sp"
-            app:layout_column="0"
-            app:layout_gravity="right|center_vertical"
-            app:layout_row="3" />
-
-        <Spinner
-            android:id="@+id/EditText_EditProfile_Height"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_column="1"
-            app:layout_gravity="center|fill_vertical"
-            app:layout_row="3" />
-
-        <Spinner
-            android:id="@+id/EditText_EditProfile_Edad"
-            android:layout_height="wrap_content"
-            app:layout_column="1"
-            app:layout_gravity="center|center_vertical"
-            app:layout_row="1" />
-
-        <Spinner
-            android:id="@+id/EditText_EditProfile_Sexo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_column="1"
-            app:layout_gravity="center|center_vertical"
-            app:layout_row="0" />
-    </androidx.gridlayout.widget.GridLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/button_height"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977">
-
-        <Button
-            android:id="@+id/btn_editprofile_confirm"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
-            android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
-            android:layout_weight="1"
-            android:text="@string/confirm" />
-
-        <Button
-            android:id="@+id/btn_editprofile_cancel"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:text="@string/cancel" />
-    </LinearLayout>
     <!-- the root view must be the DrawerLayout -->
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/my_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".MainActivity"
+        tools:ignore="HardcodedText">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".EditProfile">
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
+                android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
+                app:columnCount="2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.298"
+                app:rowCount="4">
+
+                <TextView
+                    android:id="@+id/textView_editSexo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/sex"
+                    android:textSize="20sp"
+                    app:layout_column="0"
+                    app:layout_gravity="right|center_vertical"
+                    app:layout_row="0" />
+
+                <TextView
+                    android:id="@+id/textView_editEdad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center_vertical"
+                    android:text="@string/age"
+                    android:textSize="20sp"
+                    app:layout_column="0"
+                    app:layout_gravity="right|center_vertical"
+                    app:layout_row="1" />
+
+                <TextView
+                    android:id="@+id/textView_editPeso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/weight"
+                    android:textSize="20sp"
+                    app:layout_column="0"
+                    app:layout_gravity="right|center_vertical"
+                    app:layout_row="2" />
+
+                <Spinner
+                    android:id="@+id/EditText_EditProfile_Weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_column="1"
+                    app:layout_gravity="center|center_vertical"
+                    app:layout_row="2" />
+
+                <TextView
+                    android:id="@+id/textView_editAltura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/height"
+                    android:textSize="20sp"
+                    app:layout_column="0"
+                    app:layout_gravity="right|center_vertical"
+                    app:layout_row="3" />
+
+                <Spinner
+                    android:id="@+id/EditText_EditProfile_Height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_column="1"
+                    app:layout_gravity="center|fill_vertical"
+                    app:layout_row="3" />
+
+                <Spinner
+                    android:id="@+id/EditText_EditProfile_Edad"
+                    android:layout_height="wrap_content"
+                    app:layout_column="1"
+                    app:layout_gravity="center|center_vertical"
+                    app:layout_row="1" />
+
+                <Spinner
+                    android:id="@+id/EditText_EditProfile_Sexo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_column="1"
+                    app:layout_gravity="center|center_vertical"
+                    app:layout_row="0" />
+            </androidx.gridlayout.widget.GridLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_height"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.977">
+
+                <Button
+                    android:id="@+id/btn_editprofile_confirm"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
+                    android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
+                    android:layout_weight="1"
+                    android:text="@string/confirm" />
+
+                <Button
+                    android:id="@+id/btn_editprofile_cancel"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:text="@string/cancel" />
+            </LinearLayout>
+            <!-- the root view must be the DrawerLayout -->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/menu_misrutinas" />
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
