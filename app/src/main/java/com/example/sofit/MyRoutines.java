@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sofit.adapters.ListRutinasViewAdapter;
 import com.example.sofit.data.RoutineDataSource;
 import com.example.sofit.model.Routine;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
