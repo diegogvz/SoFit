@@ -27,7 +27,6 @@ public class ListaSerieViewAdapter extends RecyclerView.Adapter<ListaSerieViewAd
 
     @Override
     public void onBindViewHolder(@NonNull ListaSerieViewAdapter.SerieViewHolder holder, int position) {
-
         Serie serie= series.get(position);
         holder.weight.setText(serie.getWeight());
         holder.reps.setText(serie.getReps());
@@ -47,8 +46,5 @@ public class ListaSerieViewAdapter extends RecyclerView.Adapter<ListaSerieViewAd
             weight=(EditText) itemView.findViewById(R.id.editTextWeight);
 
         }
-
-
-
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SessionActivity">
+    tools:context=".Session">
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/my_drawer_layout"
@@ -23,10 +23,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".SessionActivity">
+            tools:context=".Session">
 
             <Button
-                android:id="@+id/btn_addsession_addExecise2"
+                android:id="@+id/btn_session_addExercise"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_marginStart="20dp"
