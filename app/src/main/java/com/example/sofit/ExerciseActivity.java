@@ -15,7 +15,7 @@ import com.example.sofit.model.Serie;
 
 import java.util.List;
 
-public class ExerciseActivity extends AppCompatActivity {
+public class ExerciseActivity extends BaseActivity {
     private Exercise exercise;
     private RecyclerView seriesRecycler;
     SeriesDataSource seriesDataSource;
@@ -24,6 +24,7 @@ public class ExerciseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         seriesDataSource=new SeriesDataSource(getApplicationContext());
         Bundle extras = getIntent().getExtras();
+        createDrawer(this);
         String exercise="";
         if (extras != null) {
             exercise = extras.getString("exerciseId");

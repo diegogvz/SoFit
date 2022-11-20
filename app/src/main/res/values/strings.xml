@@ -89,7 +89,8 @@
     <string name="current_rutine">My Current Routine</string>
     <string name="profile">My profile</string>
     <string name="routines">My routines</string>
-
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
     <!-- _______________________________________________ -->
 
     <!-- _________________ MIS RUTINAS _________________ -->

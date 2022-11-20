@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".SessionActivity">
 
+    <Button
+        android:id="@+id/btn_addsession_addExecise2"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="160dp"
+        android:fontFamily="@font/rocknroll_one"
+        android:text="@string/addExercise"
+        android:textSize="@dimen/small_font_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintVertical_bias="0.487" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="fill_parent"
@@ -19,6 +36,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.327"
-        tools:listitem="@layout/line_recyclerview_day" />
+        tools:listitem="@layout/line_recycler_exercise" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

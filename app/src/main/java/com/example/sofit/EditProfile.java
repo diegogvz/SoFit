@@ -11,7 +11,7 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EditProfile extends AppCompatActivity {
+public class EditProfile extends BaseActivity {
     String[] edades;
     String[] pesos;
     String[]alturas;
@@ -21,6 +21,7 @@ public class EditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
         setTitle("Edit Profile");
+        createDrawer(this);
         Button btnConfirm = (Button) findViewById(R.id.btn_editprofile_confirm);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

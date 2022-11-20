@@ -212,5 +212,6 @@
 
         </TableRow>
     </TableLayout>
+    <!-- the root view must be the DrawerLayout -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

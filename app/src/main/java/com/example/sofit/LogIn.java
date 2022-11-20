@@ -2,12 +2,16 @@ package com.example.sofit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.sofit.data.UserDataSource;
 import com.example.sofit.model.User;
@@ -20,9 +24,7 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
         setTitle("Log In");
-
         Button btnEntrar = (Button) findViewById(R.id.btnEntrar);
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,4 +68,8 @@ public class LogIn extends AppCompatActivity {
         userDataSource.close();
         startActivity(new Intent(LogIn.this, MyRoutines.class));
     }
+
+
+
+
 }

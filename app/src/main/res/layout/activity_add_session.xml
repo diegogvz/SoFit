@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.524"
-        tools:listitem="@layout/line_recycler_addexercise" />
+        tools:listitem="@layout/line_recycler_exercise" />
 
     <Button
         android:id="@+id/btn_addsession_addExecise"

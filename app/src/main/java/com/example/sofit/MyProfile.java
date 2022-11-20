@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MyProfile extends AppCompatActivity {
+public class MyProfile extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class MyProfile extends AppCompatActivity {
         setContentView(R.layout.my_profile);
 
         setTitle("My Profile");
-
+        createDrawer(this);
         Button b = (Button)findViewById(R.id.button_actualizar_datos);
         b.setOnClickListener(new View.OnClickListener() {
             @Override

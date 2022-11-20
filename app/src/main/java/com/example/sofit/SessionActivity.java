@@ -16,7 +16,7 @@ import com.example.sofit.model.Exercise;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SessionActivity extends AppCompatActivity {
+public class SessionActivity extends BaseActivity {
 
     List<Exercise> exercises;
     ExerciseDataSource exerciseDataSource;
@@ -25,13 +25,17 @@ public class SessionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercises_of_aday);
+        setContentView(R.layout.activity_session);
+
         exerciseDataSource = new ExerciseDataSource(getApplicationContext());
         Bundle extras = getIntent().getExtras();
         String session="";
         if (extras != null) {
             session = extras.getString("idSession");
         }
+        setTitle(session);
+
+        createDrawer(this);
         exerciseDataSource.open();
         exercises = exerciseDataSource
                 .getExercisesForSession(session);

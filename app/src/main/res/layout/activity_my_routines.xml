@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyCurrentRoutine">
+    tools:context=".MyRoutines">
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/my_drawer_layout"
@@ -23,39 +23,36 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".MyCurrentRoutine">
+            tools:context=".MyRoutines">
+
+            <Button
+                android:id="@+id/btnCrearRutia"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/create"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.39"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.976" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recylcerViewRutinas"
                 android:layout_width="fill_parent"
-                android:layout_height="346dp"
+                android:layout_height="363dp"
                 android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
                 android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
-                android:clipChildren="true"
-                android:clipToPadding="true"
                 android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.327"
-                tools:listitem="@layout/line_recyclerview_day" />
-
-            <Button
-                android:id="@+id/my_current_routine_add_session"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/button_height"
-                android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
-                android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
-                android:fontFamily="@font/rocknroll_one"
-                android:text="@string/add_new_session"
-                android:textSize="@dimen/small_font_size"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.976" />
+                app:layout_constraintVertical_bias="0.252"
+                tools:listitem="@layout/linea_recyclerview_rutine" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

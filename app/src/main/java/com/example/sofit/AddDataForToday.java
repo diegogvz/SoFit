@@ -7,13 +7,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AddDataForToday extends AppCompatActivity {
+public class AddDataForToday extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_data_for_today);
-
+        createDrawer(this);
         setTitle("Add data for today");
 
         Button b1 = (Button)findViewById(R.id.button_actualizar_datos);

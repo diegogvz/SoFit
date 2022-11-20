@@ -23,7 +23,7 @@ import com.example.sofit.model.Session;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyCurrentRoutine extends AppCompatActivity {
+public class MyCurrentRoutine extends BaseActivity {
 
     List<Session> sessions =new ArrayList<Session>();
     private RecyclerView listDiasView;
@@ -33,14 +33,7 @@ public class MyCurrentRoutine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_current_routine);
         setTitle("My current routine");
-
-//        sessions.add(new Session("Monday"));
-//        sessions.add(new Session("Tuesday"));
-//        sessions.add(new Session("Wednesday"));
-//        sessions.add(new Session("Thursday"));
-//        sessions.add(new Session("Leg"));
-//        sessions.add(new Session("Arms"));
-//        sessions.add(new Session("Chest"));
+        createDrawer(this);
 
     }
 
