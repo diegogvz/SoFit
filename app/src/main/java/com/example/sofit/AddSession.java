@@ -25,7 +25,6 @@ public class AddSession extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_session);
         createDrawer(this);
-
     }
 
     private void addingSession(Session s){
@@ -38,6 +37,8 @@ public class AddSession extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+
         Button btnConfirm = (Button) findViewById(R.id.btn_addsession_confirm);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
