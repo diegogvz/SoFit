@@ -6,15 +6,125 @@
     android:layout_height="match_parent"
     tools:context=".MyProgress">
 
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="302dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
+        app:columnCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.704"
+        app:rowCount="4">
+
+        <TextView
+            android:id="@+id/textView_editSexo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/sex"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_gravity="right|center_vertical"
+            app:layout_row="0" />
+
+        <TextView
+            android:id="@+id/textView_editEdad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:text="@string/age"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_gravity="right|center_vertical"
+            app:layout_row="1" />
+
+        <TextView
+            android:id="@+id/textView_editPeso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/weight"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_gravity="right|center_vertical"
+            app:layout_row="2" />
+
+        <TextView
+            android:id="@+id/textView_editAltura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/height"
+            android:textSize="20sp"
+            app:layout_column="0"
+            app:layout_gravity="right|center_vertical"
+            app:layout_row="3" />
+
+        <EditText
+            android:id="@+id/editTextSex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_column="1"
+            app:layout_row="0"
+            tools:ignore="DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/editTextAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_column="1"
+            app:layout_row="1"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/editTextWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_column="1"
+            app:layout_row="2"
+            tools:ignore="DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/editTextHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_column="1"
+            app:layout_row="3"
+            tools:ignore="DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
+
+    </androidx.gridlayout.widget.GridLayout>
+
     <TextView
         android:id="@+id/textNombre"
         android:layout_width="97dp"
         android:layout_height="23dp"
         android:text="@string/name"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNombre"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextNombre"
         app:layout_constraintHorizontal_bias="0.0"
+<<<<<<< HEAD
+        app:layout_constraintStart_toStartOf="@+id/editTextNombre"
+        app:layout_constraintTop_toBottomOf="@+id/textTitulo"
+        app:layout_constraintVertical_bias="0.113" />
+=======
         app:layout_constraintStart_toStartOf="@+id/editTextNombre" />
+>>>>>>> 7c936baeae48fb7e2581796f350cd2fa5dc7d1b3
 
     <EditText
         android:id="@+id/editTextNombre"
@@ -28,10 +138,10 @@
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.436" />
 
     <Button
         android:id="@+id/btnEntrar"
@@ -46,6 +156,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
 
+<<<<<<< HEAD
+=======
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
@@ -57,4 +169,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.195"
         app:srcCompat="@drawable/sofit" />
+>>>>>>> 7c936baeae48fb7e2581796f350cd2fa5dc7d1b3
 </androidx.constraintlayout.widget.ConstraintLayout>
