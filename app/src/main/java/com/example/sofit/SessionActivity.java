@@ -30,8 +30,15 @@ public class SessionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises_of_aday);
         exerciseDataSource = new ExerciseDataSource(getApplicationContext());
-        exercises = exerciseDataSource.getExercisesForSession(savedInstanceState.getString("sessionId"));
-
+        Bundle extras = getIntent().getExtras();
+        String session="";
+        if (extras != null) {
+            session = extras.getString("idSession");
+        }
+        exerciseDataSource.open();
+        exercises = exerciseDataSource
+                .getExercisesForSession(session);
+        exerciseDataSource.close();
         exercises.add(new Exercise("Squads - hardcoded"));
         exercises.add(new Exercise("Leg press - hardcoded"));
         exercises.add(new Exercise("Cardio - hardcoded"));
@@ -43,16 +50,16 @@ public class SessionActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         listaExsView.setLayoutManager(layoutManager);
 
-        List<String> exercisesButtons=new ArrayList<>();
-        for (Exercise ex: exercises) {
+        List<String> exercisesButtons = new ArrayList<>();
+        for (Exercise ex : exercises) {
             exercisesButtons.add(ex.getName());
         }
         ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons,
                 new ListaEjerciciosViewAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(String item) {
-                        Intent i=new Intent(SessionActivity.this, ExerciseActivity.class);
-                        i.putExtra("exerciseId",item);
+                        Intent i = new Intent(SessionActivity.this, ExerciseActivity.class);
+                        i.putExtra("exerciseId", item);
                         startActivity(i);
                     }
                 });

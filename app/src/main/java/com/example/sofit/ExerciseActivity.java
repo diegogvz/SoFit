@@ -18,20 +18,23 @@ import java.util.List;
 public class ExerciseActivity extends AppCompatActivity {
     private Exercise exercise;
     private RecyclerView seriesRecycler;
-    SeriesDataSource seriesDataSource=new SeriesDataSource(getApplicationContext());
+    SeriesDataSource seriesDataSource;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String exerciseName=savedInstanceState.getString("exerciseId");
-
-        setTitle(exerciseName);
-
-
+        seriesDataSource=new SeriesDataSource(getApplicationContext());
+        Bundle extras = getIntent().getExtras();
+        String exercise="";
+        if (extras != null) {
+            exercise = extras.getString("exerciseId");
+        }
+        setTitle(exercise);
         setContentView(R.layout.exercise);
         seriesRecycler=findViewById(R.id.seriesRecycler);
 
-        List<Serie> series=seriesDataSource.getSeriesForExercise(exerciseName);
-
+        seriesDataSource.open();
+        List<Serie> series=seriesDataSource.getSeriesForExercise(exercise);
+        seriesDataSource.close();
 
         ListaSerieViewAdapter listaSerieViewAdapter=new ListaSerieViewAdapter(series);
         seriesRecycler.setAdapter(listaSerieViewAdapter);

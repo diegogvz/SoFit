@@ -119,15 +119,15 @@ public class MyDBHelper extends SQLiteOpenHelper {
             + TABLE_EXERCISES
             + "( " +
             COL_EXERCISES_NAME + " text primary key not null, " +
-            COL_EXERCISES_IMG + " text not null," +
+            COL_EXERCISES_IMG + " text not null, " +
             COL_EXERCISES_SESSION + " text not null" +
             ");";
     private static final String CREATE_TABLE_SERIES = " create table "
             + TABLA_SERIES
             + "( " +
             " ID integer primary key autoincrement not null, " +
-            COL_SERIES_WEIGHT + " real not null," +
-            COL_SERIES_EXERCISE + " text not null," +
+            COL_SERIES_WEIGHT + " real not null, " +
+            COL_SERIES_EXERCISE + " text not null, " +
             COL_SERIES_REPS + " integer not null " +
             ");";
     private static final String CREATE_TABLE_PROGRESS =
