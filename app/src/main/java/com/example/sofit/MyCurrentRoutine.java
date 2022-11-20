@@ -2,7 +2,6 @@ package com.example.sofit;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,30 +32,12 @@ public class MyCurrentRoutine extends AppCompatActivity {
         setContentView(R.layout.my_current_routine);
         setTitle("My current routine");
 
-//        sessions.add(new Session("Monday"));
-//        sessions.add(new Session("Tuesday"));
-//        sessions.add(new Session("Wednesday"));
-//        sessions.add(new Session("Thursday"));
-//        sessions.add(new Session("Leg"));
-//        sessions.add(new Session("Arms"));
-//        sessions.add(new Session("Chest"));
-
     }
 
 
     public void cargarSesiones(){
         SessionDataSource sds = new SessionDataSource(getApplicationContext());
         sessions = sds.getAllSessions();
-        if(sessions.isEmpty()){
-//            crearNotificationChannel();
-//            NotificationManager mNotificationManager =
-//                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "M_CH_ID");
-//            mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
-//                    .setContentTitle("NO HAY SESIONES EN ESTA RUTINA")
-//                    .setContentText("Añada una sesión a la rutina si así lo desea");
-//            mNotificationManager.notify(001,mBuilder.build());
-            }
         sds.close();
     }
     private void crearNotificationChannel() {
@@ -116,7 +96,6 @@ public class MyCurrentRoutine extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-//noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
             startActivity(new Intent(MyCurrentRoutine.this, MyRoutines.class));
         }
