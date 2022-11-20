@@ -19,9 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_recycler_element"
             android:gravity="center_vertical"
-            android:text="aaa"
+            android:text="Dia/Sesion"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/purple_500"
             android:textSize="24sp" />
 
         <View
