@@ -18,8 +18,9 @@
             android:id="@+id/session"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_recycler_element"
+            android:fontFamily="@font/rocknroll_one"
             android:gravity="center_vertical"
-            android:text="Dia/Sesion"
+            android:text="Day/Session"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/purple_500"
             android:textSize="24sp" />

@@ -13,14 +13,29 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
+        android:fontFamily="@font/rocknroll_one"
         android:hint="@string/title"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColor="@color/purple_500"
+        android:textSize="@dimen/big_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintVertical_bias="0.161" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rocknroll_one"
+        android:text="Create a session!"
+        android:textColor="@color/purple_700"
+        android:textSize="@dimen/very_big_text"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="37dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_anadirsesion"
@@ -34,8 +49,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTituloSesion"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.524"
+        tools:listitem="@layout/line_recycler_addexercise" />
 
     <Button
         android:id="@+id/btn_addsession_addExecise"
@@ -43,7 +59,9 @@
         android:layout_height="@dimen/button_height"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/rocknroll_one"
         android:text="@string/addExercise"
+        android:textSize="@dimen/small_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -57,11 +75,14 @@
         android:layout_height="@dimen/button_height"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/rocknroll_one"
         android:text="@string/confirm"
+        android:textSize="@dimen/small_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.944" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

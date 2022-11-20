@@ -37,10 +37,12 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/exercise_series_item_table_height"
                     android:layout_weight="1"
+                    android:fontFamily="@font/rocknroll_one"
                     android:gravity="center_vertical"
                     android:text="@string/exercise_reps"
                     android:textAlignment="center"
-                    android:textSize="25sp" />
+                    android:textColor="@color/purple_700"
+                    android:textSize="@dimen/big_font_size" />
 
                 <TextView
                     android:id="@+id/textView_exercise_weight"
@@ -48,10 +50,12 @@
                     android:layout_height="@dimen/exercise_series_item_table_height"
                     android:layout_weight="1"
                     android:background="#00FFFFFF"
+                    android:fontFamily="@font/rocknroll_one"
                     android:gravity="center_vertical"
                     android:text="@string/exercise_weight"
                     android:textAlignment="center"
-                    android:textSize="25sp" />
+                    android:textColor="@color/purple_700"
+                    android:textSize="@dimen/big_font_size" />
 
             </TableRow>
 

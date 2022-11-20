@@ -209,6 +209,7 @@
                 android:inputType="text"
                 android:minHeight="@dimen/big_font_size"
                 tools:ignore="DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
+
         </TableRow>
     </TableLayout>
 

@@ -18,7 +18,7 @@
     <LinearLayout
         android:id="@+id/LinearLayout02"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +34,7 @@
             android:layout_height="fill_parent"
             android:layout_marginHorizontal="12dp"
             android:layout_weight="1"
+            android:fontFamily="@font/rocknroll_one"
             android:text="@string/updateData"
             android:textSize="@dimen/small_font_size"></Button>
 
@@ -43,6 +44,7 @@
             android:layout_height="fill_parent"
             android:layout_marginHorizontal="12dp"
             android:layout_weight="1"
+            android:fontFamily="@font/rocknroll_one"
             android:text="@string/changeProfilePic"
             android:textSize="@dimen/small_font_size"></Button>
     </LinearLayout>
@@ -53,6 +55,7 @@
         android:layout_height="@dimen/button_height"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/rocknroll_one"
         android:text="@string/showProgress"
         android:textSize="@dimen/big_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,8 +82,10 @@
             <TextView
                 android:id="@+id/TextView_sex"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/height_edit_text"
                 android:layout_weight="1"
+                android:fontFamily="@font/rocknroll_one"
+                android:gravity="center_horizontal|center_vertical"
                 android:text="@string/sex"
                 android:textColor="@color/purple_700"
                 android:textSize="@dimen/big_font_size"
@@ -89,8 +94,10 @@
             <TextView
                 android:id="@+id/textView_sex_data"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/height_edit_text"
                 android:layout_weight="1"
+                android:fontFamily="@font/rocknroll_one"
+                android:gravity="center_horizontal|center_vertical"
                 android:text="@string/sex"
                 android:textColor="@color/purple_500"
                 android:textSize="@dimen/big_font_size"
@@ -98,15 +105,15 @@
 
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TableRow android:layout_width="match_parent">
 
             <TextView
-                android:id="@+id/textView_weight"
+                android:id="@+id/textView_repetitions"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/height_edit_text"
                 android:layout_weight="1"
+                android:fontFamily="@font/rocknroll_one"
+                android:gravity="center_horizontal|center_vertical"
                 android:text="@string/weight"
                 android:textColor="@color/purple_700"
                 android:textSize="@dimen/big_font_size"
@@ -115,8 +122,10 @@
             <TextView
                 android:id="@+id/textView_weight_data"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/height_edit_text"
                 android:layout_weight="1"
+                android:fontFamily="@font/rocknroll_one"
+                android:gravity="center_horizontal|center_vertical"
                 android:text="@string/weight"
                 android:textColor="@color/purple_500"
                 android:textSize="@dimen/big_font_size"
@@ -129,10 +138,12 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView_height"
+                android:id="@+id/textView_series"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/height_edit_text"
                 android:layout_weight="1"
+                android:fontFamily="@font/rocknroll_one"
+                android:gravity="center_horizontal|center_vertical"
                 android:text="@string/height"
                 android:textColor="@color/purple_700"
                 android:textSize="@dimen/big_font_size"
@@ -141,12 +152,14 @@
             <TextView
                 android:id="@+id/textView_height_data"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/height_edit_text"
                 android:layout_weight="1"
+                android:fontFamily="@font/rocknroll_one"
                 android:text="@string/height"
                 android:textColor="@color/purple_500"
                 android:textSize="@dimen/big_font_size"
-                tools:textAlignment="center" />
+                tools:textAlignment="center"
+                android:gravity="center_horizontal|center_vertical" />
 
         </TableRow>
     </TableLayout>

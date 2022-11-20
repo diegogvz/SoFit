@@ -10,17 +10,19 @@
 
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/rutina"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="@dimen/height_recycler_element"
+            android:layout_weight="4"
+            android:fontFamily="@font/rocknroll_one"
             android:gravity="center_vertical"
-            android:text="Rutina"
+            android:text="Routine"
             android:textColor="@color/purple_500"
             android:textSize="@dimen/big_font_size" />
 
@@ -30,6 +32,15 @@
             android:layout_height="1dp"
             android:background="?android:attr/listDivider"
             tools:background="@color/purple_500" />
+
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:background="@android:color/transparent"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </LinearLayout>

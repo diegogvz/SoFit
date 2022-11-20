@@ -70,6 +70,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
             android:layout_marginBottom="30dp"
+            android:fontFamily="@font/rocknroll_one"
             android:text="@string/my_progress_add_data"
             android:textSize="@dimen/small_font_size" />
 
