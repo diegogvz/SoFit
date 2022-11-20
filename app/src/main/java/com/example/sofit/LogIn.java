@@ -5,13 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sofit.data.UserDataSource;
 import com.example.sofit.model.User;
+
+import java.util.ArrayList;
 
 public class LogIn extends AppCompatActivity {
 
@@ -31,6 +32,23 @@ public class LogIn extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean used = seeIfUsed();
+        if (used){
+            startActivity(new Intent(LogIn.this,MyRoutines.class));
+        }
+    }
+
+    private boolean seeIfUsed() {
+        UserDataSource usd = new UserDataSource(getApplicationContext());
+        usd.open();
+        ArrayList<User> au  = usd.getAllValorations();
+        return !au.isEmpty();
+    }
+
+
     private void clickonItem(){
         EditText name = (EditText) findViewById(R.id.editTextNombre);
         EditText sex = (EditText) findViewById(R.id.editTextSex);
@@ -43,8 +61,8 @@ public class LogIn extends AppCompatActivity {
 
         if(!(name.getText().equals(" ")) && !(sex.getText().equals(" ")) && !(weight.getText().equals(" ")) &&
                 !(height.getText().equals(" ")) && !(age.getText().equals(" "))) {
-            User user = new User(name.getText().toString(), sex.getText().toString(), Integer.parseInt(String.valueOf(weight.getText())),
-                    Integer.parseInt(String.valueOf(height.getText())), Integer.parseInt(String.valueOf(age.getText())));
+            User user = new User(name.getText().toString(), sex.getText().toString(), Integer.parseInt(weight.getText().toString()),
+                    Integer.parseInt(height.getText().toString()), Integer.parseInt(age.getText().toString()));
             userDataSource.createUser(user);
         }else{
             Toast.makeText(getApplicationContext(), getString(R.string.complete), Toast.LENGTH_SHORT).show();

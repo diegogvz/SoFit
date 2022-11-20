@@ -49,14 +49,14 @@ public class MyCurrentRoutine extends AppCompatActivity {
         SessionDataSource sds = new SessionDataSource(getApplicationContext());
         sessions = sds.getAllSessions();
         if(sessions.isEmpty()){
-            crearNotificationChannel();
-            NotificationManager mNotificationManager =
-                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "M_CH_ID");
-            mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
-                    .setContentTitle("NO HAY SESIONES EN ESTA RUTINA")
-                    .setContentText("Añada una sesión a la rutina si así lo desea");
-            mNotificationManager.notify(001,mBuilder.build());
+//            crearNotificationChannel();
+//            NotificationManager mNotificationManager =
+//                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "M_CH_ID");
+//            mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
+//                    .setContentTitle("NO HAY SESIONES EN ESTA RUTINA")
+//                    .setContentText("Añada una sesión a la rutina si así lo desea");
+//            mNotificationManager.notify(001,mBuilder.build());
             }
         sds.close();
     }
@@ -90,7 +90,8 @@ public class MyCurrentRoutine extends AppCompatActivity {
                         /* Change current routine to the one clicked */
                         startActivity(new Intent(MyCurrentRoutine.this,SessionActivity.class));
                         Intent i=new Intent(MyCurrentRoutine.this, SessionActivity.class);
-                        i.putExtra("idSession",item.getName());
+                        System.out.println(item.getName());
+                        i.putExtra("idSession","Strength");
                         startActivity(i);
                     }
                 });
