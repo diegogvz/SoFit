@@ -6,12 +6,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListRutinasViewAdapter;
+import com.example.sofit.data.RoutineDataSource;
 import com.example.sofit.model.Routine;
 
 import java.util.ArrayList;
@@ -27,6 +29,13 @@ public class MyRoutines extends AppCompatActivity {
         setContentView(R.layout.activity_recycler_my_routines);
 
         setTitle("My Routines");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        chargeRoutines();
 
         listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
         listRutinasView.setHasFixedSize(true);
@@ -52,8 +61,17 @@ public class MyRoutines extends AppCompatActivity {
         });
     }
 
+    private void chargeRoutines(){
+        RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
+        routineDataSource.open();
+        rutinas = routineDataSource.getAllValorations();
+        routineDataSource.close();
+    }
+
     public void clickonItem(Routine rutina){
-        
+        Intent i = new Intent(MyRoutines.this, MyCurrentRoutine.class);
+        i.putExtra("routine", rutina.getNombre_rutina());
+        startActivity(i);
     }
 
     @Override
@@ -65,7 +83,7 @@ public class MyRoutines extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-//noinspection SimplifiableIfStatement
+    //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_misRutinas_misRutinas) {
             startActivity(new Intent(MyRoutines.this, MyRoutines.class));
         }

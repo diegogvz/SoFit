@@ -5,64 +5,51 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sofit.data.ExerciseDataSource;
-import com.example.sofit.data.SessionDataSource;
-import com.example.sofit.model.Exercise;
-import com.example.sofit.model.Session;
-
-import java.util.List;
+import com.example.sofit.data.UserDataSource;
+import com.example.sofit.model.User;
 
 public class LogIn extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_log_in);
 
         setTitle("Log In");
-        printDataForTesting2();
+
         Button btnEntrar = (Button) findViewById(R.id.btnEntrar);
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validarCampos()) {
-                    startActivity(new Intent(LogIn.this, MyRoutines.class));
-                }
-            }
-
-            private boolean validarCampos() {
-                EditText nombre = (EditText) findViewById(R.id.editTextNombre);
-                if (nombre != null)
-                    return true;
-                else
-                    return false;
+                clickonItem();
             }
         });
-
-    }
-    private void printDataForTesting(){
-        ExerciseDataSource exerciseDataSource = new ExerciseDataSource(getApplicationContext());
-        exerciseDataSource.open();
-        List<Exercise> exerciseList = exerciseDataSource.getAllExercises();
-
-        for (Exercise exercise : exerciseList) {
-            System.out.println("\n\n--------------------"+exercise);
-        }
-        exerciseDataSource.close();
     }
 
-    private void printDataForTesting2(){
-        SessionDataSource sessionDataSource = new SessionDataSource(getApplicationContext());
-        sessionDataSource.open();
-        List<Session> sessionList = sessionDataSource.getAllSessions();
+    private void clickonItem(){
+        EditText name = (EditText) findViewById(R.id.editTextNombre);
+        EditText sex = (EditText) findViewById(R.id.editTextSex);
+        EditText weight = (EditText) findViewById(R.id.editTextWeight);
+        EditText height = (EditText) findViewById(R.id.editTextHeight);
+        EditText age = (EditText) findViewById(R.id.editTextAge);
 
-        for (Session session : sessionList) {
-            System.out.println("\n\n--------------------"+session);
+        UserDataSource userDataSource = new UserDataSource(getApplicationContext());
+        userDataSource.open();
+
+        if(!(name.getText().equals(" ")) && !(sex.getText().equals(" ")) && !(weight.getText().equals(" ")) &&
+                !(height.getText().equals(" ")) && !(age.getText().equals(" "))) {
+            User user = new User(name.getText().toString(), sex.getText().toString(), Integer.parseInt(String.valueOf(weight.getText())),
+                    Integer.parseInt(String.valueOf(height.getText())), Integer.parseInt(String.valueOf(age.getText())));
+            userDataSource.createUser(user);
+        }else{
+            Toast.makeText(getApplicationContext(), getString(R.string.complete), Toast.LENGTH_SHORT).show();
         }
-        sessionDataSource.close();
+        userDataSource.close();
+        startActivity(new Intent(LogIn.this, MyRoutines.class));
     }
 }

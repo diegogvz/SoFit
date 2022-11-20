@@ -31,7 +31,7 @@ public class RoutineDataSource extends DataSource{
      * @param routineToInsert
      * @return
      */
-    public long createrepartoPelicula(Routine routineToInsert) {
+    public long createRoutine(Routine routineToInsert) {
         // Establecemos los valores que se insertaran
         ContentValues values = new ContentValues();
 
