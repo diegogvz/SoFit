@@ -88,7 +88,7 @@ public class MyCurrentRoutine extends AppCompatActivity {
                         /* Change current routine to the one clicked */
                         startActivity(new Intent(MyCurrentRoutine.this,SessionActivity.class));
                         Intent i=new Intent(MyCurrentRoutine.this, SessionActivity.class);
-                        System.out.println(item.getNombre());
+                        System.out.println(item.getName());
                         i.putExtra("idSession","Strength");
                         startActivity(i);
                     }

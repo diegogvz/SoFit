@@ -1,7 +1,5 @@
 package com.example.sofit.data;
 
-import static android.content.ContentValues.TAG;
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -95,8 +93,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
             + TABLE_USER
             + "( " +
             COL_USER_NAME + " text not null, " +
-            COL_USER_EMAIL + " text primary key not null, " +
-            COL_USER_PASS + " text not null, " +
             COL_USER_HEIGHT + " integer not null, " +
             COL_USER_WEIGHT + " integer not null, " +
             COL_USER_AGE + " integer not null, " +
@@ -183,15 +179,13 @@ public class MyDBHelper extends SQLiteOpenHelper {
         /**
          * ---Usuario---
          */
-        values = new ContentValues();
-        values.put(COL_USER_NAME, "Pepe");
-        values.put(COL_USER_AGE, 21);
-        values.put(COL_USER_EMAIL, "Pepe");
-        values.put(COL_USER_HEIGHT, 187);
-        values.put(COL_USER_PASS, "Pepe");
-        values.put(COL_USER_SEX, "Pepe");
-        values.put(COL_USER_WEIGHT, 80);
-        db.insert(TABLE_USER, null, values);
+//        values = new ContentValues();
+//        values.put(COL_USER_NAME, "Pepe");
+//        values.put(COL_USER_AGE, 21);
+//        values.put(COL_USER_HEIGHT, 187);
+//        values.put(COL_USER_SEX, "Pepe");
+//        values.put(COL_USER_WEIGHT, 80);
+//        db.insert(TABLE_USER, null, values);
         /**
          * ----Rutinas----
          */
