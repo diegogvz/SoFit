@@ -15,13 +15,15 @@ public class AddExercise extends BaseActivity {
         setContentView(R.layout.activity_add_exercise);
         createDrawer(this);
         setTitle("Add Exercise");
-
+        Bundle extras = getIntent().getExtras();
         Button btnAceptar = (Button) findViewById(R.id.buttonAceptarEjercicio);
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = new Intent(AddExercise.this, Session.class);
+                i.putExtra("idSession",extras.getString("idSession"));
                 if(validarCampos())
-                    startActivity(new Intent(AddExercise.this, AddSession.class));
+                    startActivity(i);
             }
         });
 
@@ -29,7 +31,10 @@ public class AddExercise extends BaseActivity {
         btnCancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(new Intent(AddExercise.this, AddSession.class));
+                Intent i = new Intent(AddExercise.this, Session.class);
+                i.putExtra("idSession",extras.getString("idSession"));
+                if(validarCampos())
+                    startActivity(i);
             }
         });
     }

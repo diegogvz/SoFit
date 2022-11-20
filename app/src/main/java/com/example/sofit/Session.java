@@ -65,8 +65,15 @@ public class Session extends BaseActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Session.this, AddExercise.class));
+                String session="";
+                if (extras != null) {
+                    session = extras.getString("idSession");
+                }
+                Intent i = new Intent(Session.this, AddExercise.class);
+                i.putExtra("idSession", session);
+                startActivity(i);
             }
         });
     }
+
 }

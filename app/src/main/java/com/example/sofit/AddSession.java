@@ -2,13 +2,10 @@ package com.example.sofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,7 +58,8 @@ public class AddSession extends BaseActivity {
         btnAddExecise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddSession.this, AddExercise.class));
+                Intent i = new Intent(AddSession.this, AddExercise.class);
+                startActivity(i);
             }
         });
 
