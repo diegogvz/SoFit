@@ -21,6 +21,7 @@
         <!-- this the navigation view which draws and shows the navigation drawer -->
         <!-- include the menu created in the menu folder -->
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MyRoutines">

@@ -22,8 +22,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
      */
     public static final String TABLE_USER = "user";
     public static final String COL_USER_NAME = "name";
-    public static final String COL_USER_EMAIL = "email";
-    public static final String COL_USER_PASS = "password";
     public static final String COL_USER_HEIGHT = "height";
     public static final String COL_USER_WEIGHT = "weight";
     public static final String COL_USER_AGE = "age";
@@ -81,15 +79,41 @@ public class MyDBHelper extends SQLiteOpenHelper {
     /**
      * Script para crear la base datos en SQL
      */
-    private static final String CREATE_TABLE_USER = "create table " + TABLE_USER + "( " + COL_USER_NAME + " text not null, " + COL_USER_HEIGHT + " integer not null, " + COL_USER_WEIGHT + " integer not null, " + COL_USER_AGE + " integer not null, " + COL_USER_SEX + " text not null " + ");";
+    private static final String CREATE_TABLE_USER =
+            "create table " + TABLE_USER +
+                    "( "
+                    + COL_USER_NAME + " text primary key not null, "
+                    + COL_USER_HEIGHT + " integer not null, "
+                    + COL_USER_WEIGHT + " integer not null, "
+                    + COL_USER_AGE + " integer not null, "
+                    + COL_USER_SEX + " text not null "
+                    + ");";
 
-    private static final String CREATE_TABLE_ROUTINE = " create table " + TABLE_ROUTINES + "( " + COL_ROUTINE_NAME + " text primary key not null, " + COL_ROUTINE_USER + " text not null " + ");";
+    private static final String CREATE_TABLE_ROUTINE =
+            " create table " + TABLE_ROUTINES +
+                    "( " + COL_ROUTINE_NAME +
+                    " text primary key not null, " + COL_ROUTINE_USER +
+                    " text not null " + ");";
 
-    private static final String CREATE_TABLE_SESSIONS = "create table " + TABLE_SESSIONS + "( " + COL_SESSIONS_NAME + " text primary key not null, " + COL_SESSIONS_ROUTINE + " text not null" + ");";
+    private static final String CREATE_TABLE_SESSIONS =
+            "create table " + TABLE_SESSIONS +
+                    "( " + COL_SESSIONS_NAME +
+                    " text primary key not null, " + COL_SESSIONS_ROUTINE +
+                    " text not null" + ");";
 
-    private static final String CREATE_TABLE_EXERCISES = " create table " + TABLE_EXERCISES + "( " + COL_EXERCISES_NAME + " text primary key not null, " + COL_EXERCISES_IMG + " text not null, " + COL_EXERCISES_SESSION + " text not null" + ");";
-    private static final String CREATE_TABLE_SERIES = " create table " + TABLE_SERIES + "( " + " ID integer primary key autoincrement not null, " + COL_SERIES_WEIGHT + " real not null, " + COL_SERIES_EXERCISE + " text not null, " + COL_SERIES_REPS + " integer not null " + ");";
-    private static final String CREATE_TABLE_PROGRESS = " create table " + TABLE_PROGRESS + "( " + " ID integer primary key autoincrement not null, " + COL_PROGRESS_WEIGHT + " text not null, " + COL_PROGRESS_FAT + " real not null, " + COL_PROGRESS_MUSCLE + " real not null, " + COL_PROGRESS_WATER + " real not null," + COL_PROGRESS_USER + " text not null" + ");";
+    private static final String CREATE_TABLE_EXERCISES =
+            " create table " + TABLE_EXERCISES +
+                    "( " + COL_EXERCISES_NAME +
+                    " text primary key not null, " + COL_EXERCISES_IMG +
+                    " text not null, " + COL_EXERCISES_SESSION + " text not null" + ");";
+    private static final String CREATE_TABLE_SERIES =
+            " create table " + TABLE_SERIES +
+                    "( " + " ID integer primary key autoincrement not null, " +
+                    COL_SERIES_WEIGHT + " real not null, " + COL_SERIES_EXERCISE + " text not null, " + COL_SERIES_REPS + " integer not null " + ");";
+    private static final String CREATE_TABLE_PROGRESS =
+            " create table " + TABLE_PROGRESS +
+                    "( " + " ID integer primary key autoincrement not null, " +
+                    COL_PROGRESS_WEIGHT + " text not null, " + COL_PROGRESS_FAT + " real not null, " + COL_PROGRESS_MUSCLE + " real not null, " + COL_PROGRESS_WATER + " real not null," + COL_PROGRESS_USER + " text not null" + ");";
 
 
     /**
@@ -171,32 +195,32 @@ public class MyDBHelper extends SQLiteOpenHelper {
         String[] legsExercises = {"Barbell back squat", "Back squat with bands", "Back squat with chains"};
         //------------------CHEST-----------------------
         for (String exercise : chestExercise) {
-            addExercise(exercise,"Chest");
+            addExercise(exercise, "Chest");
         }
         //-----------------------ARMS------------------------
         for (String exercise : armsExercises) {
-            addExercise(exercise,"Arms");
+            addExercise(exercise, "Arms");
         }
         //-------------------LEGS-----------------------------
         for (String exercise : legsExercises) {
-            addExercise(exercise,"Legs");
+            addExercise(exercise, "Legs");
         }
         /**
          * ----SERIES----
          * Debe incluir la clave foranea de nombre de ejercicio
          * Por cada ejercicio incluimos la cantidad de NUMBER_OF_SERIES series
          */
-        final int NUMBER_OF_SERIES=4;
+        final int NUMBER_OF_SERIES = 4;
         for (int i = 0; i < chestExercise.length; i++) {
-            for (int j=0;j<NUMBER_OF_SERIES;j++)
+            for (int j = 0; j < NUMBER_OF_SERIES; j++)
                 addSeries(chestExercise[i]);
         }
         for (int i = 0; i < armsExercises.length; i++) {
-            for (int j=0;j<NUMBER_OF_SERIES;j++)
+            for (int j = 0; j < NUMBER_OF_SERIES; j++)
                 addSeries(armsExercises[i]);
         }
         for (int i = 0; i < legsExercises.length; i++) {
-            for (int j=0;j<NUMBER_OF_SERIES;j++)
+            for (int j = 0; j < NUMBER_OF_SERIES; j++)
                 addSeries(legsExercises[i]);
         }
 

@@ -7,10 +7,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.sofit.data.RoutineDataSource;
+import com.example.sofit.data.UserDataSource;
 import com.example.sofit.model.Routine;
+import com.google.android.material.snackbar.Snackbar;
 
 public class CreateRoutine extends BaseActivity {
 
@@ -27,18 +28,23 @@ public class CreateRoutine extends BaseActivity {
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!(name.getText().equals(" ")))
-                    clickOnItem();
+                if (name.getText().toString().trim().isEmpty())
+                    Snackbar.make(findViewById(R.id.main_layout), "Enter all the data",
+                            Snackbar.LENGTH_LONG).show();
                 else
-                    Toast.makeText(getApplicationContext(),
-                            getString(R.string.complete), Toast.LENGTH_SHORT).show();
+                    clickOnItem(name);
+
             }
         });
     }
 
-    private void clickOnItem(){
+    private void clickOnItem(EditText name) {
+        UserDataSource userDataSource=new UserDataSource(getApplicationContext());
+        userDataSource.open();
         Routine routine = new Routine();
-        routine.setNombre_rutina(String.valueOf(R.id.editTextNombreRutina));
+        routine.setName(name.getText().toString());
+        routine.setUserId(userDataSource.getAllUsers().get(0).getName());
+        userDataSource.close();
         RoutineDataSource routineDataSource =
                 new RoutineDataSource(getApplicationContext());
         routineDataSource.open();
@@ -49,21 +55,21 @@ public class CreateRoutine extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-    // Inflate the menu
+        // Inflate the menu
         getMenuInflater().inflate(R.menu.drawer_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-    //noinspection SimplifiableIfStatement
+        //noinspection SimplifiableIfStatement
         if (id == R.id.menuItem_my_profile) {
             startActivity(new Intent(CreateRoutine.this, MyRoutines.class));
         }
-        if (id==R.id.menuItem_my_routines){
+        if (id == R.id.menuItem_my_routines) {
             startActivity(new Intent(CreateRoutine.this, MyProfile.class));
         }
-        if (id==R.id.menuItem_my_current_routine){
+        if (id == R.id.menuItem_my_current_routine) {
             startActivity(new Intent(CreateRoutine.this, MyCurrentRoutine.class));
         }
 

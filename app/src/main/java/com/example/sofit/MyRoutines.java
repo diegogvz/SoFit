@@ -2,8 +2,6 @@ package com.example.sofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -63,13 +61,13 @@ public class MyRoutines extends BaseActivity {
     private void chargeRoutines(){
         RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
         routineDataSource.open();
-        rutinas = routineDataSource.getAllValorations();
+        rutinas = routineDataSource.getAllRoutines();
         routineDataSource.close();
     }
 
     public void clickonItem(Routine rutina){
         Intent i = new Intent(MyRoutines.this, MyCurrentRoutine.class);
-        i.putExtra("routine", rutina.getNombre_rutina());
+        i.putExtra("routine", rutina.getName());
         startActivity(i);
     }
 }

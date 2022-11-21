@@ -1,30 +1,28 @@
 package com.example.sofit.model;
 
 public class Routine {
-    String nombre_rutina;
-    String nombre_ejercicio;
-
+    String name;
+    String userId;
     public Routine(){
 
     }
-    public Routine(String nombre_rutina, String nombre_ejercicio) {
-        this.nombre_rutina = nombre_rutina;
-        this.nombre_ejercicio = nombre_ejercicio;
+    public Routine(String name) {
+        this.name = name;
     }
 
-    public String getNombre_rutina() {
-        return nombre_rutina;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre_rutina(String nombre_rutina) {
-        this.nombre_rutina = nombre_rutina;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNombre_ejercicio() {
-        return nombre_ejercicio;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public void setNombre_ejercicio(String nombre_ejercicio) {
-        this.nombre_ejercicio = nombre_ejercicio;
+    public String getUserId() {
+        return userId;
     }
 }

@@ -54,7 +54,7 @@ public class UserDataSource extends DataSource{
      *
      * @return Lista de objetos de tipo User
      */
-    public ArrayList<User> getAllValorations() {
+    public ArrayList<User> getAllUsers() {
         // Lista que almacenara el resultado
         ArrayList<User> userList = new ArrayList<User>();
         //hacemos una query porque queremos devolver un cursor

@@ -35,8 +35,8 @@ public class RoutineDataSource extends DataSource{
         // Establecemos los valores que se insertaran
         ContentValues values = new ContentValues();
 
-        values.put(MyDBHelper.COL_ROUTINE_NAME, routineToInsert.getNombre_rutina());
-        values.put(MyDBHelper.COL_EXERCISES_NAME, routineToInsert.getNombre_ejercicio());
+        values.put(MyDBHelper.COL_ROUTINE_NAME, routineToInsert.getName());
+        values.put(MyDBHelper.COL_ROUTINE_USER, routineToInsert.getUserId());
 
 
         // Insertamos la valoracion
@@ -51,7 +51,7 @@ public class RoutineDataSource extends DataSource{
      *
      * @return Lista de objetos de tipo Rutina
      */
-    public ArrayList<Routine> getAllValorations() {
+    public ArrayList<Routine> getAllRoutines() {
         // Lista que almacenara el resultado
         ArrayList<Routine> rutinaList = new ArrayList<Routine>();
         //hacemos una query porque queremos devolver un cursor
@@ -62,9 +62,8 @@ public class RoutineDataSource extends DataSource{
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             final Routine rutina = new Routine();
-            rutina.setNombre_rutina(cursor.getString(0));
-            rutina.setNombre_ejercicio(cursor.getString(1));
-
+            rutina.setName(cursor.getString(0));
+            rutina.setUserId(cursor.getString(1));
             rutinaList.add(rutina);
             cursor.moveToNext();
         }
