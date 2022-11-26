@@ -56,42 +56,6 @@ public class AddSession extends AppCompatActivity {
                 startActivity(new Intent(AddSession.this, MyCurrentRoutine.class));
             }
         });
-
-        Button btnAddExecise = (Button) findViewById(R.id.btn_addsession_addExecise);
-        btnAddExecise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AddSession.this, AddExercise.class));
-            }
-        });
-
-        setTitle("Add new session");
-
-        ejercicios.add("exercise1");
-        ejercicios.add("exercise2");
-        ejercicios.add("exercise3");
-
-        listEjerciciosView =(RecyclerView) findViewById(R.id.recyclerView_anadirsesion);
-        listEjerciciosView.setHasFixedSize(true);
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        listEjerciciosView.setLayoutManager(layoutManager);
-
-        ListaEjerciciosViewAdapter lpAdapter=new ListaEjerciciosViewAdapter(ejercicios,
-                new ListaEjerciciosViewAdapter.OnItemClickListener(){
-                    @Override
-                    public void onItemClick(String ejercicio) {
-                        //clikonItem(ejercicio);
-                    }
-
-
-                });
-
-        listEjerciciosView.setAdapter(lpAdapter);
-    }
-
-    private void clikonItem(String item) {
-
     }
 
     @Override
