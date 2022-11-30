@@ -17,6 +17,7 @@ public class ListRutinasViewAdapter extends RecyclerView.Adapter<ListRutinasView
 
     public interface OnItemClickListener{
         void onItemClick(Routine rutina);
+
     }
 
     private List<Routine> rutinas;
@@ -66,6 +67,7 @@ public class ListRutinasViewAdapter extends RecyclerView.Adapter<ListRutinasView
                 }
             });
         }
+
 
     }
 }

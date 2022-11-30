@@ -2,8 +2,6 @@ package com.example.sofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -47,27 +45,4 @@ public class AddExercise extends BaseActivity {
         return false;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-
-        getMenuInflater().inflate(R.menu.drawer_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.menuItem_my_profile) {
-            startActivity(new Intent(AddExercise.this, MyRoutines.class));
-        }
-        if (id==R.id.menuItem_my_routines){
-            startActivity(new Intent(AddExercise.this, MyProfile.class));
-        }
-        if (id==R.id.menuItem_my_current_routine){
-            startActivity(new Intent(AddExercise.this, MyCurrentRoutine.class));
-        }
-
-        return super.onOptionsItemSelected(item);
-
-    }
 }

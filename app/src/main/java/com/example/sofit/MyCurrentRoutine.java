@@ -6,13 +6,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListSessionViewAdapter;
 import com.example.sofit.data.SessionDataSource;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +87,7 @@ public class MyCurrentRoutine extends BaseActivity {
 
         listDiasView.setAdapter(lpAdapter);
 
-        Button b = findViewById(R.id.my_current_routine_add_session);
+        FloatingActionButton b = findViewById(R.id.my_current_routine_add_session);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

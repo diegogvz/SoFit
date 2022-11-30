@@ -3,7 +3,6 @@ package com.example.sofit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sofit.adapters.ListRutinasViewAdapter;
 import com.example.sofit.data.RoutineDataSource;
 import com.example.sofit.model.Routine;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -46,10 +46,11 @@ public class MyRoutines extends BaseActivity {
                     public void onItemClick(Routine rutina) {
                         clickonItem(rutina);
                     }
+
                 });
         listRutinasView.setAdapter(lpAdapter);
 
-        Button btnCrear = (Button) findViewById(R.id.btnCrearRutia);
+        FloatingActionButton btnCrear = (FloatingActionButton) findViewById(R.id.btnCrearRutina);
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,4 +71,5 @@ public class MyRoutines extends BaseActivity {
         i.putExtra("routine", rutina.getName());
         startActivity(i);
     }
+
 }

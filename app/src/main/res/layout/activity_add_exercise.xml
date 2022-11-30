@@ -12,8 +12,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         tools:context=".MainActivity"
         tools:ignore="HardcodedText">
 
@@ -28,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:layout_marginBottom="116dp"
+                android:autofillHints=""
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
@@ -87,16 +90,44 @@
             </LinearLayout>
 
             <TableLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="378dp"
+                android:layout_height="290dp"
                 android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
+                android:layout_marginTop="258dp"
                 android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.095">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textViewName"
+                        android:layout_width="139dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="0.1"
+                        android:fontFamily="@font/rocknroll_one"
+                        android:text="@string/name"
+                        android:textColor="@color/purple_700"
+                        android:textSize="@dimen/big_font_size" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/height_edit_text"
+                        android:layout_weight="40"
+                        android:ems="10"
+                        android:fontFamily="@font/rocknroll_one"
+                        android:hint="Name"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:textColor="@color/purple_500"
+                        android:textSize="@dimen/big_font_size" />
+                </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -123,6 +154,7 @@
                         android:inputType="numberDecimal"
                         android:minHeight="48dp"
                         android:textColor="@color/purple_500"
+                        android:textColorHint="#78909C"
                         android:textSize="@dimen/big_font_size" />
                 </TableRow>
 
@@ -170,8 +202,8 @@
 
                     <EditText
                         android:id="@+id/TextEdit_repetitions"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/height_edit_text"
+                        android:layout_width="238dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="40"
                         android:ems="10"
                         android:fontFamily="@font/rocknroll_one"
@@ -185,6 +217,7 @@
             </TableLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation"
             android:layout_width="wrap_content"

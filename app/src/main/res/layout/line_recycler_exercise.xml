@@ -41,6 +41,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="4"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/cancel"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </LinearLayout>
