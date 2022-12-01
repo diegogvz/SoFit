@@ -37,6 +37,7 @@
     <string name="EditText_add_data_age">20</string>
     <string name="EditText_add_data_sex">Masculine</string>
 
+    <string name="ImageButton_addImage">Select Image</string>
     <string name="Button_add_data_confirm">Confirm</string>
     <string name="Button_add_data_cancel">Cancel</string>
 
