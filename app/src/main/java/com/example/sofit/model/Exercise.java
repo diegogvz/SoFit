@@ -3,14 +3,21 @@ package com.example.sofit.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 public class Exercise implements Parcelable {
 
     private String name;
-
-    public Exercise(String name) {
+    private String image;
+    public Exercise(String name, String image) {
         this.name = name;
+        this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                '}';
     }
 
     public String getName() {
@@ -22,12 +29,6 @@ public class Exercise implements Parcelable {
     public void setName(String name) {
         this.name = name;
     }
-    @Override
-    public String toString() {
-        return "Exercise{" +
-                "name='" + name + '\'' +
-                '}';
-    }
 
     public int describeContents() {
         return 0;
@@ -36,10 +37,12 @@ public class Exercise implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
+        parcel.writeString(image);
     }
 
-    public void writeToParcel(Parcel out, String name) {
+    public void writeToParcel(Parcel out, String name, String image) {
         out.writeString(name);
+        out.writeString(image);
     }
 
     public static final Parcelable.Creator<Exercise> CREATOR
@@ -55,5 +58,13 @@ public class Exercise implements Parcelable {
 
     private Exercise(Parcel in) {
         name = in.readString();
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
