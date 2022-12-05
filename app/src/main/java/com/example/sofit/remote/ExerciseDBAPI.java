@@ -34,7 +34,7 @@ public interface ExerciseDBAPI {
      * @return
      */
     @GET("exercises/bodyPart/{bodyPart}")
-    Call<List<ExerciseData>> getListExercisesByBodyPart(
+    Call<List<String>> getListExercisesByBodyPart(
             @Path("bodyPart") String bodyPart,
             @Header("X-RapidAPI-Key") String apikey,
             @Header("X-RapidAPI-Host") String host

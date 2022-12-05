@@ -82,7 +82,11 @@
     <!-- _________________ AÑADIR EJERCICIO _________________ -->
     <string name="repetitions">Repetitions</string>
     <string name="series">Series</string>
+    <string name="select_predefined">Select Predefined Exercise</string>
+    <!-- _______________________________________________ -->
 
+    <!-- _________________ SELECCIONAR EJERCICIO PREDEFINIDO _________________ -->
+    <string name="textView_select_predefined_exercise">Choose a predefined exercise: </string>
     <!-- _______________________________________________ -->
 
     <!-- _________________ MENU _________________ -->

@@ -53,6 +53,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/button_height"
                 android:orientation="horizontal"
@@ -183,6 +184,20 @@
                 </TableRow>
 
             </TableLayout>
+
+            <Button
+                android:id="@+id/select_predefined_exercise"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
+                android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
+                android:layout_marginBottom="@dimen/distance_margin_of_button_bottom"
+                android:fontFamily="@font/rocknroll_one"
+                android:text="@string/select_predefined"
+                android:textSize="@dimen/small_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <com.google.android.material.navigation.NavigationView
