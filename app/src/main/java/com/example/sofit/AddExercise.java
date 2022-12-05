@@ -1,15 +1,22 @@
 package com.example.sofit;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AddExercise extends AppCompatActivity {
+
+    private static final int PICK_IMAGE = 1;
+    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +24,14 @@ public class AddExercise extends AppCompatActivity {
         setContentView(R.layout.activity_add_exercise);
 
         setTitle("Add Exercise");
+
+        ImageButton btnPhoto = (ImageButton) findViewById(R.id.imageButton3);
+        btnPhoto.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                openGallery();
+            }
+        });
 
         Button btnAceptar = (Button) findViewById(R.id.buttonAceptarEjercicio);
         btnAceptar.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +57,21 @@ public class AddExercise extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    @Override
+    protected void onActivityResult(int requestedCode, int resultCode, Intent data) {
+        super.onActivityResult(requestedCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestedCode == PICK_IMAGE) {
+            imageUri = data.getData();
+            ImageView photo = (ImageView) findViewById(R.id.imageView2);
+            photo.setImageURI(imageUri);
+        }
+    }
+
+    private void openGallery(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE);
     }
 
     @Override
