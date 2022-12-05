@@ -80,6 +80,7 @@ public class AddSession extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestedCode, int resultCode, Intent data) {
         super.onActivityResult(requestedCode, resultCode, data);
+
         if (resultCode == RESULT_OK && requestedCode == PICK_IMAGE) {
             imageUri = data.getData();
             ImageView photo = (ImageView) findViewById(R.id.imageView5);
