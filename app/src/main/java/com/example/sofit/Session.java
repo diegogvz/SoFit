@@ -77,7 +77,7 @@ public class Session extends BaseActivity {
         //--------------------------
 
         //Get data from API and fill the recycler
-        requestAllExercises(ApiUtils.createThemoviedbApi());
+        requestAllExercises(ApiUtils.createExerciseDBAPI());
 
 
         //Create the event for the button to add new exercise

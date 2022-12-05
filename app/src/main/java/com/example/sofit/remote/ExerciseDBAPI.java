@@ -31,13 +31,24 @@ public interface ExerciseDBAPI {
      * @param bodyPart
      * @param apikey
      * @param host
-     * @return
+     * @return Call<List<ExerciseData>> list of exercise data
      */
     @GET("exercises/bodyPart/{bodyPart}")
-    Call<List<String>> getListExercisesByBodyPart(
+    Call<List<ExerciseData>> getListExercisesByBodyPart(
             @Path("bodyPart") String bodyPart,
             @Header("X-RapidAPI-Key") String apikey,
             @Header("X-RapidAPI-Host") String host
     );
-
+    /**
+     * List of body parts
+     * https://exercisedb.p.rapidapi.com/exercises/bodyPart/{bodyPart}
+     * @param apiKey
+     * @param host
+     * @return
+     */
+    @GET("/exercises/bodyPartList")
+    Call<List<String>> getListBodyParts(
+            @Header("X-RapidAPI-Key") String apiKey,
+            @Header("X-RapidAPI-Host") String host
+    );
 }
