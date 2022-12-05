@@ -34,8 +34,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="266dp"
-        android:layout_height="173dp"
+        android:layout_width="270dp"
+        android:layout_height="324dp"
         android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextNombreRutina"
         app:layout_constraintVertical_bias="0.325"
         tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@drawable/sofit" />
+        tools:srcCompat="@drawable/routine" />
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -53,10 +53,10 @@
         android:contentDescription="@string/ImageButton_addImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.243"
+        app:layout_constraintHorizontal_bias="0.263"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.373"
+        app:layout_constraintVertical_bias="0.301"
         app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
