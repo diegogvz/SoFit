@@ -26,6 +26,19 @@ public interface ExerciseDBAPI {
     );
 
     /**
+     * Get an exercise by name
+     * https://exercisedb.p.rapidapi.com/exercises
+     * @param apikey
+     * @param host
+     * @return
+     */
+    @GET("exercises")
+    Call<List<ExerciseData>> getExerciseByName(
+            @Header("X-RapidAPI-Key") String apikey,
+            @Header("X-RapidAPI-Host") String host
+    );
+
+    /**
      * List exercises by body part
      * https://exercisedb.p.rapidapi.com/exercises/bodyPart/{bodyPart}
      * @param bodyPart

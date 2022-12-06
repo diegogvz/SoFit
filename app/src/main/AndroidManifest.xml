@@ -15,7 +15,7 @@
         android:theme="@style/Theme.SoFit"
         tools:targetApi="31">
         <activity
-            android:name=".SelectPredefinedExercise"
+            android:name=".SelectPredefinedExercises"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

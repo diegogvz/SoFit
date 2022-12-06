@@ -1,14 +1,18 @@
 package com.example.sofit;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.model.Exercise;
@@ -24,18 +28,41 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SelectPredefinedExercise extends AppCompatActivity {
+public class SelectPredefinedExercises extends AppCompatActivity {
     Spinner bodyPartsSpinner;
+    RecyclerView recycler_predefinedExercises;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_predefined_exercise);
         //Init variables
-        this.bodyPartsSpinner=(Spinner) findViewById(R.id.bodyPart_spinner);
-
+        this.bodyPartsSpinner = (Spinner) findViewById(R.id.bodyPart_spinner);
+        this.recycler_predefinedExercises = (RecyclerView) findViewById(R.id.recycler_predefinedExercises);
+        this.recycler_predefinedExercises.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         //Init values
         requestBodyParts(ApiUtils.createExerciseDBAPI());
+
+
+        //Init events
+        bodyPartsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                System.out.println(bodyPartsSpinner.getSelectedItem().toString());
+
+                requestExercisesByBodyPart(ApiUtils.createExerciseDBAPI(), bodyPartsSpinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                //Nothing
+            }
+
+        });
+
     }
+
+
 
     public void requestBodyParts(ExerciseDBAPI ExerciseDBAPIClient) {
         //Create the call to the api
@@ -51,6 +78,7 @@ public class SelectPredefinedExercise extends AppCompatActivity {
                         List<String> bodyParts = response.body();
                         //Use the array to fill the session
                         fillBodyPartsSpinner(bodyParts);
+
                         break;
                     default:
                         call.cancel();
@@ -64,14 +92,15 @@ public class SelectPredefinedExercise extends AppCompatActivity {
             }
         });
     }
-    private void fillBodyPartsSpinner(List<String> bodyParts){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, bodyParts);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bodyPartsSpinner.setOnClickListener(view ->
-                requestExercisesByBodyPart(ApiUtils.createExerciseDBAPI(), view.getTransitionName())
-        );
+
+    private void fillBodyPartsSpinner(List<String> bodyParts) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, bodyParts);
+        adapter.setDropDownViewResource(R.layout.spinner_item);
+
+        bodyPartsSpinner.setAdapter(adapter);
+
     }
+
     public void requestExercisesByBodyPart(ExerciseDBAPI ExerciseDBAPIClient, String bodyPart) {
         //Create the call to the api
         Call<List<ExerciseData>> call = ExerciseDBAPIClient.getListExercisesByBodyPart(bodyPart, ApiUtils.API_KEY, ApiUtils.HOST);
@@ -90,7 +119,6 @@ public class SelectPredefinedExercise extends AppCompatActivity {
                         fillExerciseByBodyPartRecycler(exercises);
 
 
-
                         break;
                     default:
                         call.cancel();
@@ -105,19 +133,18 @@ public class SelectPredefinedExercise extends AppCompatActivity {
         });
     }
 
-    private void fillExerciseByBodyPartRecycler(List<Exercise> exercises){
+    private void fillExerciseByBodyPartRecycler(List<Exercise> exercises) {
         List<String> exercisesButtons = new ArrayList<>();
         for (Exercise ex : exercises) {
             exercisesButtons.add(ex.getName());
         }
-        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons,
-                item -> {
-                    Intent i = new Intent(SelectPredefinedExercise.this, AddExercise.class);
-                    i.putExtra("exerciseId", item);
-                    startActivity(i);
-                });
+        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons, item -> {
+            Intent i = new Intent(SelectPredefinedExercises.this, AddExercise.class);
+            i.putExtra("predefinedExercise", item);
+            startActivity(i);
+        });
 
-        exerciseRecycler.setAdapter(lpAdapter);
+        recycler_predefinedExercises.setAdapter(lpAdapter);
 
     }
 }

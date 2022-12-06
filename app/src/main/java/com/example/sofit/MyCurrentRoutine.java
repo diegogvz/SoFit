@@ -67,7 +67,7 @@ public class MyCurrentRoutine extends BaseActivity {
 
         cargarSesiones();
 
-        listDiasView = findViewById(R.id.recyclerView);
+        listDiasView = findViewById(R.id.recycler_predefinedExercises);
         listDiasView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

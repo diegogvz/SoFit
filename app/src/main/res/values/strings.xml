@@ -87,6 +87,7 @@
 
     <!-- _________________ SELECCIONAR EJERCICIO PREDEFINIDO _________________ -->
     <string name="textView_select_predefined_exercise">Choose a predefined exercise: </string>
+    <string name="textView_select_body_part">Choose a body part: </string>
     <!-- _______________________________________________ -->
 
     <!-- _________________ MENU _________________ -->

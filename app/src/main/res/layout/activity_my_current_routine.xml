@@ -26,7 +26,7 @@
             tools:context=".MyCurrentRoutine">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recycler_predefinedExercises"
                 android:layout_width="fill_parent"
                 android:layout_height="346dp"
                 android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
