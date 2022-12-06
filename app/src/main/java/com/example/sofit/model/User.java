@@ -6,16 +6,26 @@ public class User {
     private int age;
     private int weight;
     private int height;
+    private String image;
 
     public User(){
 
     }
+
     public User(String name, String sex, int age, int weight, int height) {
         this.name = name;
         this.sex = sex;
         this.age = age;
         this.weight = weight;
         this.height = height;
+    }
+    public User(String name, String sex, int age, int weight, int height, String image) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.image = image;
     }
 
     public String getName() {
@@ -57,4 +67,8 @@ public class User {
     public void setHeight(int height) {
         this.height = height;
     }
+
+    public void setImage(String image){ this.image = image; }
+
+    public String getImage(){ return this.image; }
 }

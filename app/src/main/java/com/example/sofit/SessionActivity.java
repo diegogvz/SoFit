@@ -38,10 +38,12 @@ public class SessionActivity extends AppCompatActivity {
         exercises = exerciseDataSource
                 .getExercisesForSession(session);
         exerciseDataSource.close();
+
+        /*
         exercises.add(new Exercise("Squads - hardcoded"));
         exercises.add(new Exercise("Leg press - hardcoded"));
         exercises.add(new Exercise("Cardio - hardcoded"));
-        exercises.add(new Exercise("Stretching - hardcoded"));
+        exercises.add(new Exercise("Stretching - hardcoded"));*/
 
         listaExsView = (RecyclerView) findViewById(R.id.recyclerView);
         listaExsView.setHasFixedSize(true);

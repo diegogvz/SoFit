@@ -13,7 +13,8 @@ public class RoutineDataSource extends DataSource{
     /**
      * Columnas de la tabla
      */
-    private final String[] allColumns = {MyDBHelper.COL_ROUTINE_NAME, MyDBHelper.COL_EXERCISES_NAME};
+    private final String[] allColumns = {MyDBHelper.COL_ROUTINE_NAME, MyDBHelper.COL_EXERCISES_NAME,
+    MyDBHelper.COL_ROUTINE_IMG};
 
     /**
      * Constructor.
@@ -37,6 +38,7 @@ public class RoutineDataSource extends DataSource{
 
         values.put(MyDBHelper.COL_ROUTINE_NAME, routineToInsert.getNombre_rutina());
         values.put(MyDBHelper.COL_EXERCISES_NAME, routineToInsert.getNombre_ejercicio());
+        values.put(MyDBHelper.COL_ROUTINE_IMG, routineToInsert.getImage());
 
 
         // Insertamos la valoracion
@@ -64,6 +66,7 @@ public class RoutineDataSource extends DataSource{
             final Routine rutina = new Routine();
             rutina.setNombre_rutina(cursor.getString(0));
             rutina.setNombre_ejercicio(cursor.getString(1));
+            rutina.setImage(cursor.getString(2));
 
             rutinaList.add(rutina);
             cursor.moveToNext();

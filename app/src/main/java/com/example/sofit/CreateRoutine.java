@@ -60,6 +60,7 @@ public class CreateRoutine extends AppCompatActivity {
     private void clickOnItem(){
         Routine routine = new Routine();
         routine.setNombre_rutina(String.valueOf(R.id.editTextNombreRutina));
+        routine.setImage(String.valueOf(R.id.imageView3));
         RoutineDataSource routineDataSource =
                 new RoutineDataSource(getApplicationContext());
         routineDataSource.open();

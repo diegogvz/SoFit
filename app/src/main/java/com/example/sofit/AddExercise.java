@@ -13,6 +13,9 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sofit.data.ExerciseDataSource;
+import com.example.sofit.model.Exercise;
+
 public class AddExercise extends AppCompatActivity {
 
     private static final int PICK_IMAGE = 1;
@@ -37,8 +40,9 @@ public class AddExercise extends AppCompatActivity {
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(validarCampos())
-                    startActivity(new Intent(AddExercise.this, AddSession.class));
+                if(validarCampos()){
+                    clickOnItem();
+                }
             }
         });
 
@@ -49,6 +53,18 @@ public class AddExercise extends AppCompatActivity {
                 startActivity(new Intent(AddExercise.this, AddSession.class));
             }
         });
+    }
+
+    private void clickOnItem(){
+        Exercise exercise = new Exercise();
+        exercise.setName(String.valueOf(R.id.editTextName));
+        exercise.setImage(String.valueOf(R.id.imageView2));
+        ExerciseDataSource exerciseDataSource =
+                new ExerciseDataSource(getApplicationContext());
+        exerciseDataSource.open();
+        exerciseDataSource.createExercise(exercise);
+        exerciseDataSource.close();
+        startActivity(new Intent(AddExercise.this, AddSession.class));
     }
 
     private boolean validarCampos(){

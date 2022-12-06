@@ -3,6 +3,7 @@ package com.example.sofit.model;
 public class Session {
     private String name;
     private String routine;
+    private String image;
 
     public Session(){
 
@@ -16,10 +17,15 @@ public class Session {
         this.routine = routine;
     }
 
-    public Session(String name, String routine){
+    public Session(String name, String routine, String image){
         this.name=name;
         this.routine=routine;
+        this.image = image;
     }
+
+    public void setImage(String image){ this.image = image; }
+
+    public String getImage(){ return this.image; }
 
     public String getName() {
         return name;

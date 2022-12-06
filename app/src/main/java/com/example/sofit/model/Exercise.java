@@ -8,20 +8,29 @@ import java.io.Serializable;
 public class Exercise implements Parcelable {
 
     private String name;
+    private String image;
 
-    public Exercise(String name) {
+    public Exercise(){
+
+    }
+
+    public Exercise(String name, String image) {
         this.name = name;
+        this.image = image;
     }
 
     public String getName() {
         return name;
     }
 
-
-
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setImage(String image){ this.image = image; }
+
+    public String getImage(){ return this.image; }
+
     @Override
     public String toString() {
         return "Exercise{" +
@@ -36,10 +45,12 @@ public class Exercise implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
+        parcel.writeString(image);
     }
 
-    public void writeToParcel(Parcel out, String name) {
+    public void writeToParcel(Parcel out, String name, String image) {
         out.writeString(name);
+        out.writeString(image);
     }
 
     public static final Parcelable.Creator<Exercise> CREATOR
@@ -55,5 +66,6 @@ public class Exercise implements Parcelable {
 
     private Exercise(Parcel in) {
         name = in.readString();
+        image = in.readString();
     }
 }

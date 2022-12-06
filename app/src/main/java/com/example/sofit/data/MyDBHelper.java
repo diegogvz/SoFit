@@ -33,6 +33,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public static final String COL_USER_WEIGHT = "weight";
     public static final String COL_USER_AGE = "age";
     public static final String COL_USER_SEX = "sex";
+    public static final String COL_USER_IMG = "user_image";
 
     //--------------------------------------------------------------------
     /**
@@ -42,6 +43,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public static final String COL_ROUTINE_NAME = "name";
     public static final String COL_ROUTINE_USER = "user_id";
+    public static final String COL_ROUTINE_IMG = "routine_image";
 
     //--------------------------------------------------------------------
     /**
@@ -51,6 +53,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public static final String COL_SESSIONS_NAME = "name";
     public static final String COL_SESSIONS_ROUTINE = "routine_id";
+    public static final String COL_SESSIONS_IMG = "session_image";
 
     //--------------------------------------------------------------------
     /**
@@ -59,7 +62,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public static final String TABLE_EXERCISES = "exercises";
 
     public static final String COL_EXERCISES_NAME = "name";
-    public static final String COL_EXERCISES_IMG = "img";
+    public static final String COL_EXERCISES_IMG = "exercise_image";
     public static final String COL_EXERCISES_SESSION = "session_id";
     //--------------------------------------------------------------------
 
@@ -96,21 +99,24 @@ public class MyDBHelper extends SQLiteOpenHelper {
             COL_USER_HEIGHT + " integer not null, " +
             COL_USER_WEIGHT + " integer not null, " +
             COL_USER_AGE + " integer not null, " +
-            COL_USER_SEX + " text not null " +
+            COL_USER_SEX + " text not null, " +
+            COL_USER_IMG + " text not null " +
             ");";
 
     private static final String CREATE_TABLE_ROUTINE = " create table "
             + TABLE_ROUTINES
             + "( " +
             COL_ROUTINE_NAME + " text primary key not null, " +
-            COL_ROUTINE_USER + " text not null " +
+            COL_ROUTINE_USER + " text not null, " +
+            COL_ROUTINE_IMG + " text not null " +
             ");";
 
     private static final String CREATE_TABLE_SESSIONS = "create table "
             + TABLE_SESSIONS
             + "( " +
             COL_SESSIONS_NAME + " text primary key not null, " +
-            COL_SESSIONS_ROUTINE + " text not null" +
+            COL_SESSIONS_ROUTINE + " text not null, " +
+            COL_SESSIONS_IMG + " text not null " +
             ");";
 
     private static final String CREATE_TABLE_EXERCISES = " create table "

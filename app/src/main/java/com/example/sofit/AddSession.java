@@ -63,9 +63,9 @@ public class AddSession extends AppCompatActivity {
                 if(!et.getText().toString().isEmpty()){
                     Session s = new Session();
                     s.setName(et.getText().toString());
+                    s.setImage(String.valueOf(R.id.imageView5));
                     s.setRoutine("");
                     addingSession(s);
-
                 }
                 startActivity(new Intent(AddSession.this, MyCurrentRoutine.class));
             }
