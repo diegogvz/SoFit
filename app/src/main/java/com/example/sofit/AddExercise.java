@@ -2,109 +2,81 @@ package com.example.sofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
-import com.example.sofit.model.Exercise;
-import com.example.sofit.remote.ApiUtils;
-import com.example.sofit.remote.ExerciseDBAPI;
-import com.example.sofit.server.ServerDataMapper;
-import com.example.sofit.server.exerciselist.ExerciseData;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.example.sofit.model.ModelExercise;
+import com.squareup.picasso.Picasso;
 
 public class AddExercise extends BaseActivity {
-    private String predefinedExerciseName;
-    private String forSession;
+    private ModelExercise predefinedExercise;
+    private String session;
+    private EditText editTextExerciseTitle;
+    private ImageView imageViewExercise;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_exercise);
         createDrawer(this);
         setTitle("Add Exercise");
+
+
+        //Sacar los extras
         Bundle extras = getIntent().getExtras();
-        predefinedExerciseName=extras.getString("predefinedExercise");
-        if(predefinedExerciseName!=null){
-            requestExerciseAndFillForm();
-        }
-        forSession=extras.getString("sessionId");
+        predefinedExercise =(ModelExercise) extras.getParcelable("predefinedExercise");
+        session = extras.getString("sessionId");
 
 
+        //Sacar los views
+        imageViewExercise = (ImageView) findViewById(R.id.imageViewExercise);
+        editTextExerciseTitle = (EditText) findViewById(R.id.editTextExerciseTitle);
         Button btnAceptar = (Button) findViewById(R.id.buttonAceptarEjercicio);
-        Button predefinedExerciseButton=(Button) findViewById(R.id.button_select_predefined_exercise);
+        Button predefinedExerciseButton = (Button) findViewById(R.id.button_select_predefined_exercise);
+        Button btnCancel = (Button) findViewById(R.id.buttonCancel);
 
+
+        //Comprobar si proviene de select predefied exercises
+        //Si es que si, rellenamos automaticamente el formulario.
+        if (predefinedExercise != null) {
+            fillFormAddExercise();
+        }
+
+        //Crear los listeners de los buttons
         btnAceptar.setOnClickListener(view -> {
             Intent i = new Intent(AddExercise.this, Session.class);
-            i.putExtra("idSession",forSession);
-            if(validarCampos())
-                startActivity(i);
+            i.putExtra("idSession", session);
+            if (validarCampos()) startActivity(i);
         });
 
         predefinedExerciseButton.setOnClickListener(view -> {
-            Intent i = new Intent(AddExercise.this,SelectPredefinedExercises.class);
+            Intent i = new Intent(AddExercise.this, SelectPredefinedExercises.class);
             startActivity(i);
         });
 
-        Button btnCancel = (Button) findViewById(R.id.buttonCancel);
-        btnCancel.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent i = new Intent(AddExercise.this, Session.class);
-                i.putExtra("idSession",extras.getString("idSession"));
-                if(validarCampos())
-                    startActivity(i);
-            }
+        btnCancel.setOnClickListener(view -> {
+            Intent i = new Intent(AddExercise.this, Session.class);
+            i.putExtra("idSession", extras.getString("idSession"));
+            if (validarCampos()) startActivity(i);
         });
     }
 
 
-    private void requestExerciseAndFillForm(ExerciseDBAPI ExerciseDBAPIClient) {
-        //Create the call to the api
-        Call<ExerciseData> call = ExerciseDBAPIClient.getListExercises(ApiUtils.API_KEY, ApiUtils.HOST);
+    private void fillFormAddExercise() {
+        //Load gif
+        Picasso.get().load(predefinedExercise.getImage()).into(imageViewExercise);
+        //Set title
 
-        // Wait asynchronously for it to end to fill the recycler
-        call.enqueue(new Callback<ExerciseData>() {
-            @Override
-            public void onResponse(Call<ExerciseData> call, Response<ExerciseData> response) {
-                switch (response.code()) {
-                    case 200:
-                        //Get the mapped data as list (THE JSON IS A LIST [] WITH NO NAME)
-                        ExerciseData data = response.body();
-                        //Convert the mapped data to domain
-                        List<Exercise> exercises = ServerDataMapper.convertExerciseDataToDomain(data);
-                        //Use the array to fill the session
-                        fillFormAddExercise(exercises);
-                        break;
-                    default:
-                        call.cancel();
-                        break;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ExerciseData> call, Throwable t) {
-                Log.e("List - error", t.toString());
-            }
-        });
+        System.out.println("Ex obj name: "+predefinedExercise.getName());
+        editTextExerciseTitle.setText(predefinedExercise.getName());
+        System.out.println("EditText"+editTextExerciseTitle.getText());
     }
 
-    private void fillFormAddExercise(List<Exercise> exercises) {
-
-    }
-
-    private boolean validarCampos(){
-        if(R.id.TextEdit_series>0 && R.id.TextEdit_repetitions>0 && R.id.TextEdit_weight>0){
-            return true;
-        }
-
-        return false;
+    private boolean validarCampos() {
+        return R.id.TextEdit_series > 0 && R.id.TextEdit_repetitions > 0 && R.id.TextEdit_weight > 0;
     }
 
     @Override
@@ -120,10 +92,10 @@ public class AddExercise extends BaseActivity {
         if (id == R.id.menuItem_my_profile) {
             startActivity(new Intent(AddExercise.this, MyRoutines.class));
         }
-        if (id==R.id.menuItem_my_routines){
+        if (id == R.id.menuItem_my_routines) {
             startActivity(new Intent(AddExercise.this, MyProfile.class));
         }
-        if (id==R.id.menuItem_my_current_routine){
+        if (id == R.id.menuItem_my_current_routine) {
             startActivity(new Intent(AddExercise.this, MyCurrentRoutine.class));
         }
 

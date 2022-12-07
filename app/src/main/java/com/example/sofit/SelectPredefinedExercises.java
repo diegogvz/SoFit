@@ -1,27 +1,26 @@
 package com.example.sofit;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
-import com.example.sofit.model.Exercise;
+import com.example.sofit.model.ModelExercise;
 import com.example.sofit.remote.ApiUtils;
 import com.example.sofit.remote.ExerciseDBAPI;
 import com.example.sofit.server.ServerDataMapper;
 import com.example.sofit.server.exerciselist.ExerciseData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -61,7 +60,6 @@ public class SelectPredefinedExercises extends AppCompatActivity {
         });
 
     }
-
 
 
     public void requestBodyParts(ExerciseDBAPI ExerciseDBAPIClient) {
@@ -114,7 +112,7 @@ public class SelectPredefinedExercises extends AppCompatActivity {
                         //Get the mapped data as list (THE JSON IS A LIST [] WITH NO NAME)
                         List<ExerciseData> data = response.body();
                         //Convert the mapped data to domain
-                        List<Exercise> exercises = ServerDataMapper.convertExerciseDataToDomain(data);
+                        List<ModelExercise> exercises = ServerDataMapper.convertExerciseDataListToDomain(data);
                         //Use the array to fill the session
                         fillExerciseByBodyPartRecycler(exercises);
 
@@ -133,14 +131,18 @@ public class SelectPredefinedExercises extends AppCompatActivity {
         });
     }
 
-    private void fillExerciseByBodyPartRecycler(List<Exercise> exercises) {
-        List<String> exercisesButtons = new ArrayList<>();
-        for (Exercise ex : exercises) {
-            exercisesButtons.add(ex.getName());
+    private void fillExerciseByBodyPartRecycler(List<ModelExercise> exercises) {
+        HashMap<String, ModelExercise> exerciseHashMap = new HashMap<>();
+        List<String> exerciseNames=new ArrayList<>();
+        for (ModelExercise ex : exercises) {
+            exerciseNames.add(ex.getName());
+            exerciseHashMap.put(ex.getName(),ex);
         }
-        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons, item -> {
+
+
+        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exerciseNames, item -> {
             Intent i = new Intent(SelectPredefinedExercises.this, AddExercise.class);
-            i.putExtra("predefinedExercise", item);
+            i.putExtra("predefinedExercise", exerciseHashMap.get(item));
             startActivity(i);
         });
 

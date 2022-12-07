@@ -64,4 +64,18 @@ public interface ExerciseDBAPI {
             @Header("X-RapidAPI-Key") String apiKey,
             @Header("X-RapidAPI-Host") String host
     );
+
+    /**
+     * Get exercise by id
+     * @param id
+     * @param apiKey
+     * @param host
+     * @return Call<ExerciseData> with the exercise desired
+     */
+    @GET("/exercise/{id}")
+    Call<ExerciseData> getExerciseById(
+            @Path("id") String id,
+            @Header("X-RapidAPI-Key") String apiKey,
+            @Header("X-RapidAPI-Host") String host
+    );
 }

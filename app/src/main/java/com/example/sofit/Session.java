@@ -4,7 +4,6 @@ package com.example.sofit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.data.ExerciseDataSource;
-import com.example.sofit.model.Exercise;
 import com.example.sofit.remote.ApiUtils;
 import com.example.sofit.remote.ExerciseDBAPI;
 import com.example.sofit.server.ServerDataMapper;
@@ -27,9 +25,9 @@ import retrofit2.Response;
 
 public class Session extends BaseActivity {
 
-    private List<Exercise> exercises;
+    private List<com.example.sofit.model.ModelExercise> exercises;
     private ExerciseDataSource exerciseDataSource;
-    private List<Exercise> exerciseList;
+    private List<com.example.sofit.model.ModelExercise> exerciseList;
     private RecyclerView exerciseRecycler;
     private String session;
 
@@ -59,8 +57,7 @@ public class Session extends BaseActivity {
 
         //Get data from the database
         exerciseDataSource.open();
-        exercises = exerciseDataSource
-                .getExercisesForSession(session);
+        exercises = exerciseDataSource.getExercisesForSession(session);
         exerciseDataSource.close();
 
         //----Init the recycler----
@@ -84,37 +81,29 @@ public class Session extends BaseActivity {
         createEventAddExercise();
 
     }
-    private void createEventAddExercise(){
-        Button b = findViewById(R.id.btn_session_addExercise);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent i = new Intent(Session.this, AddExercise.class);
-                i.putExtra("idSession", session);
-                startActivity(i);
-            }
+    private void createEventAddExercise() {
+        Button b = findViewById(R.id.btn_session_addExercise);
+        b.setOnClickListener(view -> {
+            Intent i = new Intent(Session.this, AddExercise.class);
+            i.putExtra("idSession", session);
+            startActivity(i);
         });
     }
 
 
-
-    private void fillRecycler(List<Exercise> exercises) {
+    private void fillRecycler(List<com.example.sofit.model.ModelExercise> exercises) {
 
 
         List<String> exercisesButtons = new ArrayList<>();
-        for (Exercise ex : exercises) {
+        for (com.example.sofit.model.ModelExercise ex : exercises) {
             exercisesButtons.add(ex.getName());
         }
-        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons,
-                new ListaEjerciciosViewAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(String item) {
-                        Intent i = new Intent(Session.this, Exercise.class);
-                        i.putExtra("exerciseId", item);
-                        startActivity(i);
-                    }
-                });
+        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons, item -> {
+            Intent i = new Intent(Session.this, Exercise.class);
+            i.putExtra("exerciseId", item);
+            startActivity(i);
+        });
 
         exerciseRecycler.setAdapter(lpAdapter);
 
@@ -134,7 +123,7 @@ public class Session extends BaseActivity {
                         //Get the mapped data as list (THE JSON IS A LIST [] WITH NO NAME)
                         List<ExerciseData> data = response.body();
                         //Convert the mapped data to domain
-                        List<Exercise> exercises = ServerDataMapper.convertExerciseDataToDomain(data);
+                        List<com.example.sofit.model.ModelExercise> exercises = ServerDataMapper.convertExerciseDataListToDomain(data);
                         //Use the array to fill the session
                         fillRecycler(exercises);
                         break;
