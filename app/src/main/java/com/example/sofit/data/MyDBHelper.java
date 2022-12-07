@@ -17,8 +17,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     /**
      * Nombre de la tabla usuario y sus columnas
-     * nombre_usuario;correo_usuario;contraseña_usuario;altura_usuario;
-     * peso_usuario;edad_usuario;sexo_usuario;nombre_rutina(FOREIGN_KEY)
      */
     public static final String TABLE_USER = "user";
     public static final String COL_USER_NAME = "name";
@@ -31,49 +29,49 @@ public class MyDBHelper extends SQLiteOpenHelper {
      */
     public static final String TABLE_ROUTINES = "routines";
     public static final String COL_ROUTINE_NAME = "name";
-
-    //--------------------------------------------------------------------
     public static final String COL_ROUTINE_USER = "user_id";
+    //--------------------------------------------------------------------
+
     /**
      * Nombre de la tabla sesiones y sus columnas
      */
     public static final String TABLE_SESSIONS = "sessions";
     public static final String COL_SESSIONS_NAME = "name";
+    public static final String COL_SESSIONS_ROUTINE = "routine_id";
+
 
     //--------------------------------------------------------------------
-    public static final String COL_SESSIONS_ROUTINE = "routine_id";
     /**
      * Nombre de la tabla ejercicios y sus columnas
      */
     public static final String TABLE_EXERCISES = "exercises";
     public static final String COL_EXERCISES_NAME = "name";
-
-    //--------------------------------------------------------------------
     public static final String COL_EXERCISES_IMG = "img";
     public static final String COL_EXERCISES_SESSION = "session_id";
+
+    //--------------------------------------------------------------------
     /**
      * Nombre de la tabla series y sus columnas
      */
     public static final String TABLE_SERIES = "series";
     public static final String COL_SERIES_REPS = "reps";
-    //--------------------------------------------------------------------
     public static final String COL_SERIES_WEIGHT = "weight";
     public static final String COL_SERIES_EXERCISE = "exercise_id";
+    //--------------------------------------------------------------------
     /**
      * Nombre de la tabla progreso y sus columnas
      */
     public static final String TABLE_PROGRESS = "progress";
     public static final String COL_PROGRESS_WEIGHT = "weight";
-    //--------------------------------------------------------------------
     public static final String COL_PROGRESS_FAT = "fat";
     public static final String COL_PROGRESS_MUSCLE = "muscle";
     public static final String COL_PROGRESS_WATER = "water";
     public static final String COL_PROGRESS_USER = "user_id";
+    //--------------------------------------------------------------------
     /**
      * Nombre y version de la base de datos
      */
     private static final String DATABASE_NAME = "sofit.db";
-    private static final int DATABASE_VERSION = 1;
 
     //--------------------------------------------------------------------
     /**
@@ -155,13 +153,13 @@ public class MyDBHelper extends SQLiteOpenHelper {
         /**
          * ---Usuario---
          */
-//        values = new ContentValues();
-//        values.put(COL_USER_NAME, "Pepe");
-//        values.put(COL_USER_AGE, 21);
-//        values.put(COL_USER_HEIGHT, 187);
-//        values.put(COL_USER_SEX, "Pepe");
-//        values.put(COL_USER_WEIGHT, 80);
-//        db.insert(TABLE_USER, null, values);
+        values = new ContentValues();
+        values.put(COL_USER_NAME, "Pepe");
+        values.put(COL_USER_AGE, 21);
+        values.put(COL_USER_HEIGHT, 187);
+        values.put(COL_USER_SEX, "Pepe");
+        values.put(COL_USER_WEIGHT, 80);
+        db.insert(TABLE_USER, null, values);
         /**
          * ----Rutinas----
          */
