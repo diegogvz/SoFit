@@ -3,7 +3,6 @@ package com.example.sofit.data;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.sofit.model.Exercise;
 import com.example.sofit.model.Serie;
 
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class SeriesDataSource extends DataSource{
      */
     public SeriesDataSource(Context context) {
         //el último parámetro es la versión
-        dbHelper = new MyDBHelper(context, null, null, 3);
+        dbHelper = new MyDBHelper(context, null, null, 1);
     }
 
     public List<Serie> getSeriesForExercise(String exerciseId){
@@ -30,7 +29,7 @@ public class SeriesDataSource extends DataSource{
         String[] whereArgs = new String[] {
                 exerciseId
         };
-        Cursor cursor = database.query(MyDBHelper.TABLE_EXERCISES, allColumns,
+        Cursor cursor = database.query(MyDBHelper.TABLA_SERIES, allColumns,
                 whereClause, whereArgs, null, null, null);
 
         cursor.moveToFirst();

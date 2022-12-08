@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -15,18 +16,41 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sofit.data.ExerciseDataSource;
 import com.example.sofit.model.Exercise;
+import com.example.sofit.model.ModelExercise;
 
-public class AddExercise extends AppCompatActivity {
+public class AddExercise extends BaseActivity {
 
+    private ModelExercise predefinedExercise;
+    private String session;
+    private EditText editTextExerciseTitle;
+    private ImageView imageViewExercise;
     private static final int PICK_IMAGE = 1;
     Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        createDrawer(this);
         setContentView(R.layout.activity_add_exercise);
 
         setTitle("Add Exercise");
+
+        //Sacar los extras
+        Bundle extras = getIntent().getExtras();
+        predefinedExercise =(ModelExercise) extras.getParcelable("predefinedExercise");
+        session = extras.getString("sessionId");
+
+        Button predefinedExerciseButton = (Button) findViewById(R.id.button_select_predefined_exercise);
+        //Comprobar si proviene de select predefied exercises
+        //Si es que si, rellenamos automaticamente el formulario.
+        if (predefinedExercise != null) {
+            fillFormAddExercise();
+        }
+
+        predefinedExerciseButton.setOnClickListener(view -> {
+            Intent i = new Intent(AddExercise.this, SelectPredefinedExercises.class);
+            startActivity(i);
+        });
 
         ImageButton btnPhoto = (ImageButton) findViewById(R.id.imageButton3);
         btnPhoto.setOnClickListener(new View.OnClickListener(){
@@ -54,6 +78,17 @@ public class AddExercise extends AppCompatActivity {
             }
         });
     }
+
+    private void fillFormAddExercise() {
+        //Load gif
+        // Picasso.get().load(predefinedExercise.getImage()).into(imageViewExercise);
+        //Set title
+
+        System.out.println("Ex obj name: "+predefinedExercise.getName());
+        editTextExerciseTitle.setText(predefinedExercise.getName());
+        System.out.println("EditText"+editTextExerciseTitle.getText());
+    }
+
 
     private void clickOnItem(){
         Exercise exercise = new Exercise();
@@ -88,29 +123,5 @@ public class AddExercise extends AppCompatActivity {
     private void openGallery(){
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_misrutinas, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(AddExercise.this, MyRoutines.class));
-        }
-        if (id==R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(AddExercise.this, MyProfile.class));
-        }
-        if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(AddExercise.this, MyCurrentRoutine.class));
-        }
-
-        return super.onOptionsItemSelected(item);
-
     }
 }

@@ -39,4 +39,12 @@ dependencies {
     implementation "androidx.gridlayout:gridlayout:1.0.0"
     implementation 'com.jjoe64:graphview:4.2.2'
     implementation 'com.google.android.material:material:1.2.1'
+
+    // retrofit para gestionar respuesta de servicio
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+
+    //Picasso para sacar gifs de los links proporcionados por exercisedb
+    implementation 'com.squareup.picasso:picasso:2.8'
 }

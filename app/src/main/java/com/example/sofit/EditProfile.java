@@ -97,28 +97,4 @@ public class EditProfile extends AppCompatActivity {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-// Inflate the menu
-        getMenuInflater().inflate(R.menu.menu_misrutinas, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-//noinspection SimplifiableIfStatement
-        if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(EditProfile.this, MyRoutines.class));
-        }
-        if (id==R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(EditProfile.this, MyProfile.class));
-        }
-        if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(EditProfile.this, MyCurrentRoutine.class));
-        }
-
-        return super.onOptionsItemSelected(item);
-
-    }
 }

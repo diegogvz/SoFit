@@ -209,7 +209,9 @@
                 android:inputType="text"
                 android:minHeight="@dimen/big_font_size"
                 tools:ignore="DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
+
         </TableRow>
     </TableLayout>
+    <!-- the root view must be the DrawerLayout -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -83,14 +83,20 @@
     <!-- _________________ AÑADIR EJERCICIO _________________ -->
     <string name="repetitions">Repetitions</string>
     <string name="series">Series</string>
+    <string name="select_predefined">Select Predefined Exercise</string>
+    <!-- _______________________________________________ -->
 
+    <!-- _________________ SELECCIONAR EJERCICIO PREDEFINIDO _________________ -->
+    <string name="textView_select_predefined_exercise">Choose a predefined exercise: </string>
+    <string name="textView_select_body_part">Choose a body part: </string>
     <!-- _______________________________________________ -->
 
     <!-- _________________ MENU _________________ -->
     <string name="current_rutine">My Current Routine</string>
     <string name="profile">My profile</string>
     <string name="routines">My routines</string>
-
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
     <!-- _______________________________________________ -->
 
     <!-- _________________ MIS RUTINAS _________________ -->

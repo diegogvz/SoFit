@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.sofit.model.Exercise;
 import com.example.sofit.model.Session;
 
 import java.util.ArrayList;

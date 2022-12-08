@@ -78,28 +78,4 @@ public class CreateRoutine extends AppCompatActivity {
             photo.setImageURI(imageUri);
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-    // Inflate the menu
-        getMenuInflater().inflate(R.menu.menu_misrutinas, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-    //noinspection SimplifiableIfStatement
-        if (id == R.id.menuItem_misRutinas_misRutinas) {
-            startActivity(new Intent(CreateRoutine.this, MyRoutines.class));
-        }
-        if (id==R.id.menuItem_misRutinas_perfil){
-            startActivity(new Intent(CreateRoutine.this, MyProfile.class));
-        }
-        if (id==R.id.menuItem_misRutinas_rutinas){
-            startActivity(new Intent(CreateRoutine.this, MyCurrentRoutine.class));
-        }
-
-        return super.onOptionsItemSelected(item);
-
-    }
 }
