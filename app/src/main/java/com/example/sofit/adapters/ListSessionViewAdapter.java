@@ -3,6 +3,7 @@ package com.example.sofit.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,12 +19,17 @@ public class ListSessionViewAdapter extends RecyclerView.Adapter<ListSessionView
     public interface OnItemClickListener {
         void onItemClick(Session item);
     }
+    public interface DeleteListener {
+        void deleteItem(Session session);
+    }
     private List<Session> sessions;
     private final OnItemClickListener listener;
+    private final DeleteListener deleteListener;
 
-    public ListSessionViewAdapter(List<Session> listaSessions, OnItemClickListener listener) {
+    public ListSessionViewAdapter(List<Session> listaSessions, OnItemClickListener listener, DeleteListener deleteListener) {
         this.sessions = listaSessions;
         this.listener = listener;
+        this.deleteListener=deleteListener;
     }
 
     @NonNull
@@ -37,7 +43,7 @@ public class ListSessionViewAdapter extends RecyclerView.Adapter<ListSessionView
     @Override
     public void onBindViewHolder(@NonNull DayViewHolder holder, int position) {
         Session session = sessions.get(position);
-        holder.bindUser(session, listener);
+        holder.bindUser(session, listener, deleteListener);
 
     }
 
@@ -50,13 +56,15 @@ public class ListSessionViewAdapter extends RecyclerView.Adapter<ListSessionView
      protected class DayViewHolder extends RecyclerView.ViewHolder {
 
         private TextView diaTextView;
+        private ImageButton imgbtn;
 
         public DayViewHolder(@NonNull View itemView) {
             super(itemView);
             diaTextView=(TextView)itemView.findViewById(R.id.session);
+            imgbtn = (ImageButton) itemView.findViewById(R.id.imageButton);
         }
 
-         public void bindUser(final Session session, final OnItemClickListener listener) {
+         public void bindUser(final Session session, final OnItemClickListener listener, final DeleteListener deleteListener) {
 
              diaTextView.setText(session.getName());
 
@@ -66,6 +74,13 @@ public class ListSessionViewAdapter extends RecyclerView.Adapter<ListSessionView
                      listener.onItemClick(session);
                  }
              });
+             imgbtn.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     deleteListener.deleteItem(session);
+                 }
+             });
+
          }
 
     }

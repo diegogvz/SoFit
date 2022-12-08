@@ -58,5 +58,9 @@ public class ExerciseDataSource extends DataSource{
         cursor.close();
         return exercises;
     }
+    public void deleteSession(Exercise exerciseToDelete) {
 
+        // Insertamos la valoracion
+        database.execSQL("DELETE FROM " + MyDBHelper.TABLE_EXERCISES + " WHERE name = '" + exerciseToDelete.getName()+"'");
+    }
 }

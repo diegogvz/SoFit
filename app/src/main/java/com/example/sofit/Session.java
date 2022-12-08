@@ -1,19 +1,31 @@
 package com.example.sofit;
 
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.data.ExerciseDataSource;
+import com.example.sofit.model.Exercise;
+import com.example.sofit.remote.ApiUtils;
+import com.example.sofit.remote.ExerciseDBAPI;
+import com.example.sofit.server.ServerDataMapper;
+import com.example.sofit.server.exerciselist.ExerciseData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Session extends BaseActivity {
 
@@ -26,18 +38,28 @@ public class Session extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Initialization
         setContentView(R.layout.activity_session);
         exerciseList = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
-        session="";
+
+
+        //Get the session we're in
+        session = "";
         if (extras != null) {
             session = extras.getString("idSession");
         }
-        setTitle(session+" Session");
+        setTitle(session + " Session");
+
+        //Drawer
+        createDrawer(this);
+
+
+        //Prepare the database
         exerciseDataSource = new ExerciseDataSource(getApplicationContext());
 
 
-        createDrawer(this);
+        //Get data from the database
         exerciseDataSource.open();
         exercises = exerciseDataSource
                 .getExercisesForSession(session);
@@ -65,7 +87,7 @@ public class Session extends BaseActivity {
 
     }
     private void createEventAddExercise(){
-        Button b = findViewById(R.id.btn_session_addExercise);
+        FloatingActionButton b = (FloatingActionButton) findViewById(R.id.btn_session_addExercise);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,21 +104,47 @@ public class Session extends BaseActivity {
     private void fillRecycler(List<Exercise> exercises) {
 
 
-        List<String> exercisesButtons = new ArrayList<>();
+        List<Exercise> exercisesButtons = new ArrayList<>();
         for (Exercise ex : exercises) {
-            exercisesButtons.add(ex.getName());
+            exercisesButtons.add(ex);
         }
         ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons,
                 new ListaEjerciciosViewAdapter.OnItemClickListener() {
                     @Override
-                    public void onItemClick(String item) {
-                        Intent i = new Intent(Session.this, Exercise.class);
+                    public void onItemClick(Exercise item) {
+                        Intent i = new Intent(Session.this, com.example.sofit.model.Exercise.class);
                         i.putExtra("exerciseId", item);
                         startActivity(i);
                     }
-                });
+                },new ListaEjerciciosViewAdapter.DeleteListener() {
+            @Override
+            public void deleteItem(Exercise item) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Session.this);
+                builder.setMessage("Do you want to delete this routine?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteExercise(item);
+                        startActivity(new Intent(Session.this, Session.class));
+                    }
+                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+            }
+        });
 
         exerciseRecycler.setAdapter(lpAdapter);
+
+
+    }
+
+    private void deleteExercise(Exercise item) {
+        ExerciseDataSource eds = new ExerciseDataSource(getApplicationContext());
+        eds.open();
+        eds.deleteSession(item);
+        eds.close();
     }
 
     public void requestAllExercises(ExerciseDBAPI ExerciseDBAPIClient) {

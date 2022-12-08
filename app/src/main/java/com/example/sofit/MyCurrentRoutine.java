@@ -1,7 +1,9 @@
 package com.example.sofit;
 
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -83,6 +85,24 @@ public class MyCurrentRoutine extends BaseActivity {
                 System.out.println("\n Name of session "+item.getName());
                 startActivity(i);
             }
+        },new ListSessionViewAdapter.DeleteListener() {
+            @Override
+            public void deleteItem(com.example.sofit.model.Session item) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MyCurrentRoutine.this);
+                builder.setMessage("Do you want to delete this routine?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteSession(item);
+                        startActivity(new Intent(MyCurrentRoutine.this,MyCurrentRoutine.class));
+                    }
+                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+            }
         });
 
         listDiasView.setAdapter(lpAdapter);
@@ -94,5 +114,12 @@ public class MyCurrentRoutine extends BaseActivity {
                 startActivity(new Intent(MyCurrentRoutine.this, AddSession.class));
             }
         });
+    }
+
+    private void deleteSession(com.example.sofit.model.Session item) {
+        SessionDataSource sds = new SessionDataSource(getApplicationContext());
+        sds.open();
+        sds.deleteSession(item);
+        sds.close();
     }
 }

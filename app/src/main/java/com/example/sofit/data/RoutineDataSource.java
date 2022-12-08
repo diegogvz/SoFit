@@ -43,7 +43,14 @@ public class RoutineDataSource extends DataSource{
         long insertId =
                 database.insert(MyDBHelper.TABLE_ROUTINES, null, values);
 
+
         return insertId;
+    }
+
+    public void deleteRoutine(Routine routineToDelete) {
+
+        // Insertamos la valoracion
+        database.execSQL("DELETE FROM " + MyDBHelper.TABLE_ROUTINES + " WHERE name = '" + routineToDelete.getName()+"'");
     }
 
     /**

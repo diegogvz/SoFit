@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.data.SessionDataSource;
+import com.example.sofit.model.Exercise;
 import com.example.sofit.model.Session;
 
 import java.util.ArrayList;
 
 public class AddSession extends BaseActivity {
 
-    private ArrayList<String> ejercicios = new ArrayList<>();
+    private ArrayList<Exercise> ejercicios = new ArrayList<>();
     private RecyclerView listEjerciciosView;
 
     @Override
@@ -65,9 +66,9 @@ public class AddSession extends BaseActivity {
 
         setTitle("Add new session");
 
-        ejercicios.add("exercise1 - hardcoded");
-        ejercicios.add("exercise2 - hardcoded");
-        ejercicios.add("exercise3 - hardcoded");
+//        ejercicios.add("exercise1 - hardcoded");
+//        ejercicios.add("exercise2 - hardcoded");
+//        ejercicios.add("exercise3 - hardcoded");
 
         listEjerciciosView =(RecyclerView) findViewById(R.id.recyclerView_anadirsesion);
         listEjerciciosView.setHasFixedSize(true);
@@ -78,12 +79,15 @@ public class AddSession extends BaseActivity {
         ListaEjerciciosViewAdapter lpAdapter=new ListaEjerciciosViewAdapter(ejercicios,
                 new ListaEjerciciosViewAdapter.OnItemClickListener(){
                     @Override
-                    public void onItemClick(String ejercicio) {
+                    public void onItemClick(Exercise ejercicio) {
                         //clikonItem(ejercicio);
                     }
-
-
-                });
+               },new ListaEjerciciosViewAdapter.DeleteListener(){
+            @Override
+            public void deleteItem(Exercise ejercicio) {
+                //clikonItem(ejercicio);
+            }
+        });
 
         listEjerciciosView.setAdapter(lpAdapter);
     }

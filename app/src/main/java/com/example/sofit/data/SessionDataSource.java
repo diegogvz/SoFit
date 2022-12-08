@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.sofit.model.Exercise;
 import com.example.sofit.model.Session;
 
 import java.util.ArrayList;
@@ -33,6 +32,12 @@ public class SessionDataSource extends DataSource{
         long insertId = database.insert(MyDBHelper.TABLE_SESSIONS,null,values);
         close();
         return insertId;
+    }
+
+    public void deleteSession(Session sessionToDelete) {
+
+        // Insertamos la valoracion
+        database.execSQL("DELETE FROM " + MyDBHelper.TABLE_SESSIONS + " WHERE name = '" + sessionToDelete.getName()+"'");
     }
 
     public List<Session> getAllSessions(){
