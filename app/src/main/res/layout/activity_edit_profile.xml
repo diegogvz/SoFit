@@ -25,6 +25,7 @@
             android:id="@+id/textView_editSexo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/rocknroll_one"
             android:gravity="center_vertical"
             android:text="@string/sex"
             android:textSize="20sp"
@@ -37,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="false"
+            android:fontFamily="@font/rocknroll_one"
             android:gravity="center_vertical"
             android:text="@string/age"
             android:textSize="20sp"
@@ -48,6 +50,7 @@
             android:id="@+id/textView_editPeso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/rocknroll_one"
             android:gravity="center_vertical"
             android:text="@string/weight"
             android:textSize="20sp"
@@ -69,6 +72,7 @@
             android:id="@+id/textView_editAltura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/rocknroll_one"
             android:gravity="center_vertical"
             android:text="@string/height"
             android:textSize="20sp"
@@ -123,6 +127,7 @@
             android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
             android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
             android:layout_weight="1"
+            android:fontFamily="@font/rocknroll_one"
             android:text="@string/confirm" />
 
         <Button
@@ -132,6 +137,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
+            android:fontFamily="@font/rocknroll_one"
             android:text="@string/cancel" />
     </LinearLayout>
 
@@ -151,6 +157,7 @@
         android:id="@+id/button"
         android:layout_width="240dp"
         android:layout_height="48dp"
+        android:fontFamily="@font/rocknroll_one"
         android:text="@string/change_photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

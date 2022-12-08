@@ -92,7 +92,7 @@ public class AddExercise extends BaseActivity {
 
     private void clickOnItem(){
         Exercise exercise = new Exercise();
-        exercise.setName(String.valueOf(R.id.editTextName));
+        exercise.setName(String.valueOf(R.id.editTextExerciseTitle));
         exercise.setImage(String.valueOf(R.id.imageView2));
         ExerciseDataSource exerciseDataSource =
                 new ExerciseDataSource(getApplicationContext());
