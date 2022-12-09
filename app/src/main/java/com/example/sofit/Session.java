@@ -3,7 +3,6 @@ package com.example.sofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.util.Log;
 import android.widget.Button;
 
@@ -21,15 +20,13 @@ import com.example.sofit.server.exerciselist.ExerciseData;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.callback.Callback;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Session extends BaseActivity {
 
-    private List<com.example.sofit.model.ModelExercise> exercises;
+    private List<com.example.sofit.model.Exercise> exercises;
     private ExerciseDataSource exerciseDataSource;
     private List<com.example.sofit.model.ModelExercise> exerciseList;
     private RecyclerView exerciseRecycler;
