@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.data.ExerciseDataSource;
+import com.example.sofit.data.RoutineDataSource;
+import com.example.sofit.model.ModelExercise;
 import com.example.sofit.remote.ApiUtils;
 import com.example.sofit.remote.ExerciseDBAPI;
 import com.example.sofit.server.ServerDataMapper;
@@ -25,9 +27,8 @@ import retrofit2.Response;
 
 public class Session extends BaseActivity {
 
-    private List<com.example.sofit.model.ModelExercise> exercises;
+    private List<ModelExercise> exercises;
     private ExerciseDataSource exerciseDataSource;
-    private List<com.example.sofit.model.ModelExercise> exerciseList;
     private RecyclerView exerciseRecycler;
     private String session;
 
@@ -36,7 +37,6 @@ public class Session extends BaseActivity {
         super.onCreate(savedInstanceState);
         //Initialization
         setContentView(R.layout.activity_session);
-        exerciseList = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
 
 
@@ -46,6 +46,10 @@ public class Session extends BaseActivity {
             session = extras.getString("idSession");
         }
         setTitle(session + " Session");
+
+        //Get the exercises from database
+        loadExercises();
+
 
         //Drawer
         createDrawer(this);
@@ -60,7 +64,7 @@ public class Session extends BaseActivity {
         exercises = exerciseDataSource.getExercisesForSession(session);
         exerciseDataSource.close();
 
-        //----Init the recycler----
+        //Get the recycler
         exerciseRecycler = findViewById(R.id.recycler_predefinedExercises);
 
         //Set the layout manager
@@ -73,8 +77,8 @@ public class Session extends BaseActivity {
 
         //--------------------------
 
-        //Get data from API and fill the recycler
-        requestAllExercises(ApiUtils.createExerciseDBAPI());
+        //Get data from database and fill the exercise recycler
+        fillRecycler();
 
 
         //Create the event for the button to add new exercise
@@ -92,11 +96,9 @@ public class Session extends BaseActivity {
     }
 
 
-    private void fillRecycler(List<com.example.sofit.model.ModelExercise> exercises) {
-
-
+    private void fillRecycler() {
         List<String> exercisesButtons = new ArrayList<>();
-        for (com.example.sofit.model.ModelExercise ex : exercises) {
+        for (ModelExercise ex : exercises) {
             exercisesButtons.add(ex.getName());
         }
         ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons, item -> {
@@ -110,34 +112,11 @@ public class Session extends BaseActivity {
 
     }
 
-    public void requestAllExercises(ExerciseDBAPI ExerciseDBAPIClient) {
-        //Create the call to the api
-        Call<List<ExerciseData>> call = ExerciseDBAPIClient.getListExercises(ApiUtils.API_KEY, ApiUtils.HOST);
-
-        // Wait asynchronously for it to end to fill the recycler
-        call.enqueue(new Callback<List<ExerciseData>>() {
-            @Override
-            public void onResponse(Call<List<ExerciseData>> call, Response<List<ExerciseData>> response) {
-                switch (response.code()) {
-                    case 200:
-                        //Get the mapped data as list (THE JSON IS A LIST [] WITH NO NAME)
-                        List<ExerciseData> data = response.body();
-                        //Convert the mapped data to domain
-                        List<com.example.sofit.model.ModelExercise> exercises = ServerDataMapper.convertExerciseDataListToDomain(data);
-                        //Use the array to fill the session
-                        fillRecycler(exercises);
-                        break;
-                    default:
-                        call.cancel();
-                        break;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<ExerciseData>> call, Throwable t) {
-                Log.e("List - error", t.toString());
-            }
-        });
+    private void loadExercises(){
+        ExerciseDataSource routineDataSource = new ExerciseDataSource(getApplicationContext());
+        routineDataSource.open();
+        exercises = routineDataSource.getExercisesForSession(session);
+        routineDataSource.close();
     }
 
 }

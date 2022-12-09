@@ -2,7 +2,6 @@ package com.example.sofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,40 +31,34 @@ public class MyRoutines extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        chargeRoutines();
+        loadRoutines();
 
-        listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
-        listRutinasView.setHasFixedSize(true);
-
+        Button btnCrear = (Button) findViewById(R.id.btnCrearRutia);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
+
+
+        listRutinasView.setHasFixedSize(true);
         listRutinasView.setLayoutManager(layoutManager);
 
         ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas,
-                new ListRutinasViewAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Routine rutina) {
-                        clickonItem(rutina);
-                    }
-                });
+                rutina -> clickOnItem(rutina)
+        );
         listRutinasView.setAdapter(lpAdapter);
 
-        Button btnCrear = (Button) findViewById(R.id.btnCrearRutia);
-        btnCrear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyRoutines.this, CreateRoutine.class));
-            }
-        });
+        btnCrear.setOnClickListener(view ->
+                startActivity(new Intent(MyRoutines.this, CreateRoutine.class))
+        );
     }
 
-    private void chargeRoutines(){
+    private void loadRoutines(){
         RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
         routineDataSource.open();
         rutinas = routineDataSource.getAllRoutines();
         routineDataSource.close();
     }
 
-    public void clickonItem(Routine rutina){
+    public void clickOnItem(Routine rutina){
         Intent i = new Intent(MyRoutines.this, MyCurrentRoutine.class);
         i.putExtra("routine", rutina.getName());
         startActivity(i);
