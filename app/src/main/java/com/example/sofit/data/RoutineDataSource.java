@@ -66,7 +66,6 @@ public class RoutineDataSource extends DataSource{
             final Routine rutina = new Routine();
             rutina.setNombre_rutina(cursor.getString(0));
             rutina.setNombre_ejercicio(cursor.getString(1));
-            rutina.setImage(cursor.getString(2));
 
             rutinaList.add(rutina);
             cursor.moveToNext();

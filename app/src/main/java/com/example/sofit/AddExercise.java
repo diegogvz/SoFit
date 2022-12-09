@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sofit.data.ExerciseDataSource;
 import com.example.sofit.model.Exercise;
 import com.example.sofit.model.ModelExercise;
+import com.squareup.picasso.Picasso;
 
 public class AddExercise extends BaseActivity {
 
@@ -30,7 +31,7 @@ public class AddExercise extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        createDrawer(this);
+        //createDrawer(this);
         setContentView(R.layout.activity_add_exercise);
 
         setTitle("Add Exercise");
@@ -74,14 +75,14 @@ public class AddExercise extends BaseActivity {
         btnCancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(new Intent(AddExercise.this, AddSession.class));
+                startActivity(new Intent(AddExercise.this, Session.class));
             }
         });
     }
 
     private void fillFormAddExercise() {
         //Load gif
-        // Picasso.get().load(predefinedExercise.getImage()).into(imageViewExercise);
+        Picasso.get().load(predefinedExercise.getImage()).into(imageViewExercise);
         //Set title
 
         System.out.println("Ex obj name: "+predefinedExercise.getName());
@@ -93,19 +94,20 @@ public class AddExercise extends BaseActivity {
     private void clickOnItem(){
         Exercise exercise = new Exercise();
         exercise.setName(String.valueOf(R.id.editTextExerciseTitle));
-        exercise.setImage(String.valueOf(R.id.imageView2));
+        //exercise.setImage(String.valueOf(R.id.imageView2));ser
         ExerciseDataSource exerciseDataSource =
                 new ExerciseDataSource(getApplicationContext());
         exerciseDataSource.open();
         exerciseDataSource.createExercise(exercise);
         exerciseDataSource.close();
-        startActivity(new Intent(AddExercise.this, AddSession.class));
+        startActivity(new Intent(AddExercise.this, Session.class));
     }
 
     private boolean validarCampos(){
         if(R.id.TextEdit_series>0 && R.id.TextEdit_repetitions>0 && R.id.TextEdit_weight>0){
             return true;
         }
+
 
         return false;
     }

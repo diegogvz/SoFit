@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.data.ExerciseDataSource;
 import com.example.sofit.model.ModelExercise;
+import com.example.sofit.model.Exercise;
 import com.example.sofit.remote.ApiUtils;
 import com.example.sofit.remote.ExerciseDBAPI;
 import com.example.sofit.server.ServerDataMapper;
@@ -26,9 +27,9 @@ import retrofit2.Response;
 
 public class Session extends BaseActivity {
 
-    private List<com.example.sofit.model.Exercise> exercises;
+    private List<Exercise> exercises;
     private ExerciseDataSource exerciseDataSource;
-    private List<com.example.sofit.model.ModelExercise> exerciseList;
+    private List<Exercise> exerciseList;
     private RecyclerView exerciseRecycler;
     private String session;
 
@@ -105,6 +106,7 @@ public class Session extends BaseActivity {
             i.putExtra("exerciseId", item);
             startActivity(i);
         });
+
 
         exerciseRecycler.setAdapter(lpAdapter);
 
