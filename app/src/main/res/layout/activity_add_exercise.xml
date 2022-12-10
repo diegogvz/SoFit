@@ -35,7 +35,7 @@
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:text="@string/title"
-                app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                app:layout_constraintBottom_toTopOf="@+id/imageViewExercise"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.233"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageViewExercise"
                 android:layout_width="match_parent"
                 android:layout_height="224dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -56,6 +56,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/button_height"
                 android:orientation="horizontal"
@@ -89,18 +90,32 @@
                     android:textSize="@dimen/small_font_size" />
             </LinearLayout>
 
-            <TableLayout
-                android:layout_width="378dp"
-                android:layout_height="290dp"
+            <Button
+                android:id="@+id/button_select_predefined_exercise"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
-                android:layout_marginTop="258dp"
+                android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
+                android:layout_marginBottom="@dimen/distance_margin_of_button_bottom"
+                android:fontFamily="@font/rocknroll_one"
+                android:text="@string/select_predefined"
+                android:textSize="@dimen/small_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TableLayout
+                android:id="@+id/tableLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
                 android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.095">
+                app:layout_constraintTop_toBottomOf="@+id/imageViewExercise"
+                app:layout_constraintVertical_bias="0.38">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -154,7 +169,7 @@
                         android:inputType="numberDecimal"
                         android:minHeight="48dp"
                         android:textColor="@color/purple_500"
-                        android:textColorHint="#78909C"
+                        android:textColorHint="@color/purple_200"
                         android:textSize="@dimen/big_font_size" />
                 </TableRow>
 
@@ -183,6 +198,7 @@
                         android:inputType="numberDecimal"
                         android:minHeight="48dp"
                         android:textColor="@color/purple_500"
+                        android:textColorHint="@color/purple_200"
                         android:textSize="@dimen/big_font_size" />
                 </TableRow>
 
@@ -202,8 +218,8 @@
 
                     <EditText
                         android:id="@+id/TextEdit_repetitions"
-                        android:layout_width="238dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/height_edit_text"
                         android:layout_weight="40"
                         android:ems="10"
                         android:fontFamily="@font/rocknroll_one"
@@ -211,10 +227,29 @@
                         android:inputType="numberDecimal"
                         android:minHeight="48dp"
                         android:textColor="@color/purple_500"
-                        android:textSize="@dimen/big_font_size" />
+                        android:textSize="@dimen/big_font_size"
+                        android:textColorHint="@color/purple_200" />
                 </TableRow>
 
             </TableLayout>
+
+            <EditText
+                android:id="@+id/editTextExerciseTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
+                android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
+                android:ems="10"
+                android:fontFamily="@font/rocknroll_one"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:textColor="@color/purple_500"
+                android:textColorHint="@color/purple_200"
+                android:textSize="@dimen/big_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewExercise" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

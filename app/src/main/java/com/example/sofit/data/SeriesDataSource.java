@@ -3,7 +3,6 @@ package com.example.sofit.data;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.sofit.model.Exercise;
 import com.example.sofit.model.Serie;
 
 import java.util.ArrayList;
