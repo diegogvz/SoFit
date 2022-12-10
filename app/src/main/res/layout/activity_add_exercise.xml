@@ -35,7 +35,7 @@
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:text="@string/title"
-                app:layout_constraintBottom_toTopOf="@+id/imageViewExercise"
+                app:layout_constraintBottom_toTopOf="@+id/imageView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.233"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,17 +43,30 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
-                android:id="@+id/imageViewExercise"
-                android:layout_width="match_parent"
-                android:layout_height="224dp"
+                android:id="@+id/imageView2"
+                android:layout_width="264dp"
+                android:layout_height="153dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.387"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.031"
+                app:layout_constraintVertical_bias="0.128"
                 tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@drawable/sofit" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/ImageButton_addImage"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.205"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.108"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -114,7 +127,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewExercise"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
                 app:layout_constraintVertical_bias="0.38">
 
                 <TableRow
@@ -249,7 +262,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewExercise" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -57,37 +57,31 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.055" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_anadirsesion"
-                android:layout_width="fill_parent"
-                android:layout_height="315dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:padding="10dp"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="234dp"
+                android:layout_height="221dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_addsession_confirm"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.423"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTituloSesion"
-                app:layout_constraintVertical_bias="0.118"
-                tools:listitem="@layout/line_recycler_exercise" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.644"
+                tools:ignore="ImageContrastCheck"
+                tools:srcCompat="@drawable/session" />
 
-            <Button
-                android:id="@+id/btn_addsession_addExecise"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/button_height"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/rocknroll_one"
-                android:text="@string/addExercise"
-                android:textSize="@dimen/small_font_size"
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/ImageButton_addImage"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView_anadirsesion"
-                app:layout_constraintVertical_bias="0.062" />
+                app:layout_constraintHorizontal_bias="0.239"
+                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.391"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <Button
                 android:id="@+id/btn_addsession_confirm"

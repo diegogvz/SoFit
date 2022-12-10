@@ -29,7 +29,7 @@ public class SeriesDataSource extends DataSource{
         String[] whereArgs = new String[] {
                 exerciseId
         };
-        Cursor cursor = database.query(MyDBHelper.TABLE_SERIES, allColumns,
+        Cursor cursor = database.query(MyDBHelper.TABLA_SERIES, allColumns,
                 whereClause, whereArgs, null, null, null);
 
         cursor.moveToFirst();

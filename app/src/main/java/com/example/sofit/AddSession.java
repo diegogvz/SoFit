@@ -1,34 +1,42 @@
 package com.example.sofit;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.data.SessionDataSource;
-import com.example.sofit.model.ModelExercise;
 import com.example.sofit.model.Session;
 
 import java.util.ArrayList;
 
-public class AddSession extends BaseActivity {
+public class AddSession extends AppCompatActivity {
 
-    private final ArrayList<ModelExercise> ejercicios = new ArrayList<>();
+    private static final int PICK_IMAGE = 1;
+    Uri imageUri;
+
+    private ArrayList<String> ejercicios = new ArrayList<>();
     private RecyclerView listEjerciciosView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_session);
-        createDrawer(this);
-
     }
 
-    private void addingSession(Session s) {
+    private void addingSession(Session s){
         SessionDataSource sds = new SessionDataSource(getApplicationContext());
         sds.open();
         sds.createSession(s);
@@ -38,45 +46,45 @@ public class AddSession extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Button btnConfirm = (Button) findViewById(R.id.btn_addsession_confirm);
-        btnConfirm.setOnClickListener(view -> {
-            EditText et = (EditText) findViewById(R.id.editTextTituloSesion);
-            if (!et.getText().toString().isEmpty()) {
-                Session s = new Session();
-                s.setName(et.getText().toString());
-                s.setRoutine("");
-                addingSession(s);
 
+        ImageButton btnPhoto = (ImageButton) findViewById(R.id.imageButton2);
+        btnPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                openGallery();
             }
-            startActivity(new Intent(AddSession.this, MyCurrentRoutine.class));
         });
 
-        Button btnAddExecise = (Button) findViewById(R.id.btn_addsession_addExecise);
-        btnAddExecise.setOnClickListener(view -> {
-            Intent i = new Intent(AddSession.this, AddExercise.class);
-            startActivity(i);
+        Button btnConfirm = (Button) findViewById(R.id.btn_addsession_confirm);
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText et = (EditText)findViewById(R.id.editTextTituloSesion) ;
+                if(!et.getText().toString().isEmpty()){
+                    Session s = new Session();
+                    s.setName(et.getText().toString());
+                    s.setImage(String.valueOf(R.id.imageView5));
+                    s.setRoutine("");
+                    addingSession(s);
+                }
+                startActivity(new Intent(AddSession.this, MyCurrentRoutine.class));
+            }
         });
-
-        setTitle("Add new session");
-
-//        ejercicios.add("exercise1 - hardcoded");
-//        ejercicios.add("exercise2 - hardcoded");
-//        ejercicios.add("exercise3 - hardcoded");
-
-        listEjerciciosView = (RecyclerView) findViewById(R.id.recyclerView_anadirsesion);
-        listEjerciciosView.setHasFixedSize(true);
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        listEjerciciosView.setLayoutManager(layoutManager);
-
-        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(ejercicios,
-                (ListaEjerciciosViewAdapter.OnItemClickListener) ejercicio -> {
-                    //clikonItem(ejercicio);
-                }, (ListaEjerciciosViewAdapter.DeleteListener) ejercicio -> {
-            //clikonItem(ejercicio);
-        });
-
-        listEjerciciosView.setAdapter(lpAdapter);
     }
 
+    private void openGallery(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestedCode, int resultCode, Intent data) {
+        super.onActivityResult(requestedCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestedCode == PICK_IMAGE) {
+            imageUri = data.getData();
+            ImageView photo = (ImageView) findViewById(R.id.imageView5);
+            photo.setImageURI(imageUri);
+        }
+    }
 }

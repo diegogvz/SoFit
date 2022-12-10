@@ -13,7 +13,7 @@ public class UserDataSource extends DataSource{
      * Columnas de la tabla
      */
     private final String[] allColumns = {MyDBHelper.COL_USER_NAME, MyDBHelper.COL_USER_AGE,
-    MyDBHelper.COL_USER_HEIGHT, MyDBHelper.COL_PROGRESS_WEIGHT, MyDBHelper.COL_USER_AGE};
+    MyDBHelper.COL_USER_HEIGHT, MyDBHelper.COL_PROGRESS_WEIGHT, MyDBHelper.COL_USER_SEX, MyDBHelper.COL_USER_IMG};
 
     /**
      * Constructor.
@@ -40,6 +40,7 @@ public class UserDataSource extends DataSource{
         values.put(MyDBHelper.COL_USER_HEIGHT, userToInsert.getHeight());
         values.put(MyDBHelper.COL_USER_WEIGHT, userToInsert.getWeight());
         values.put(MyDBHelper.COL_USER_SEX, userToInsert.isSex());
+        values.put(MyDBHelper.COL_USER_IMG, userToInsert.getImage());
 
 
         // Insertamos la valoracion
@@ -70,6 +71,7 @@ public class UserDataSource extends DataSource{
             user.setAge(cursor.getInt(2));
             user.setWeight(cursor.getInt(3));
             user.setHeight(cursor.getInt(4));
+            user.setImage(cursor.getString(5));
 
             userList.add(user);
             cursor.moveToNext();

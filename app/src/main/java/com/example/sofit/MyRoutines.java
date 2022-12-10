@@ -26,6 +26,7 @@ public class MyRoutines extends BaseActivity {
 
         setTitle("My Routines");
         createDrawer(this);
+
     }
 
     @Override
@@ -61,13 +62,13 @@ public class MyRoutines extends BaseActivity {
     private void loadRoutines() {
         RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
         routineDataSource.open();
-        rutinas = routineDataSource.getAllRoutines();
+        rutinas = routineDataSource.getAllValorations();
         routineDataSource.close();
     }
 
     public void clickOnItem(Routine rutina) {
         Intent i = new Intent(MyRoutines.this, MyCurrentRoutine.class);
-        i.putExtra("routine", rutina.getName());
+        i.putExtra("routine", rutina.getNombre_rutina());
         startActivity(i);
     }
 
