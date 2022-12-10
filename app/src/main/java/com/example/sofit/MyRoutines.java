@@ -26,6 +26,7 @@ public class MyRoutines extends BaseActivity {
 
         setTitle("My Routines");
         createDrawer(this);
+
     }
 
     @Override
