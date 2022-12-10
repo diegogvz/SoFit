@@ -43,7 +43,7 @@ public class CreateRoutine extends BaseActivity {
         userDataSource.open();
         Routine routine = new Routine();
         routine.setName(name.getText().toString());
-        routine.setUserId(userDataSource.getAllUsers().get(0).getName());
+        routine.setUserId(userDataSource.getUserData().getName());
         userDataSource.close();
         RoutineDataSource routineDataSource =
                 new RoutineDataSource(getApplicationContext());

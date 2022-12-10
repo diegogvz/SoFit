@@ -42,8 +42,8 @@ public class LogIn extends AppCompatActivity {
     private boolean seeIfUsed() {
         UserDataSource usd = new UserDataSource(getApplicationContext());
         usd.open();
-        ArrayList<User> au  = usd.getAllUsers();
-        return !au.isEmpty();
+        User au  = usd.getUserData();
+        return au!=null;
     }
 
 

@@ -39,7 +39,7 @@ public class UserDataSource extends DataSource{
         values.put(MyDBHelper.COL_USER_AGE, userToInsert.getAge());
         values.put(MyDBHelper.COL_USER_HEIGHT, userToInsert.getHeight());
         values.put(MyDBHelper.COL_USER_WEIGHT, userToInsert.getWeight());
-        values.put(MyDBHelper.COL_USER_SEX, userToInsert.isSex());
+        values.put(MyDBHelper.COL_USER_SEX, userToInsert.getSex());
 
 
         // Insertamos la valoracion
@@ -50,35 +50,23 @@ public class UserDataSource extends DataSource{
     }
 
     /**
-     * Obtiene todas las valoraciones andadidas por los usuarios.
+     * Obtener el usuario de la app
      *
-     * @return Lista de objetos de tipo User
+     * @return Objecto usuario con los datos
      */
-    public ArrayList<User> getAllUsers() {
-        // Lista que almacenara el resultado
-        ArrayList<User> userList = new ArrayList<User>();
-        //hacemos una query porque queremos devolver un cursor
-
+    public User getUserData() {
         Cursor cursor = database.query(MyDBHelper.TABLE_USER, allColumns,
                 null, null, null, null, null);
 
         cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            final User user = new User();
-            user.setName(cursor.getString(0));
-            user.setSex(cursor.getString(1));
-            user.setAge(cursor.getInt(2));
-            user.setWeight(cursor.getInt(3));
-            user.setHeight(cursor.getInt(4));
-
-            userList.add(user);
-            cursor.moveToNext();
-        }
-
+        final User user = new User();
+        user.setName(cursor.getString(0));
+        user.setSex(cursor.getString(1));
+        user.setAge(cursor.getInt(2));
+        user.setWeight(cursor.getInt(3));
+        user.setHeight(cursor.getInt(4));
         cursor.close();
-        // Una vez obtenidos todos los datos y cerrado el cursor, devolvemos la
-        // lista.
 
-        return userList;
+        return user;
     }
 }

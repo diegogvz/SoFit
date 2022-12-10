@@ -26,7 +26,7 @@ public class User {
         this.name = name;
     }
 
-    public String isSex() {
+    public String getSex() {
         return sex;
     }
 
@@ -57,4 +57,7 @@ public class User {
     public void setHeight(int height) {
         this.height = height;
     }
+
+
+
 }
