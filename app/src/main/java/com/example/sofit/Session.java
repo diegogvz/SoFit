@@ -107,10 +107,7 @@ public class Session extends BaseActivity {
             startActivity(i);
         });
 
-
         exerciseRecycler.setAdapter(lpAdapter);
-
-
     }
 
     public void requestAllExercises(ExerciseDBAPI ExerciseDBAPIClient) {

@@ -16,12 +16,11 @@ import java.util.List;
 
 public class ListaEjerciciosViewAdapter extends RecyclerView.Adapter<ListaEjerciciosViewAdapter.EjercicioViewHolder> {
     private final ListaEjerciciosViewAdapter.OnItemClickListener clickListener;
-    private final ListaEjerciciosViewAdapter.DeleteListener deleteListener;
-    private final List<ModelExercise> ejercicios;
-    public ListaEjerciciosViewAdapter(List<ModelExercise> ejercicios, ListaEjerciciosViewAdapter.OnItemClickListener clickListener, ListaEjerciciosViewAdapter.DeleteListener deleteListener) {
+    private final ListaEjerciciosViewAdapter.DeleteListener deleteListener = null;
+    private final List<String> ejercicios;
+    public ListaEjerciciosViewAdapter(List<String> ejercicios, OnItemClickListener clickListener) {
         this.ejercicios = ejercicios;
         this.clickListener = clickListener;
-        this.deleteListener = deleteListener;
     }
 
     @NonNull
@@ -34,7 +33,7 @@ public class ListaEjerciciosViewAdapter extends RecyclerView.Adapter<ListaEjerci
 
     @Override
     public void onBindViewHolder(@NonNull ListaEjerciciosViewAdapter.EjercicioViewHolder holder, int position) {
-        ModelExercise ej = ejercicios.get(position);
+        String ej = ejercicios.get(position);
         holder.bindUser(ej, clickListener,deleteListener);
     }
 
@@ -48,7 +47,7 @@ public class ListaEjerciciosViewAdapter extends RecyclerView.Adapter<ListaEjerci
     }
 
     public interface OnItemClickListener {
-        void onItemClick(ModelExercise item);
+        void onItemClick(String item);
     }
 
     protected class EjercicioViewHolder extends RecyclerView.ViewHolder {
@@ -61,9 +60,9 @@ public class ListaEjerciciosViewAdapter extends RecyclerView.Adapter<ListaEjerci
             ejercicioTextView = (TextView) itemView.findViewById(R.id.ejercicio);
         }
 
-        public void bindUser(final ModelExercise ejercicio, final ListaEjerciciosViewAdapter.OnItemClickListener listener, final ListaEjerciciosViewAdapter.DeleteListener deleteListener) {
+        public void bindUser(final String ejercicio, final ListaEjerciciosViewAdapter.OnItemClickListener listener, final ListaEjerciciosViewAdapter.DeleteListener deleteListener) {
 
-            ejercicioTextView.setText(ejercicio.getName());
+            ejercicioTextView.setText(ejercicio);
 
             itemView.setOnClickListener(v -> listener.onItemClick(ejercicio));
         }
