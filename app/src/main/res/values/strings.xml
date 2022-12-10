@@ -82,6 +82,7 @@
     <!-- _________________ AÑADIR EJERCICIO _________________ -->
     <string name="repetitions">Repetitions</string>
     <string name="series">Series</string>
+    <string name="whichSession">For which session?</string>
 
     <!-- _______________________________________________ -->
 

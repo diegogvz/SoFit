@@ -1,5 +1,6 @@
 package com.example.sofit.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -22,6 +23,17 @@ public class ExerciseDataSource extends DataSource{
     public ExerciseDataSource(Context context) {
         //el último parámetro es la versión
         dbHelper = new MyDBHelper(context, null, null, 1);
+    }
+
+    public long addExercise(Exercise exerciseToAdd, String idSession){
+        ContentValues values =new ContentValues();
+        values.put(MyDBHelper.COL_EXERCISES_NAME,exerciseToAdd.getName());
+        values.put(MyDBHelper.COL_EXERCISES_IMG,exerciseToAdd.getImage());
+        values.put(MyDBHelper.COL_EXERCISES_SESSION,idSession);
+        open();
+        long insertId = database.insert(MyDBHelper.TABLE_EXERCISES,null,values);
+        close();
+        return insertId;
     }
 
     public List<Exercise> getExercisesForSession(String sessionId){
@@ -58,7 +70,7 @@ public class ExerciseDataSource extends DataSource{
         cursor.close();
         return exercises;
     }
-    public void deleteSession(Exercise exerciseToDelete) {
+    public void deleteExercise(Exercise exerciseToDelete) {
 
         // Insertamos la valoracion
         database.execSQL("DELETE FROM " + MyDBHelper.TABLE_EXERCISES + " WHERE name = '" + exerciseToDelete.getName()+"'");

@@ -40,6 +40,13 @@ public class Session extends BaseActivity {
         super.onCreate(savedInstanceState);
         //Initialization
         setContentView(R.layout.activity_session);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         exerciseList = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
 
@@ -66,7 +73,7 @@ public class Session extends BaseActivity {
         exerciseDataSource.close();
 
         //----Init the recycler----
-        exerciseRecycler = findViewById(R.id.recyclerView);
+        exerciseRecycler = (RecyclerView) findViewById(R.id.recyclerView);
 
         //Set the layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -76,16 +83,18 @@ public class Session extends BaseActivity {
         //Recyclers that get items added or removed frequently
         exerciseRecycler.setHasFixedSize(true);
 
+        fillRecycler(exercises);
+
         //--------------------------
 
         //Get data from API and fill the recycler
-        requestAllExercises(ApiUtils.createThemoviedbApi());
+        //requestAllExercises(ApiUtils.createThemoviedbApi());
 
 
         //Create the event for the button to add new exercise
         createEventAddExercise();
-
     }
+
     private void createEventAddExercise(){
         FloatingActionButton b = (FloatingActionButton) findViewById(R.id.btn_session_addExercise);
         b.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +121,7 @@ public class Session extends BaseActivity {
                 new ListaEjerciciosViewAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Exercise item) {
-                        Intent i = new Intent(Session.this, com.example.sofit.model.Exercise.class);
+                        Intent i = new Intent(Session.this, com.example.sofit.Exercise.class);
                         i.putExtra("exerciseId", item);
                         startActivity(i);
                     }
@@ -143,7 +152,7 @@ public class Session extends BaseActivity {
     private void deleteExercise(Exercise item) {
         ExerciseDataSource eds = new ExerciseDataSource(getApplicationContext());
         eds.open();
-        eds.deleteSession(item);
+        eds.deleteExercise(item);
         eds.close();
     }
 
