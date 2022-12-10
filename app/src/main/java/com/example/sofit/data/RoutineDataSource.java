@@ -13,8 +13,8 @@ public class RoutineDataSource extends DataSource{
     /**
      * Columnas de la tabla
      */
-    private final String[] allColumns = {MyDBHelper.COL_ROUTINE_NAME, MyDBHelper.COL_EXERCISES_NAME,
-    MyDBHelper.COL_ROUTINE_IMG};
+    private final String[] allColumns = {MyDBHelper.COL_ROUTINE_NAME,MyDBHelper.COL_ROUTINE_USER,
+            MyDBHelper.COL_ROUTINE_IMG};
 
     /**
      * Constructor.
@@ -36,15 +36,13 @@ public class RoutineDataSource extends DataSource{
         // Establecemos los valores que se insertaran
         ContentValues values = new ContentValues();
 
-        values.put(MyDBHelper.COL_ROUTINE_NAME, routineToInsert.getNombre_rutina());
-        values.put(MyDBHelper.COL_EXERCISES_NAME, routineToInsert.getNombre_ejercicio());
+        values.put(MyDBHelper.COL_ROUTINE_NAME, routineToInsert.getNombreRutina());
+        values.put(MyDBHelper.COL_ROUTINE_USER, routineToInsert.getUser());
         values.put(MyDBHelper.COL_ROUTINE_IMG, routineToInsert.getImage());
-
 
         // Insertamos la valoracion
         long insertId =
                 database.insert(MyDBHelper.TABLE_ROUTINES, null, values);
-
 
         return insertId;
     }
@@ -52,7 +50,7 @@ public class RoutineDataSource extends DataSource{
     public void deleteRoutine(Routine routineToDelete) {
 
         // Insertamos la valoracion
-        database.execSQL("DELETE FROM " + MyDBHelper.TABLE_ROUTINES + " WHERE name = '" + routineToDelete.getNombre_rutina()+"'");
+        database.execSQL("DELETE FROM " + MyDBHelper.TABLE_ROUTINES + " WHERE name = '" + routineToDelete.getNombreRutina()+"'");
     }
 
     /**
@@ -60,29 +58,27 @@ public class RoutineDataSource extends DataSource{
      *
      * @return Lista de objetos de tipo Rutina
      */
-    public ArrayList<Routine> getAllValorations() {
-        // Lista que almacenara el resultado
-        ArrayList<Routine> rutinaList = new ArrayList<Routine>();
-        //hacemos una query porque queremos devolver un cursor
-
+    public ArrayList<Routine> getAllRoutines() {
+        ArrayList<Routine> routinesList = new ArrayList<>();
+        open();
         Cursor cursor = database.query(MyDBHelper.TABLE_ROUTINES, allColumns,
                 null, null, null, null, null);
-
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             final Routine rutina = new Routine();
-            rutina.setNombre_rutina(cursor.getString(0));
-            rutina.setNombre_ejercicio(cursor.getString(1));
 
-            rutinaList.add(rutina);
+            rutina.setNombreRutina(cursor.getString(0));
+            rutina.setImage(cursor.getString(1));
+            rutina.setUser(cursor.getString(2));
+
+
+            routinesList.add(rutina);
             cursor.moveToNext();
         }
 
         cursor.close();
-        // Una vez obtenidos todos los datos y cerrado el cursor, devolvemos la
-        // lista.
-
-        return rutinaList;
+        close();
+        return routinesList;
     }
 
 }

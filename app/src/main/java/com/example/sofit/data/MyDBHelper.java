@@ -198,6 +198,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         values = new ContentValues();
         values.put(COL_ROUTINE_NAME, "Strength");
         values.put(COL_ROUTINE_USER,"Pepe");
+        values.put(COL_ROUTINE_IMG," ");
         db.insert(TABLE_ROUTINES, null, values);
 
 
@@ -207,12 +208,15 @@ public class MyDBHelper extends SQLiteOpenHelper {
          */
         values = new ContentValues();
         values.put(COL_SESSIONS_NAME, "Chest");
+        values.put(COL_SESSIONS_IMG, " ");
         values.put(COL_SESSIONS_ROUTINE, "Strength");
         db.insert(TABLE_SESSIONS, null, values);
         values.put(COL_SESSIONS_NAME, "Arms");
+        values.put(COL_SESSIONS_IMG, " ");
         values.put(COL_SESSIONS_ROUTINE, "Strength");
         db.insert(TABLE_SESSIONS, null, values);
         values.put(COL_SESSIONS_NAME, "Legs");
+        values.put(COL_SESSIONS_IMG, " ");
         values.put(COL_SESSIONS_ROUTINE, "Strength");
         db.insert(TABLE_SESSIONS, null, values);
 
@@ -227,7 +231,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_EXERCISES, null, values);
         values.put(COL_EXERCISES_IMG, "bench_press2");
         values.put(COL_EXERCISES_NAME, "Bench Press 2");
-        values.put(COL_EXERCISES_SESSION, "Chest");
+        values.put(COL_EXERCISES_SESSION, "Arms");
         db.insert(TABLE_EXERCISES, null, values);
 
         /**
@@ -238,17 +242,21 @@ public class MyDBHelper extends SQLiteOpenHelper {
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 10);
         values.put(COL_SERIES_EXERCISE, "Bench Press");
+        values.put(COL_EXERCISES_IMG, " ");
         db.insert(TABLA_SERIES, null, values);
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 9);
         values.put(COL_SERIES_EXERCISE, "Bench Press");
+        values.put(COL_EXERCISES_IMG, " ");
         db.insert(TABLA_SERIES, null, values);
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 8);
+        values.put(COL_EXERCISES_IMG, " ");
         values.put(COL_SERIES_EXERCISE, "Bench Press");
         db.insert(TABLA_SERIES, null, values);
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 8);
+        values.put(COL_EXERCISES_IMG, " ");
         values.put(COL_SERIES_EXERCISE, "Bench Press");
         db.insert(TABLA_SERIES, null, values);
 

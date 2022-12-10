@@ -35,6 +35,21 @@ public class ExerciseDataSource extends DataSource{
         close();
         return insertId;
     }
+    public long createExercise(ModelExercise exerciseToInsert, String session) {
+        // Establecemos los valores que se insertaran
+        ContentValues values = new ContentValues();
+
+        values.put(MyDBHelper.COL_EXERCISES_NAME, exerciseToInsert.getName());
+        values.put(MyDBHelper.COL_EXERCISES_IMG, exerciseToInsert.getImage());
+        values.put(MyDBHelper.COL_EXERCISES_SESSION, session);
+
+
+        // Insertamos la valoracion
+        long insertId =
+                database.insert(MyDBHelper.TABLE_EXERCISES, null, values);
+
+        return insertId;
+    }
 
     public List<ModelExercise> getExercisesForSession(String sessionId){
         ArrayList<ModelExercise> exercises = new ArrayList<>();

@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sofit.adapters.ListRutinasViewAdapter;
 import com.example.sofit.data.RoutineDataSource;
 import com.example.sofit.model.Routine;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -54,22 +53,18 @@ public class MyRoutines extends BaseActivity {
         btnCrear.setOnClickListener(
                 view -> startActivity(new Intent(MyRoutines.this, CreateRoutine.class))
         );
-
-        btnCrear.setOnClickListener(
-                view -> startActivity(new Intent(MyRoutines.this, CreateRoutine.class))
-        );
     }
 
     private void loadRoutines() {
         RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
         routineDataSource.open();
-        rutinas = routineDataSource.getAllValorations();
+        rutinas = routineDataSource.getAllRoutines();
         routineDataSource.close();
     }
 
     public void clickOnItem(Routine rutina) {
         Intent i = new Intent(MyRoutines.this, MyCurrentRoutine.class);
-        i.putExtra("routine", rutina.getNombre_rutina());
+        i.putExtra("routine", rutina.getNombreRutina());
         startActivity(i);
     }
 

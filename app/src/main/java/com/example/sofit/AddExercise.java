@@ -8,15 +8,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -30,6 +26,9 @@ public class AddExercise extends BaseActivity {
     private String session;
     private EditText editTextExerciseTitle;
     private ImageView imageViewExercise;
+    private static final int PICK_IMAGE = 1;
+    private ImageView mImage;
+    Uri mImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +42,6 @@ public class AddExercise extends BaseActivity {
         Bundle extras = getIntent().getExtras();
         predefinedExercise =(ModelExercise) extras.getParcelable("predefinedExercise");
         session = extras.getString("sessionId");
-
-        Spinner sp = (Spinner)findViewById(R.id.spinner5);
-        String[] sessions = {extras.getString("idSession")};
-        sp.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item,sessions));
 
 
         Button predefinedExerciseButton = (Button) findViewById(R.id.button_select_predefined_exercise);
@@ -112,15 +107,19 @@ public class AddExercise extends BaseActivity {
 
 
     private void clickOnItem(){
-        Exercise exercise = new Exercise();
-        exercise.setName(String.valueOf(R.id.editTextExerciseTitle));
-        //exercise.setImage(String.valueOf(R.id.imageView2));ser
+        ModelExercise exercise = new ModelExercise();
+
+        exercise.setName(String.valueOf(((EditText)findViewById(R.id.editTextExerciseTitle)).getText()));
+        exercise.setImage(String.valueOf(R.id.imageView2));
         ExerciseDataSource exerciseDataSource =
                 new ExerciseDataSource(getApplicationContext());
         exerciseDataSource.open();
-        exerciseDataSource.createExercise(exercise);
+        exerciseDataSource.createExercise(exercise,getIntent().getExtras()
+                .getString("sessionId"));
         exerciseDataSource.close();
-        startActivity(new Intent(AddExercise.this, Session.class));
+        Intent i = new Intent(AddExercise.this, Session.class);
+        //i.putExtra("idSession", getIntent().getExtras().getString("sessionId"));
+        startActivity(i);
     }
 
     private boolean validarCampos(){

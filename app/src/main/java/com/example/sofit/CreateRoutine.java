@@ -8,9 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,8 +70,9 @@ public class CreateRoutine extends AppCompatActivity {
 
     private void clickOnItem(){
         Routine routine = new Routine();
-        routine.setNombre_rutina(String.valueOf(R.id.editTextNombreRutina));
-        routine.setNombre_ejercicio(" ");
+        EditText nombre = (EditText)findViewById(R.id.editTextNombreRutina);
+        routine.setNombreRutina(nombre.getText().toString());
+        routine.setUser(" ");
         routine.setImage(String.valueOf(R.id.imageView3));
         RoutineDataSource routineDataSource =
                 new RoutineDataSource(getApplicationContext());
