@@ -1,5 +1,6 @@
 package com.example.sofit.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -28,32 +29,42 @@ public class ProgressDataSource extends DataSource {
                 MyDBHelper.COL_PROGRESS_FAT,
                 MyDBHelper.COL_PROGRESS_MUSCLE,
                 MyDBHelper.COL_PROGRESS_WATER,
+                MyDBHelper.COL_PROGRESS_USER,
                 MyDBHelper.COL_PROGRESS_USER
             };
 
     public List<ModelProgress> getProgressData() {
         // Lista que almacenara el resultado
-        ArrayList<ModelProgress> rutinaList = new ArrayList<>();
-        //hacemos una query porque queremos devolver un cursor
+        ArrayList<ModelProgress> progressList = new ArrayList<>();
 
         Cursor cursor = database.query(MyDBHelper.TABLE_PROGRESS, allColumns,
                 null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            final ModelProgress rutina = new ModelProgress();
-            rutina.setWeight(cursor.getFloat(0));
-            rutina.setFat(cursor.getFloat(1));
-            rutina.setMuscle(cursor.getFloat(2));
-            rutina.setWater(cursor.getFloat(3));
-            rutinaList.add(rutina);
+            final ModelProgress modelProgress = new ModelProgress();
+            modelProgress.setWeight(cursor.getFloat(0));
+            modelProgress.setFat(cursor.getFloat(1));
+            modelProgress.setMuscle(cursor.getFloat(2));
+            modelProgress.setWater(cursor.getFloat(3));
+            modelProgress.setUser(cursor.getString(4));
+            progressList.add(modelProgress);
             cursor.moveToNext();
         }
 
         cursor.close();
-        // Una vez obtenidos todos los datos y cerrado el cursor, devolvemos la
-        // lista.
 
-        return rutinaList;
+        return progressList;
+    }
+    public void addProgressData(ModelProgress modelProgress){
+        ContentValues contentValues=new ContentValues();
+
+        contentValues.put(MyDBHelper.COL_PROGRESS_FAT,modelProgress.getFat());
+        contentValues.put(MyDBHelper.COL_PROGRESS_WEIGHT,modelProgress.getWeight());
+        contentValues.put(MyDBHelper.COL_PROGRESS_MUSCLE,modelProgress.getMuscle());
+        contentValues.put(MyDBHelper.COL_PROGRESS_USER,modelProgress.getUser());
+        contentValues.put(MyDBHelper.COL_PROGRESS_WATER,modelProgress.getWater());
+
+        database.insert(MyDBHelper.TABLE_PROGRESS,null,contentValues);
     }
 }

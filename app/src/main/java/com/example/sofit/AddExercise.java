@@ -76,7 +76,7 @@ public class AddExercise extends BaseActivity {
     }
 
     private boolean validarCampos() {
-        return R.id.TextEdit_series > 0 && R.id.TextEdit_repetitions > 0 && R.id.TextEdit_weight > 0;
+        return R.id.addData_EditText_weight > 0 && R.id.addData_EditText_fat > 0 && R.id.addData_EditText_muscle > 0;
     }
 
     @Override

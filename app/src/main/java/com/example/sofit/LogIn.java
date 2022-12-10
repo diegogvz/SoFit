@@ -12,8 +12,6 @@ import com.example.sofit.data.UserDataSource;
 import com.example.sofit.model.User;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
-
 public class LogIn extends AppCompatActivity {
 
     @Override
@@ -58,8 +56,8 @@ public class LogIn extends AppCompatActivity {
                 String.valueOf(height.getText()).isEmpty()|| String.valueOf(age.getText()).isEmpty()){
 
 
-            Snackbar.make(findViewById(R.id.tableLayout),"Enter all the data",
-                            Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(R.id.tableLayout), "Enter all the data",
+                    Snackbar.LENGTH_LONG).show();
         }
         else {
 

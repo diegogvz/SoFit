@@ -129,7 +129,7 @@
                         android:textSize="@dimen/big_font_size" />
 
                     <EditText
-                        android:id="@+id/TextEdit_weight"
+                        android:id="@+id/addData_EditText_muscle"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/height_edit_text"
                         android:layout_weight="40"
@@ -158,7 +158,7 @@
                         android:textSize="@dimen/big_font_size" />
 
                     <EditText
-                        android:id="@+id/TextEdit_series"
+                        android:id="@+id/addData_EditText_weight"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/height_edit_text"
                         android:layout_weight="40"
@@ -187,7 +187,7 @@
                         android:textSize="@dimen/big_font_size" />
 
                     <EditText
-                        android:id="@+id/TextEdit_repetitions"
+                        android:id="@+id/addData_EditText_fat"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/height_edit_text"
                         android:layout_weight="40"

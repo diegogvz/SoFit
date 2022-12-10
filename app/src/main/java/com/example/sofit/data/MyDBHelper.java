@@ -175,18 +175,21 @@ public class MyDBHelper extends SQLiteOpenHelper {
         values=new ContentValues();
         values.put(COL_PROGRESS_MUSCLE,30);
         values.put(COL_PROGRESS_WATER,20);
+        values.put(COL_PROGRESS_FAT,12);
         values.put(COL_PROGRESS_WEIGHT,80);
         values.put(COL_PROGRESS_USER,"Pepe");
         db.insert(TABLE_PROGRESS, null, values);
 
         values.put(COL_PROGRESS_MUSCLE,31);
         values.put(COL_PROGRESS_WATER,21);
+        values.put(COL_PROGRESS_FAT,13);
         values.put(COL_PROGRESS_WEIGHT,81);
         values.put(COL_PROGRESS_USER,"Pepe");
         db.insert(TABLE_PROGRESS, null, values);
 
         values.put(COL_PROGRESS_MUSCLE,32);
         values.put(COL_PROGRESS_WATER,23);
+        values.put(COL_PROGRESS_FAT,13);
         values.put(COL_PROGRESS_WEIGHT,84);
         values.put(COL_PROGRESS_USER,"Pepe");
         db.insert(TABLE_PROGRESS, null, values);

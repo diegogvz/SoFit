@@ -1,11 +1,19 @@
 package com.example.sofit.model;
 
 public class ModelProgress {
-    private float height;
     private float weight;
     private float water;
     private float muscle;
     private float fat;
+    private String user;
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public float getFat() {
         return fat;
@@ -39,11 +47,4 @@ public class ModelProgress {
         this.muscle = muscle;
     }
 
-    public float getHeight() {
-        return height;
-    }
-
-    public void setHeight(float height) {
-        this.height = height;
-    }
 }
