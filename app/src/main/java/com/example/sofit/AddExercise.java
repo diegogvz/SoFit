@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.sofit.data.ExerciseDataSource;
 import com.example.sofit.model.ModelExercise;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 public class AddExercise extends BaseActivity {
@@ -125,12 +126,24 @@ public class AddExercise extends BaseActivity {
     }
 
     private boolean validarCampos(){
-        if(R.id.TextEdit_series>0 && R.id.TextEdit_repetitions>0 && R.id.TextEdit_weight>0){
-            return true;
+        if(((EditText)findViewById(R.id.editTextExerciseTitle)).getText().toString().isEmpty()
+                || ((EditText)findViewById(R.id.TextEdit_weight)).getText().toString().isEmpty()
+                || ((EditText)findViewById(R.id.TextEdit_repetitions)).getText().toString().isEmpty()
+                || ((EditText)findViewById(R.id.TextEdit_series)).getText().toString().isEmpty()){
+            Snackbar.make(findViewById(R.id.tableLayout2),"Enter all the data",
+                    Snackbar.LENGTH_LONG).show();
+            return false;
         }
 
+        if(Integer.parseInt(((EditText)findViewById(R.id.TextEdit_weight)).getText().toString()) <= 0
+                || Integer.parseInt(((EditText)findViewById(R.id.TextEdit_repetitions)).getText().toString()) <= 0
+                || Integer.parseInt(((EditText)findViewById(R.id.TextEdit_series)).getText().toString()) <= 0){
+            Snackbar.make(findViewById(R.id.tableLayout2),"Numerical data must be greater than 0",
+                    Snackbar.LENGTH_LONG).show();
+            return false;
+        }
 
-        return false;
+        return true;
     }
 
     public void imageSelect() {
