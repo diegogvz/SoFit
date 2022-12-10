@@ -101,17 +101,25 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_EXERCISES =
             " create table " + TABLE_EXERCISES +
-                    "( " + COL_EXERCISES_NAME +
-                    " text primary key not null, " + COL_EXERCISES_IMG +
-                    " text not null, " + COL_EXERCISES_SESSION + " text not null" + ");";
+                    "( "
+                    + COL_EXERCISES_NAME + " text primary key not null, "
+                    + COL_EXERCISES_IMG + " text not null, "
+                    + COL_EXERCISES_SESSION + " text not null"
+                    + ");";
     private static final String CREATE_TABLE_SERIES =
             " create table " + TABLE_SERIES +
                     "( " + " ID integer primary key autoincrement not null, " +
                     COL_SERIES_WEIGHT + " real not null, " + COL_SERIES_EXERCISE + " text not null, " + COL_SERIES_REPS + " integer not null " + ");";
     private static final String CREATE_TABLE_PROGRESS =
             " create table " + TABLE_PROGRESS +
-                    "( " + " ID integer primary key autoincrement not null, " +
-                    COL_PROGRESS_WEIGHT + " text not null, " + COL_PROGRESS_FAT + " real not null, " + COL_PROGRESS_MUSCLE + " real not null, " + COL_PROGRESS_WATER + " real not null," + COL_PROGRESS_USER + " text not null" + ");";
+                    "( "
+                    + " ID integer primary key autoincrement not null, "
+                    + COL_PROGRESS_WEIGHT + " text not null, "
+                    + COL_PROGRESS_FAT + " real not null, "
+                    + COL_PROGRESS_MUSCLE + " real not null, "
+                    + COL_PROGRESS_WATER + " real not null,"
+                    + COL_PROGRESS_USER + " text not null"
+                    + ");";
 
 
     /**
@@ -160,6 +168,28 @@ public class MyDBHelper extends SQLiteOpenHelper {
         values.put(COL_USER_SEX, "Pepe");
         values.put(COL_USER_WEIGHT, 80);
         db.insert(TABLE_USER, null, values);
+
+        /**
+         * ---Progress---
+         */
+        values=new ContentValues();
+        values.put(COL_PROGRESS_MUSCLE,30);
+        values.put(COL_PROGRESS_WATER,20);
+        values.put(COL_PROGRESS_WEIGHT,80);
+        values.put(COL_PROGRESS_USER,"Pepe");
+        db.insert(TABLE_PROGRESS, null, values);
+
+        values.put(COL_PROGRESS_MUSCLE,31);
+        values.put(COL_PROGRESS_WATER,21);
+        values.put(COL_PROGRESS_WEIGHT,81);
+        values.put(COL_PROGRESS_USER,"Pepe");
+        db.insert(TABLE_PROGRESS, null, values);
+
+        values.put(COL_PROGRESS_MUSCLE,32);
+        values.put(COL_PROGRESS_WATER,23);
+        values.put(COL_PROGRESS_WEIGHT,84);
+        values.put(COL_PROGRESS_USER,"Pepe");
+        db.insert(TABLE_PROGRESS, null, values);
         /**
          * ----Rutinas----
          */
