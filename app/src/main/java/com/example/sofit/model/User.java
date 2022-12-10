@@ -36,7 +36,7 @@ public class User {
         this.name = name;
     }
 
-    public String isSex() {
+    public String getSex() {
         return sex;
     }
 
