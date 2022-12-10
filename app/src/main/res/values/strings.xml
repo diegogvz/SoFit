@@ -37,6 +37,7 @@
     <string name="EditText_add_data_age">20</string>
     <string name="EditText_add_data_sex">Masculine</string>
 
+    <string name="ImageButton_addImage">Select Image</string>
     <string name="Button_add_data_confirm">Confirm</string>
     <string name="Button_add_data_cancel">Cancel</string>
 
@@ -50,7 +51,7 @@
     <string name="cancel">cancel</string>
     <string name="confirm">confirm</string>
     <string name="add_new_session">add new session</string>
-
+    <string name="change_photo">change photo</string>
     <!-- _______________________________________________ -->
 
     <!-- _________________ PERFIL PRINCIPAL _________________ -->
@@ -82,8 +83,13 @@
     <!-- _________________ AÑADIR EJERCICIO _________________ -->
     <string name="repetitions">Repetitions</string>
     <string name="series">Series</string>
+    <string name="select_predefined">Select Predefined Exercise</string>
     <string name="whichSession">For which session?</string>
+    <!-- _______________________________________________ -->
 
+    <!-- _________________ SELECCIONAR EJERCICIO PREDEFINIDO _________________ -->
+    <string name="textView_select_predefined_exercise">Choose a predefined exercise: </string>
+    <string name="textView_select_body_part">Choose a body part: </string>
     <!-- _______________________________________________ -->
 
     <!-- _________________ MENU _________________ -->

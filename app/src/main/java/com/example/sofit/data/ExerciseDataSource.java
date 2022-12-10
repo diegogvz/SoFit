@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.sofit.model.Exercise;
+import com.example.sofit.model.ModelExercise;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class ExerciseDataSource extends DataSource{
         dbHelper = new MyDBHelper(context, null, null, 1);
     }
 
-    public long addExercise(Exercise exerciseToAdd, String idSession){
+    public long addExercise(ModelExercise exerciseToAdd, String idSession){
         ContentValues values =new ContentValues();
         values.put(MyDBHelper.COL_EXERCISES_NAME,exerciseToAdd.getName());
         values.put(MyDBHelper.COL_EXERCISES_IMG,exerciseToAdd.getImage());
@@ -36,8 +36,8 @@ public class ExerciseDataSource extends DataSource{
         return insertId;
     }
 
-    public List<Exercise> getExercisesForSession(String sessionId){
-        ArrayList<Exercise> exercises = new ArrayList<>();
+    public List<ModelExercise> getExercisesForSession(String sessionId){
+        ArrayList<ModelExercise> exercises = new ArrayList<>();
         String whereClause = "SESSION_ID = ?";
         String[] whereArgs = new String[] {
                 sessionId
@@ -47,7 +47,7 @@ public class ExerciseDataSource extends DataSource{
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            final Exercise exercise = new Exercise(cursor.getString(0), cursor.getString(1));
+            final ModelExercise exercise = new ModelExercise(cursor.getString(0), cursor.getString(1));
             exercises.add(exercise);
             cursor.moveToNext();
         }
@@ -55,22 +55,22 @@ public class ExerciseDataSource extends DataSource{
 
         return exercises;
     }
-    public List<Exercise> getAllExercises(){
-        ArrayList<Exercise> exercises = new ArrayList<>();
+    public List<ModelExercise> getAllExercises(){
+        ArrayList<ModelExercise> exercises = new ArrayList<>();
         Cursor cursor = database.query(MyDBHelper.TABLE_EXERCISES, null,
                 null, null, null, null, null);
 
         System.out.println(cursor.getCount());
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            Exercise exercise = new Exercise(cursor.getString(0), cursor.getString(1));
+            ModelExercise exercise = new ModelExercise(cursor.getString(0), cursor.getString(1));
             exercises.add(exercise);
             cursor.moveToNext();
         }
         cursor.close();
         return exercises;
     }
-    public void deleteExercise(Exercise exerciseToDelete) {
+    public void deleteExercise(ModelExercise exerciseToDelete) {
 
         // Insertamos la valoracion
         database.execSQL("DELETE FROM " + MyDBHelper.TABLE_EXERCISES + " WHERE name = '" + exerciseToDelete.getName()+"'");

@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,25 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.data.ExerciseDataSource;
-import com.example.sofit.model.Exercise;
-import com.example.sofit.remote.ApiUtils;
-import com.example.sofit.remote.ExerciseDBAPI;
-import com.example.sofit.server.ServerDataMapper;
-import com.example.sofit.server.exerciselist.ExerciseData;
+import com.example.sofit.model.ModelExercise;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class Session extends BaseActivity {
 
-    private List<Exercise> exercises;
+    private List<ModelExercise> exercises;
     private ExerciseDataSource exerciseDataSource;
-    private List<Exercise> exerciseList;
+    private List<ModelExercise> exerciseList;
     private RecyclerView exerciseRecycler;
     private String session;
 
@@ -73,7 +64,7 @@ public class Session extends BaseActivity {
         exerciseDataSource.close();
 
         //----Init the recycler----
-        exerciseRecycler = (RecyclerView) findViewById(R.id.recyclerView);
+        exerciseRecycler = (RecyclerView) findViewById(R.id.recycler_sessionExercises);
 
         //Set the layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -110,24 +101,24 @@ public class Session extends BaseActivity {
 
 
 
-    private void fillRecycler(List<Exercise> exercises) {
+    private void fillRecycler(List<ModelExercise> exercises) {
 
 
-        List<Exercise> exercisesButtons = new ArrayList<>();
-        for (Exercise ex : exercises) {
+        List<ModelExercise> exercisesButtons = new ArrayList<>();
+        for (ModelExercise ex : exercises) {
             exercisesButtons.add(ex);
         }
         ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons,
                 new ListaEjerciciosViewAdapter.OnItemClickListener() {
                     @Override
-                    public void onItemClick(Exercise item) {
+                    public void onItemClick(ModelExercise item) {
                         Intent i = new Intent(Session.this, com.example.sofit.Exercise.class);
                         i.putExtra("exerciseId", item);
                         startActivity(i);
                     }
                 },new ListaEjerciciosViewAdapter.DeleteListener() {
             @Override
-            public void deleteItem(Exercise item) {
+            public void deleteItem(ModelExercise item) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Session.this);
                 builder.setMessage("Do you want to delete this routine?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -149,41 +140,41 @@ public class Session extends BaseActivity {
 
     }
 
-    private void deleteExercise(Exercise item) {
+    private void deleteExercise(ModelExercise item) {
         ExerciseDataSource eds = new ExerciseDataSource(getApplicationContext());
         eds.open();
         eds.deleteExercise(item);
         eds.close();
     }
 
-    public void requestAllExercises(ExerciseDBAPI ExerciseDBAPIClient) {
-        //Create the call to the api
-        Call<List<ExerciseData>> call = ExerciseDBAPIClient.getListExercises(ApiUtils.API_KEY, ApiUtils.HOST);
-
-        // Wait asynchronously for it to end to fill the recycler
-        call.enqueue(new Callback<List<ExerciseData>>() {
-            @Override
-            public void onResponse(Call<List<ExerciseData>> call, Response<List<ExerciseData>> response) {
-                switch (response.code()) {
-                    case 200:
-                        //Get the mapped data as list (THE JSON IS A LIST [] WITH NO NAME)
-                        List<ExerciseData> data = response.body();
-                        //Convert the mapped data to domain
-                        List<Exercise> exercises = ServerDataMapper.convertExerciseDataToDomain(data);
-                        //Use the array to fill the session
-                        fillRecycler(exercises);
-                        break;
-                    default:
-                        call.cancel();
-                        break;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<ExerciseData>> call, Throwable t) {
-                Log.e("List - error", t.toString());
-            }
-        });
-    }
+//    public void requestAllExercises(ExerciseDBAPI ExerciseDBAPIClient) {
+//        //Create the call to the api
+//        Call<List<ExerciseData>> call = ExerciseDBAPIClient.getListExercises(ApiUtils.API_KEY, ApiUtils.HOST);
+//
+//        // Wait asynchronously for it to end to fill the recycler
+//        call.enqueue(new Callback<List<ExerciseData>>() {
+//            @Override
+//            public void onResponse(Call<List<ExerciseData>> call, Response<List<ExerciseData>> response) {
+//                switch (response.code()) {
+//                    case 200:
+//                        //Get the mapped data as list (THE JSON IS A LIST [] WITH NO NAME)
+//                        List<ExerciseData> data = response.body();
+//                        //Convert the mapped data to domain
+//                        List<ExerciseData> exercises = ServerDataMapper.convertExerciseDataToDomain(data);
+//                        //Use the array to fill the session
+//                        fillRecycler(exercises);
+//                        break;
+//                    default:
+//                        call.cancel();
+//                        break;
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<ExerciseData>> call, Throwable t) {
+//                Log.e("List - error", t.toString());
+//            }
+//        });
+//    }
 
 }
