@@ -19,22 +19,12 @@ public class EditProfile extends AppCompatActivity {
     String[] pesos;
     String[]alturas;
     String[]sexos;
-    private static final int PICK_IMAGE = 1;
-    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
         setTitle("Edit Profile");
-
-        Button btnPhoto = (Button) findViewById(R.id.button);
-        btnPhoto.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                openGallery();
-            }
-        });
 
         Button btnConfirm = (Button) findViewById(R.id.btn_editprofile_confirm);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
@@ -81,20 +71,6 @@ public class EditProfile extends AppCompatActivity {
         spSexos.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,sexos));
 
- }
-
-    @Override
-    protected void onActivityResult(int requestedCode, int resultCode, Intent data) {
-        super.onActivityResult(requestedCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestedCode == PICK_IMAGE) {
-            imageUri = data.getData();
-            ImageView photo = (ImageView) findViewById(R.id.imageView6);
-            photo.setImageURI(imageUri);
-        }
     }
 
-    private void openGallery(){
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery, PICK_IMAGE);
-    }
 }
