@@ -62,8 +62,8 @@
 
     <!-- _________________ EDITAR PERFIL _________________ -->
     <string name="age">Age</string>
-    <string name="weight">Weight</string>
-    <string name="height">Height</string>
+    <string name="weight">Weight (kg)</string>
+    <string name="height">Height (cm)</string>
     <string name="sex">Sex</string>
     <!-- _______________________________________________ -->
 
@@ -76,6 +76,7 @@
     <!-- _________________ INICIO SESION _________________ -->
     <string name="name">Name:</string>
     <string name="logIn">Log In</string>
+    <string name="logInHintName">John Doe</string>
 
     <!-- _______________________________________________ -->
 
