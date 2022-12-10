@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.example.sofit.model.Exercise;
+import com.example.sofit.model.ModelExercise;
 import com.example.sofit.model.Routine;
 
 import java.util.ArrayList;

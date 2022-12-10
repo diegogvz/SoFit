@@ -3,6 +3,7 @@ package com.example.sofit;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,7 +36,7 @@ public class MyRoutines extends BaseActivity {
 
         loadRoutines();
 
-        FloatingActionButton btnCrear = (FloatingActionButton) findViewById(R.id.btnCrearRutina);
+        Button btnCrear = (Button) findViewById(R.id.btnCrearRutia);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
 

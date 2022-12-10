@@ -63,7 +63,7 @@ public class Session extends BaseActivity {
         exerciseDataSource.close();
 
         //----Init the recycler----
-        exerciseRecycler = findViewById(R.id.recycler_predefinedExercises);
+        exerciseRecycler = findViewById(R.id.recycler_sessionExercises);
 
         //Set the layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

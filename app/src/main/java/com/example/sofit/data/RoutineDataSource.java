@@ -52,7 +52,7 @@ public class RoutineDataSource extends DataSource{
     public void deleteRoutine(Routine routineToDelete) {
 
         // Insertamos la valoracion
-        database.execSQL("DELETE FROM " + MyDBHelper.TABLE_ROUTINES + " WHERE name = '" + routineToDelete.getName()+"'");
+        database.execSQL("DELETE FROM " + MyDBHelper.TABLE_ROUTINES + " WHERE name = '" + routineToDelete.getNombre_rutina()+"'");
     }
 
     /**
