@@ -41,7 +41,7 @@ public class AddExercise extends BaseActivity {
         //Sacar los extras
         Bundle extras = getIntent().getExtras();
         predefinedExercise =(ModelExercise) extras.getParcelable("predefinedExercise");
-        session = extras.getString("sessionId");
+        session = extras.getString("idSession");
 
 
         Button predefinedExerciseButton = (Button) findViewById(R.id.button_select_predefined_exercise);
@@ -70,7 +70,9 @@ public class AddExercise extends BaseActivity {
         btnCancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(new Intent(AddExercise.this, Session.class));
+                Intent i = new Intent(AddExercise.this, Session.class);
+                i.putExtra("idSession", getIntent().getExtras().getString("idSession"));
+                startActivity(i);
             }
         });
 
@@ -114,11 +116,11 @@ public class AddExercise extends BaseActivity {
         ExerciseDataSource exerciseDataSource =
                 new ExerciseDataSource(getApplicationContext());
         exerciseDataSource.open();
-        exerciseDataSource.createExercise(exercise,getIntent().getExtras()
-                .getString("sessionId"));
+        String whichSession = getIntent().getExtras().getString("idSession");
+        exerciseDataSource.createExercise(exercise,whichSession);
         exerciseDataSource.close();
         Intent i = new Intent(AddExercise.this, Session.class);
-        //i.putExtra("idSession", getIntent().getExtras().getString("sessionId"));
+        i.putExtra("idSession", getIntent().getExtras().getString("idSession"));
         startActivity(i);
     }
 
