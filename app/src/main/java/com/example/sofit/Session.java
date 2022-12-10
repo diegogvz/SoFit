@@ -2,11 +2,8 @@ package com.example.sofit;
 
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,26 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.data.ExerciseDataSource;
 import com.example.sofit.model.ModelExercise;
-import com.example.sofit.data.RoutineDataSource;
-import com.example.sofit.model.ModelExercise;
-import com.example.sofit.remote.ApiUtils;
-import com.example.sofit.remote.ExerciseDBAPI;
-import com.example.sofit.server.ServerDataMapper;
-import com.example.sofit.server.exerciselist.ExerciseData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Session extends BaseActivity {
 
     private List<ModelExercise> exercises;
     private ExerciseDataSource exerciseDataSource;
-    private List<ModelExercise> exerciseList;
     private RecyclerView exerciseRecycler;
     private String session;
 
@@ -52,9 +37,6 @@ public class Session extends BaseActivity {
         }
         setTitle(session + " Session");
 
-        //Get the exercises from database
-        loadExercises();
-
 
         //Drawer
         createDrawer(this);
@@ -64,15 +46,12 @@ public class Session extends BaseActivity {
         exerciseDataSource = new ExerciseDataSource(getApplicationContext());
 
 
-        //Get data from the database
-        exerciseDataSource.open();
-        exercises = exerciseDataSource.getExercisesForSession(session);
-        exerciseDataSource.close();
+        //Get the exercises from database
+        loadExercises();
 
-        //----Init the recycler----
-        exerciseRecycler = findViewById(R.id.recycler_sessionExercises);
+
         //Get the recycler
-        exerciseRecycler = findViewById(R.id.recycler_predefinedExercises);
+        exerciseRecycler = findViewById(R.id.recycler_sessionExercises);
 
         //Set the layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -84,7 +63,7 @@ public class Session extends BaseActivity {
 
         //--------------------------
 
-        //Get data from database and fill the exercise recycler
+        //Fill the exercise recycler
         fillRecycler();
 
 
@@ -95,41 +74,27 @@ public class Session extends BaseActivity {
 
     private void createEventAddExercise() {
         FloatingActionButton b = (FloatingActionButton) findViewById(R.id.btn_session_addExercise);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(Session.this, AddExercise.class);
-                i.putExtra("idSession", session);
-                startActivity(i);
-            }
+        b.setOnClickListener(view -> {
+            Intent i = new Intent(Session.this, AddExercise.class);
+            i.putExtra("idSession", session);
+            startActivity(i);
         });
     }
 
 
-    private void fillRecycler(List<com.example.sofit.model.ModelExercise> exercises) {
+    private void fillRecycler() {
 
-
-        List<ModelExercise> exercisesButtons = new ArrayList<>();
-        for (ModelExercise ex : exercises) {
-            exercisesButtons.add(ex);
-        }
-        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons,
-                (ListaEjerciciosViewAdapter.OnItemClickListener) item -> {
-                    Intent i = new Intent(Session.this, ModelExercise.class);
-                    i.putExtra("exerciseId", item);
-                    startActivity(i);
-                }, (ListaEjerciciosViewAdapter.DeleteListener) item -> {
+        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercises, (ListaEjerciciosViewAdapter.OnItemClickListener) item -> {
+            Intent i = new Intent(Session.this, ModelExercise.class);
+            i.putExtra("exerciseId", item);
+            startActivity(i);
+        }, (ListaEjerciciosViewAdapter.DeleteListener) item -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(Session.this);
-            builder.setMessage("Do you want to delete this routine?").setPositiveButton("Yes",
-                    (dialog, which) -> {
-                        deleteExercise(item);
-                        startActivity(new Intent(Session.this, Session.class));
-                    }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
+            builder.setMessage("Do you want to delete this routine?").setPositiveButton("Yes", (dialog, which) -> {
+                deleteExercise(item);
+                startActivity(new Intent(Session.this, Session.class));
+            }).setNegativeButton("NO", (dialog, which) -> {
+                //Nothing
             }).show();
         });
 
@@ -143,13 +108,13 @@ public class Session extends BaseActivity {
         routineDataSource.open();
         exercises = routineDataSource.getExercisesForSession(session);
         routineDataSource.close();
-        private void deleteExercise (ModelExercise item){
-            ExerciseDataSource eds = new ExerciseDataSource(getApplicationContext());
-            eds.open();
-            eds.deleteSession(item);
-            eds.close();
-        }
 
+    }
 
+    private void deleteExercise(ModelExercise item) {
+        ExerciseDataSource eds = new ExerciseDataSource(getApplicationContext());
+        eds.open();
+        eds.deleteSession(item);
+        eds.close();
     }
 }

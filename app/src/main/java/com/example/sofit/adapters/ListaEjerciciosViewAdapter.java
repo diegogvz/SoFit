@@ -1,5 +1,6 @@
 package com.example.sofit.adapters;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -26,17 +27,20 @@ public class ListaEjerciciosViewAdapter extends RecyclerView.Adapter<ListaEjerci
     @NonNull
     @Override
     public ListaEjerciciosViewAdapter.EjercicioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.line_recycler_exercise, parent, false);
+        return new ListaEjerciciosViewAdapter.EjercicioViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListaEjerciciosViewAdapter.EjercicioViewHolder holder, int position) {
-
+        ModelExercise ej = ejercicios.get(position);
+        holder.bindUser(ej, clickListener,deleteListener);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return ejercicios.size();
     }
 
     public interface DeleteListener {
@@ -57,7 +61,7 @@ public class ListaEjerciciosViewAdapter extends RecyclerView.Adapter<ListaEjerci
             ejercicioTextView = (TextView) itemView.findViewById(R.id.ejercicio);
         }
 
-        public void bindUser(final ModelExercise ejercicio, final ListaEjerciciosPredefinidosAdapter.OnItemClickListener listener) {
+        public void bindUser(final ModelExercise ejercicio, final ListaEjerciciosViewAdapter.OnItemClickListener listener, final ListaEjerciciosViewAdapter.DeleteListener deleteListener) {
 
             ejercicioTextView.setText(ejercicio.getName());
 
