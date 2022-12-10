@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 
 public class ApiUtils {
     public static String BASE_URL="https://exercisedb.p.rapidapi.com/";
-    public static String API_KEY = "1f4acb0541msh6b1318bd54e47cep1d3c29jsncfa976a645b5";
+    public static String API_KEY = "44e657a162msh0a2dcf988fc87bdp19730ajsnff0e8fe1be04";
     public static String HOST = "exercisedb.p.rapidapi.com";
 
     public static ExerciseDBAPI createExerciseDBAPI() {

@@ -12,7 +12,7 @@ import java.util.List;
 public class SessionDataSource extends DataSource{
     private final String[] allColumns =
             {MyDBHelper.COL_SESSIONS_NAME,
-                    MyDBHelper.COL_EXERCISES_NAME
+                    MyDBHelper.COL_EXERCISES_NAME, MyDBHelper.COL_SESSIONS_IMG
             };
     /**
      * Constructor.
@@ -28,6 +28,7 @@ public class SessionDataSource extends DataSource{
         ContentValues values =new ContentValues();
         values.put(MyDBHelper.COL_SESSIONS_NAME,session.getName());
         values.put(MyDBHelper.COL_SESSIONS_ROUTINE,session.getRoutine());
+        values.put(MyDBHelper.COL_SESSIONS_IMG, session.getImage());
         open();
         long insertId = database.insert(MyDBHelper.TABLE_SESSIONS,null,values);
         close();
@@ -51,6 +52,7 @@ public class SessionDataSource extends DataSource{
 
             session.setName(cursor.getString(0));
             session.setRoutine(cursor.getString(1));
+            session.setImage(cursor.getString(2));
 
             sessionsList.add(session);
             cursor.moveToNext();
@@ -75,6 +77,7 @@ public class SessionDataSource extends DataSource{
 
             session.setName(cursor.getString(0));
             session.setRoutine(cursor.getString(1));
+            session.setImage(cursor.getString(2));
 
             sessionsList.add(session);
             cursor.moveToNext();

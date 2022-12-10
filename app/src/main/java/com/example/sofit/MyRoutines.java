@@ -1,10 +1,9 @@
 package com.example.sofit;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.Button;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,68 +27,62 @@ public class MyRoutines extends BaseActivity {
 
         setTitle("My Routines");
         createDrawer(this);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        chargeRoutines();
+        loadRoutines();
 
-        listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
-        listRutinasView.setHasFixedSize(true);
-
+        Button btnCrear = (Button) findViewById(R.id.btnCrearRutia);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
+
+
+        listRutinasView.setHasFixedSize(true);
         listRutinasView.setLayoutManager(layoutManager);
 
-        ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas, new ListRutinasViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Routine rutina) {
-                clickonItem(rutina);
-            }
-        },new ListRutinasViewAdapter.DeleteListener() {
-            @Override
-            public void deleteRoutine(Routine rutina) {
-                deleteItem(rutina);
-            }
-        } );
+        ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas,
+                rutina -> clickOnItem(rutina),
+                rutina -> deleteItem(rutina)
+        );
+
         listRutinasView.setAdapter(lpAdapter);
 
-        FloatingActionButton btnCrear = (FloatingActionButton) findViewById(R.id.btnCrearRutina);
-        btnCrear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyRoutines.this, CreateRoutine.class));
-            }
-        });
+        btnCrear.setOnClickListener(
+                view -> startActivity(new Intent(MyRoutines.this, CreateRoutine.class))
+        );
+
+        btnCrear.setOnClickListener(
+                view -> startActivity(new Intent(MyRoutines.this, CreateRoutine.class))
+        );
     }
 
-    private void chargeRoutines(){
+    private void loadRoutines() {
         RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
         routineDataSource.open();
-        rutinas = routineDataSource.getAllRoutines();
+        rutinas = routineDataSource.getAllValorations();
         routineDataSource.close();
     }
 
-    public void clickonItem(Routine rutina){
+    public void clickOnItem(Routine rutina) {
         Intent i = new Intent(MyRoutines.this, MyCurrentRoutine.class);
-        i.putExtra("routine", rutina.getName());
+        i.putExtra("routine", rutina.getNombre_rutina());
         startActivity(i);
     }
-    public void deleteItem(Routine rutina){
-        AlertDialog.Builder builder = new AlertDialog.Builder(MyRoutines.this);
-        builder.setMessage("Do you want to delete this routine?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                deleteRoutineFromDataBase(rutina);
-                startActivity(new Intent(MyRoutines.this,MyRoutines.class));
-            }
-        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
 
-            }
-        }).show();
+    public void deleteItem(Routine rutina) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MyRoutines.this);
+        builder.setMessage("Do you want to delete this routine?").setPositiveButton("Yes",
+                (dialog, which) -> {
+                    deleteRoutineFromDataBase(rutina);
+                    startActivity(new Intent(MyRoutines.this, MyRoutines.class));
+                }).setNegativeButton("NO",
+                (dialog, which) -> {
+                    //Nothing
+                }).show();
     }
 
     private void deleteRoutineFromDataBase(Routine rutina) {
