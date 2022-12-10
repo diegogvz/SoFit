@@ -95,12 +95,12 @@ public class MyDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_USER = "create table "
             + TABLE_USER
             + "( " +
-            COL_USER_NAME + " text not null, " +
-            COL_USER_HEIGHT + " integer not null, " +
-            COL_USER_WEIGHT + " integer not null, " +
-            COL_USER_AGE + " integer not null, " +
-            COL_USER_SEX + " text not null, " +
-            COL_USER_IMG + " text not null " +
+            COL_USER_NAME + " text, " +
+            COL_USER_HEIGHT + " integer, " +
+            COL_USER_WEIGHT + " integer, " +
+            COL_USER_AGE + " integer, " +
+            COL_USER_SEX + " text, " +
+            COL_USER_IMG + " text " +
             ");";
 
     private static final String CREATE_TABLE_ROUTINE = " create table "
