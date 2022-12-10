@@ -1,4 +1,3 @@
-
 package com.example.sofit.server.exerciselist;
 
 import com.google.gson.annotations.Expose;
@@ -21,6 +20,9 @@ public class ExerciseData {
     @SerializedName("target")
     @Expose
     private String target;
+    @SerializedName("id")
+    @Expose
+    private String id;
 
     public String getBodyPart() {
         return bodyPart;
@@ -60,5 +62,13 @@ public class ExerciseData {
 
     public void setTarget(String target) {
         this.target = target;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
