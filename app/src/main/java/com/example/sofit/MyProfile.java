@@ -12,9 +12,15 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.example.sofit.data.UserDataSource;
+import com.example.sofit.model.User;
+
+import java.util.ArrayList;
 
 public class MyProfile extends BaseActivity {
 
@@ -29,6 +35,18 @@ public class MyProfile extends BaseActivity {
 
         setTitle("My Profile");
         createDrawer(this);
+
+        UserDataSource uds = new UserDataSource(getApplicationContext());
+        uds.open();
+        ArrayList<User> user = uds.getAllUsers();
+        uds.close();
+
+        TextView sex = findViewById(R.id.textView_sex_data);
+        sex.setText(user.get(0).isSex());
+        TextView weight = findViewById(R.id.textView_weight_data);
+        weight.setText(String.valueOf(user.get(0).getWeight()));
+        TextView height = findViewById(R.id.textView_height_data);
+        height.setText(String.valueOf(user.get(0).getHeight()));
 
         Button b = (Button)findViewById(R.id.button_actualizar_datos);
         b.setOnClickListener(new View.OnClickListener() {

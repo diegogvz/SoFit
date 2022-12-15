@@ -27,8 +27,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public static final String TABLE_USER = "user";
 
     public static final String COL_USER_NAME = "name";
-    public static final String COL_USER_EMAIL = "email";
-    public static final String COL_USER_PASS = "password";
     public static final String COL_USER_HEIGHT = "height";
     public static final String COL_USER_WEIGHT = "weight";
     public static final String COL_USER_AGE = "age";

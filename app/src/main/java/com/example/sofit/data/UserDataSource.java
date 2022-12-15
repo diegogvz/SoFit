@@ -12,8 +12,8 @@ public class UserDataSource extends DataSource{
     /**
      * Columnas de la tabla
      */
-    private final String[] allColumns = {MyDBHelper.COL_USER_NAME, MyDBHelper.COL_USER_AGE,
-    MyDBHelper.COL_USER_HEIGHT, MyDBHelper.COL_PROGRESS_WEIGHT, MyDBHelper.COL_USER_SEX, MyDBHelper.COL_USER_IMG};
+    private final String[] allColumns = {MyDBHelper.COL_USER_NAME, MyDBHelper.COL_USER_HEIGHT,
+    MyDBHelper.COL_USER_WEIGHT, MyDBHelper.COL_USER_AGE, MyDBHelper.COL_USER_SEX, MyDBHelper.COL_USER_IMG};
 
     /**
      * Constructor.
@@ -36,9 +36,9 @@ public class UserDataSource extends DataSource{
         ContentValues values = new ContentValues();
 
         values.put(MyDBHelper.COL_USER_NAME, userToInsert.getName());
-        values.put(MyDBHelper.COL_USER_AGE, userToInsert.getAge());
         values.put(MyDBHelper.COL_USER_HEIGHT, userToInsert.getHeight());
         values.put(MyDBHelper.COL_USER_WEIGHT, userToInsert.getWeight());
+        values.put(MyDBHelper.COL_USER_AGE, userToInsert.getAge());
         values.put(MyDBHelper.COL_USER_SEX, userToInsert.isSex());
         values.put(MyDBHelper.COL_USER_IMG, userToInsert.getImage());
 
@@ -67,10 +67,10 @@ public class UserDataSource extends DataSource{
         while (!cursor.isAfterLast()) {
             final User user = new User();
             user.setName(cursor.getString(0));
-            user.setSex(cursor.getString(1));
-            user.setAge(cursor.getInt(2));
+            user.setHeight(cursor.getInt(2));
             user.setWeight(cursor.getInt(3));
-            user.setHeight(cursor.getInt(4));
+            user.setAge(cursor.getInt(1));
+            user.setSex(cursor.getString(4));
             user.setImage(cursor.getString(5));
 
             userList.add(user);

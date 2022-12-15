@@ -14,6 +14,9 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sofit.data.UserDataSource;
+import com.example.sofit.model.User;
+
 public class EditProfile extends AppCompatActivity {
     String[] edades;
     String[] pesos;
@@ -30,6 +33,7 @@ public class EditProfile extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 startActivity(new Intent(EditProfile.this, MyProfile.class));
             }
         });
@@ -72,5 +76,4 @@ public class EditProfile extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item,sexos));
 
     }
-
 }
