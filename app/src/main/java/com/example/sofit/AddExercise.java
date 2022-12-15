@@ -8,26 +8,21 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.sofit.data.ExerciseDataSource;
-import com.example.sofit.model.Exercise;
 import com.example.sofit.model.ModelExercise;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 public class AddExercise extends BaseActivity {
-
     private ModelExercise predefinedExercise;
     private String session;
     private EditText editTextExerciseTitle;
@@ -39,15 +34,16 @@ public class AddExercise extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //createDrawer(this);
         setContentView(R.layout.activity_add_exercise);
-
+        createDrawer(this);
         setTitle("Add Exercise");
+
 
         //Sacar los extras
         Bundle extras = getIntent().getExtras();
         predefinedExercise =(ModelExercise) extras.getParcelable("predefinedExercise");
-        session = extras.getString("sessionId");
+        session = extras.getString("idSession");
+
 
         Button predefinedExerciseButton = (Button) findViewById(R.id.button_select_predefined_exercise);
         //Comprobar si proviene de select predefied exercises
@@ -75,7 +71,9 @@ public class AddExercise extends BaseActivity {
         btnCancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(new Intent(AddExercise.this, Session.class));
+                Intent i = new Intent(AddExercise.this, Session.class);
+                i.putExtra("idSession", getIntent().getExtras().getString("idSession"));
+                startActivity(i);
             }
         });
 
@@ -112,24 +110,40 @@ public class AddExercise extends BaseActivity {
 
 
     private void clickOnItem(){
-        Exercise exercise = new Exercise();
-        exercise.setName(String.valueOf(R.id.editTextExerciseTitle));
-        //exercise.setImage(String.valueOf(R.id.imageView2));ser
+        ModelExercise exercise = new ModelExercise();
+
+        exercise.setName(String.valueOf(((EditText)findViewById(R.id.editTextExerciseTitle)).getText()));
+        exercise.setImage(String.valueOf(R.id.imageView2));
         ExerciseDataSource exerciseDataSource =
                 new ExerciseDataSource(getApplicationContext());
         exerciseDataSource.open();
-        exerciseDataSource.createExercise(exercise);
+        String whichSession = getIntent().getExtras().getString("idSession");
+        exerciseDataSource.createExercise(exercise,whichSession);
         exerciseDataSource.close();
-        startActivity(new Intent(AddExercise.this, Session.class));
+        Intent i = new Intent(AddExercise.this, Session.class);
+        i.putExtra("idSession", getIntent().getExtras().getString("idSession"));
+        startActivity(i);
     }
 
     private boolean validarCampos(){
-        if(R.id.TextEdit_series>0 && R.id.TextEdit_repetitions>0 && R.id.TextEdit_weight>0){
-            return true;
+        if(((EditText)findViewById(R.id.editTextExerciseTitle)).getText().toString().isEmpty()
+                || ((EditText)findViewById(R.id.TextEdit_weight)).getText().toString().isEmpty()
+                || ((EditText)findViewById(R.id.TextEdit_repetitions)).getText().toString().isEmpty()
+                || ((EditText)findViewById(R.id.TextEdit_series)).getText().toString().isEmpty()){
+            Snackbar.make(findViewById(R.id.tableLayout2),"Enter all the data",
+                    Snackbar.LENGTH_LONG).show();
+            return false;
         }
 
+        if(Integer.parseInt(((EditText)findViewById(R.id.TextEdit_weight)).getText().toString()) <= 0
+                || Integer.parseInt(((EditText)findViewById(R.id.TextEdit_repetitions)).getText().toString()) <= 0
+                || Integer.parseInt(((EditText)findViewById(R.id.TextEdit_series)).getText().toString()) <= 0){
+            Snackbar.make(findViewById(R.id.tableLayout2),"Numerical data must be greater than 0",
+                    Snackbar.LENGTH_LONG).show();
+            return false;
+        }
 
-        return false;
+        return true;
     }
 
     public void imageSelect() {

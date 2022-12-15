@@ -14,57 +14,74 @@ import com.example.sofit.model.ModelExercise;
 
 import java.util.List;
 
-public class ListaEjerciciosViewAdapter extends RecyclerView.Adapter<ListaEjerciciosViewAdapter.EjercicioViewHolder> {
-    private final ListaEjerciciosViewAdapter.OnItemClickListener clickListener;
-    private final ListaEjerciciosViewAdapter.DeleteListener deleteListener = null;
-    private final List<String> ejercicios;
-    public ListaEjerciciosViewAdapter(List<String> ejercicios, OnItemClickListener clickListener) {
-        this.ejercicios = ejercicios;
-        this.clickListener = clickListener;
+public class ListaEjerciciosViewAdapter extends RecyclerView.Adapter<ListaEjerciciosViewAdapter.ExerciseViewHolder> {
+    public interface OnItemClickListener {
+        void onItemClick(ModelExercise item);
+    }
+    public interface DeleteListener {
+        void deleteItem(ModelExercise ex);
+    }
+    private List<ModelExercise> exercises;
+    private final ListaEjerciciosViewAdapter.OnItemClickListener listener;
+    private final ListaEjerciciosViewAdapter.DeleteListener deleteListener;
+
+    public ListaEjerciciosViewAdapter(List<ModelExercise> listExercises, ListaEjerciciosViewAdapter.OnItemClickListener listener,
+                                      ListaEjerciciosViewAdapter.DeleteListener deleteListener) {
+        this.exercises = listExercises;
+        this.listener = listener;
+        this.deleteListener=deleteListener;
     }
 
     @NonNull
     @Override
-    public ListaEjerciciosViewAdapter.EjercicioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListaEjerciciosViewAdapter.ExerciseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.line_recycler_exercise, parent, false);
-        return new ListaEjerciciosViewAdapter.EjercicioViewHolder(itemView);
+        return new ExerciseViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListaEjerciciosViewAdapter.EjercicioViewHolder holder, int position) {
-        String ej = ejercicios.get(position);
-        holder.bindUser(ej, clickListener,deleteListener);
+    public void onBindViewHolder(@NonNull ExerciseViewHolder holder, int position) {
+        ModelExercise ex = exercises.get(position);
+        holder.bindUser(ex, listener, deleteListener);
+
     }
 
     @Override
     public int getItemCount() {
-        return ejercicios.size();
+        return exercises.size();
     }
 
-    public interface DeleteListener {
-        void deleteItem(ModelExercise item);
-    }
 
-    public interface OnItemClickListener {
-        void onItemClick(String item);
-    }
+    protected class ExerciseViewHolder extends RecyclerView.ViewHolder {
 
-    protected class EjercicioViewHolder extends RecyclerView.ViewHolder {
-
-        private final TextView ejercicioTextView;
+        private TextView exerciseTextView;
         private ImageButton imgbtn;
 
-        public EjercicioViewHolder(@NonNull View itemView) {
+        public ExerciseViewHolder(@NonNull View itemView) {
             super(itemView);
-            ejercicioTextView = (TextView) itemView.findViewById(R.id.ejercicio);
+            exerciseTextView=(TextView)itemView.findViewById(R.id.ejercicio);
+            imgbtn = (ImageButton) itemView.findViewById(R.id.imageButton3);
         }
 
-        public void bindUser(final String ejercicio, final ListaEjerciciosViewAdapter.OnItemClickListener listener, final ListaEjerciciosViewAdapter.DeleteListener deleteListener) {
+        public void bindUser(final ModelExercise ex, final OnItemClickListener listener,
+                             final DeleteListener deleteListener) {
 
-            ejercicioTextView.setText(ejercicio);
+            exerciseTextView.setText(ex.getName());
 
-            itemView.setOnClickListener(v -> listener.onItemClick(ejercicio));
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(ex);
+                }
+            });
+            imgbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteListener.deleteItem(ex);
+                }
+            });
+
         }
 
     }

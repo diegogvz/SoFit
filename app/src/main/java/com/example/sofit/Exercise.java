@@ -4,11 +4,7 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sofit.adapters.ListaSerieViewAdapter;
 import com.example.sofit.data.SeriesDataSource;
-import com.example.sofit.model.Serie;
-
-import java.util.List;
 
 public class Exercise extends BaseActivity {
     SeriesDataSource seriesDataSource;
@@ -32,12 +28,12 @@ public class Exercise extends BaseActivity {
         createDrawer(this);
         seriesRecycler = findViewById(R.id.seriesRecycler);
 
-        seriesDataSource.open();
-        List<Serie> series = seriesDataSource.getSeriesForExercise(exercise);
-        seriesDataSource.close();
-
-        ListaSerieViewAdapter listaSerieViewAdapter = new ListaSerieViewAdapter(series);
-        seriesRecycler.setAdapter(listaSerieViewAdapter);
+//        seriesDataSource.open();
+//        List<Serie> series = seriesDataSource.getSeriesForExercise(exercise);
+//        seriesDataSource.close();
+//
+//        ListaSerieViewAdapter listaSerieViewAdapter = new ListaSerieViewAdapter(series);
+//        seriesRecycler.setAdapter(listaSerieViewAdapter);
     }
 
 }

@@ -1,10 +1,11 @@
 package com.example.sofit;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
+import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,24 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.data.ExerciseDataSource;
 import com.example.sofit.model.ModelExercise;
-import com.example.sofit.model.Exercise;
-import com.example.sofit.remote.ApiUtils;
-import com.example.sofit.remote.ExerciseDBAPI;
-import com.example.sofit.server.ServerDataMapper;
-import com.example.sofit.server.exerciselist.ExerciseData;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class Session extends BaseActivity {
 
-    private List<Exercise> exercises;
+    private List<ModelExercise> exercises;
     private ExerciseDataSource exerciseDataSource;
-    private List<Exercise> exerciseList;
+    private List<ModelExercise> exerciseList;
     private RecyclerView exerciseRecycler;
     private String session;
 
@@ -38,6 +31,13 @@ public class Session extends BaseActivity {
         super.onCreate(savedInstanceState);
         //Initialization
         setContentView(R.layout.activity_session);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         exerciseList = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
 
@@ -59,11 +59,12 @@ public class Session extends BaseActivity {
 
         //Get data from the database
         exerciseDataSource.open();
-        exercises = exerciseDataSource.getExercisesForSession(session);
+        exercises = exerciseDataSource
+                .getExercisesForSession(session);
         exerciseDataSource.close();
 
         //----Init the recycler----
-        exerciseRecycler = findViewById(R.id.recycler_sessionExercises);
+        exerciseRecycler = (RecyclerView) findViewById(R.id.recycler_sessionExercises);
 
         //Set the layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -73,71 +74,107 @@ public class Session extends BaseActivity {
         //Recyclers that get items added or removed frequently
         exerciseRecycler.setHasFixedSize(true);
 
+        fillRecycler(exercises);
+
         //--------------------------
 
         //Get data from API and fill the recycler
-        requestAllExercises(ApiUtils.createExerciseDBAPI());
+        //requestAllExercises(ApiUtils.createThemoviedbApi());
 
 
         //Create the event for the button to add new exercise
         createEventAddExercise();
-
     }
 
-    private void createEventAddExercise() {
-        Button b = findViewById(R.id.btn_session_addExercise);
-        b.setOnClickListener(view -> {
-            Intent i = new Intent(Session.this, AddExercise.class);
-            i.putExtra("idSession", session);
-            startActivity(i);
+    private void createEventAddExercise(){
+        FloatingActionButton b = (FloatingActionButton) findViewById(R.id.btn_session_addExercise);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(Session.this, AddExercise.class);
+                i.putExtra("idSession", session);
+                startActivity(i);
+            }
         });
     }
 
 
-    private void fillRecycler(List<com.example.sofit.model.ModelExercise> exercises) {
+
+    private void fillRecycler(List<ModelExercise> exercises) {
 
 
-        List<String> exercisesButtons = new ArrayList<>();
-        for (com.example.sofit.model.ModelExercise ex : exercises) {
-            exercisesButtons.add(ex.getName());
+        List<ModelExercise> exercisesButtons = new ArrayList<>();
+        for (ModelExercise ex : exercises) {
+            exercisesButtons.add(ex);
         }
-        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons, item -> {
-            Intent i = new Intent(Session.this, Exercise.class);
-            i.putExtra("exerciseId", item);
-            startActivity(i);
+        ListaEjerciciosViewAdapter lpAdapter = new ListaEjerciciosViewAdapter(exercisesButtons,
+                new ListaEjerciciosViewAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(ModelExercise item) {
+                        Intent i = new Intent(Session.this, com.example.sofit.Exercise.class);
+                        i.putExtra("exerciseId", item);
+                        startActivity(i);
+                    }
+                },new ListaEjerciciosViewAdapter.DeleteListener() {
+            @Override
+            public void deleteItem(ModelExercise item) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Session.this);
+                builder.setMessage("Do you want to delete this routine?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteExercise(item);
+                        startActivity(new Intent(Session.this, Session.class));
+                    }
+                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+            }
         });
 
         exerciseRecycler.setAdapter(lpAdapter);
+
+
     }
 
-    public void requestAllExercises(ExerciseDBAPI ExerciseDBAPIClient) {
-        //Create the call to the api
-        Call<List<ExerciseData>> call = ExerciseDBAPIClient.getListExercises(ApiUtils.API_KEY, ApiUtils.HOST);
-
-        // Wait asynchronously for it to end to fill the recycler
-        call.enqueue(new Callback<List<ExerciseData>>() {
-            @Override
-            public void onResponse(Call<List<ExerciseData>> call, Response<List<ExerciseData>> response) {
-                switch (response.code()) {
-                    case 200:
-                        //Get the mapped data as list (THE JSON IS A LIST [] WITH NO NAME)
-                        List<ExerciseData> data = response.body();
-                        //Convert the mapped data to domain
-                        List<ModelExercise> exercises = ServerDataMapper.convertExerciseDataListToDomain(data);
-                        //Use the array to fill the session
-                        fillRecycler(exercises);
-                        break;
-                    default:
-                        call.cancel();
-                        break;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<ExerciseData>> call, Throwable t) {
-                Log.e("List - error", t.toString());
-            }
-        });
+    private void deleteExercise(ModelExercise item) {
+        ExerciseDataSource eds = new ExerciseDataSource(getApplicationContext());
+        eds.open();
+        eds.deleteExercise(item);
+        eds.close();
     }
+
+//    public void requestAllExercises(ExerciseDBAPI ExerciseDBAPIClient) {
+//        //Create the call to the api
+//        Call<List<ExerciseData>> call = ExerciseDBAPIClient.getListExercises(ApiUtils.API_KEY, ApiUtils.HOST);
+//
+//        // Wait asynchronously for it to end to fill the recycler
+//        call.enqueue(new Callback<List<ExerciseData>>() {
+//            @Override
+//            public void onResponse(Call<List<ExerciseData>> call, Response<List<ExerciseData>> response) {
+//                switch (response.code()) {
+//                    case 200:
+//                        //Get the mapped data as list (THE JSON IS A LIST [] WITH NO NAME)
+//                        List<ExerciseData> data = response.body();
+//                        //Convert the mapped data to domain
+//                        List<ExerciseData> exercises = ServerDataMapper.convertExerciseDataToDomain(data);
+//                        //Use the array to fill the session
+//                        fillRecycler(exercises);
+//                        break;
+//                    default:
+//                        call.cancel();
+//                        break;
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<ExerciseData>> call, Throwable t) {
+//                Log.e("List - error", t.toString());
+//            }
+//        });
+//    }
 
 }
