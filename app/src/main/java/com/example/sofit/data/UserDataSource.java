@@ -87,9 +87,9 @@ public class UserDataSource extends DataSource{
     public void updateData(String name, int Height, int Weight, int Age, String sex){
         ContentValues values = new ContentValues();
 
-        values.put(MyDBHelper.COL_USER_HEIGHT, Height);
-        values.put(MyDBHelper.COL_USER_WEIGHT, Weight);
-        values.put(MyDBHelper.COL_USER_AGE, Age);
+        values.put(MyDBHelper.COL_USER_HEIGHT, Age);
+        values.put(MyDBHelper.COL_USER_WEIGHT, Height);
+        values.put(MyDBHelper.COL_USER_AGE, Weight);
         values.put(MyDBHelper.COL_USER_SEX, sex);
 
         database.update(MyDBHelper.TABLE_USER, values, "NAME = ?", new String[]{name});
