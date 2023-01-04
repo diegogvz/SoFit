@@ -157,7 +157,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public MyDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory,
                       int version) {
-        super(context, DATABASE_NAME, null, version);
+        super(context, DATABASE_NAME, null, 5);
     }
 
     @Override
@@ -183,13 +183,13 @@ public class MyDBHelper extends SQLiteOpenHelper {
         /**
          * ---Usuario---
          */
-//        values = new ContentValues();
-//        values.put(COL_USER_NAME, "Pepe");
-//        values.put(COL_USER_AGE, 21);
-//        values.put(COL_USER_HEIGHT, 187);
-//        values.put(COL_USER_SEX, "Pepe");
-//        values.put(COL_USER_WEIGHT, 80);
-//        db.insert(TABLE_USER, null, values);
+        values = new ContentValues();
+        values.put(COL_USER_NAME, "Pepe");
+        values.put(COL_USER_AGE, 21);
+        values.put(COL_USER_HEIGHT, 187);
+        values.put(COL_USER_SEX, "Pepe");
+        values.put(COL_USER_WEIGHT, 80);
+        db.insert(TABLE_USER, null, values);
         /**
          * ----Rutinas----
          */
