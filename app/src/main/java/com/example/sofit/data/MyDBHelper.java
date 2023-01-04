@@ -157,7 +157,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public MyDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory,
                       int version) {
-        super(context, DATABASE_NAME, null, version);
+        super(context, DATABASE_NAME, null, 5);
     }
 
     @Override
