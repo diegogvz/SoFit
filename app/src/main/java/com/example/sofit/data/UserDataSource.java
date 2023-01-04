@@ -39,7 +39,7 @@ public class UserDataSource extends DataSource{
         values.put(MyDBHelper.COL_USER_HEIGHT, userToInsert.getHeight());
         values.put(MyDBHelper.COL_USER_WEIGHT, userToInsert.getWeight());
         values.put(MyDBHelper.COL_USER_AGE, userToInsert.getAge());
-        values.put(MyDBHelper.COL_USER_SEX, userToInsert.isSex());
+        values.put(MyDBHelper.COL_USER_SEX, userToInsert.getSex());
         values.put(MyDBHelper.COL_USER_IMG, userToInsert.getImage());
 
 

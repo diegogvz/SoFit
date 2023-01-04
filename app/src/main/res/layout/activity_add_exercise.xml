@@ -178,7 +178,7 @@
                         android:textSize="@dimen/big_font_size" />
 
                     <EditText
-                        android:id="@+id/TextEdit_series"
+                        android:id="@+id/TextEdit_repetitions"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/height_edit_text"
                         android:layout_weight="40"
@@ -207,7 +207,7 @@
                         android:textSize="@dimen/big_font_size" />
 
                     <EditText
-                        android:id="@+id/TextEdit_repetitions"
+                        android:id="@+id/TextEdit_series"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/height_edit_text"
                         android:layout_weight="40"

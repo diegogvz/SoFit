@@ -18,6 +18,7 @@
         tools:ignore="HardcodedText">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/addData_layout"
             android:layout_width="fill_parent"
             android:layout_height="match_parent">
 
@@ -36,8 +37,7 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="@dimen/margin_for_fill_screen_elements"
                     android:layout_marginEnd="@dimen/margin_for_fill_screen_elements"
-                    android:layout_weight="1"
-                    tools:layout_marginTop="@dimen/margin_for_fill_screen_elements">
+                    android:layout_weight="1">
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                             tools:textColor="@color/purple_700" />
 
                         <EditText
-                            android:id="@+id/TextEdit_series"
+                            android:id="@+id/addData_EditText_weight"
                             android:layout_width="fill_parent"
                             android:layout_height="@dimen/height_edit_text"
                             android:layout_weight="1"
@@ -88,7 +88,7 @@
                             tools:textColor="@color/purple_700" />
 
                         <EditText
-                            android:id="@+id/TextEdit_repetitions"
+                            android:id="@+id/addData_EditText_fat"
                             android:layout_width="fill_parent"
                             android:layout_height="@dimen/height_edit_text"
                             android:layout_weight="1"
@@ -119,7 +119,7 @@
                             tools:textColor="@color/purple_700" />
 
                         <EditText
-                            android:id="@+id/TextEdit_weight"
+                            android:id="@+id/addData_EditText_muscle"
                             android:layout_width="fill_parent"
                             android:layout_height="@dimen/height_edit_text"
                             android:layout_weight="1"
@@ -150,7 +150,7 @@
                             tools:textColor="@color/purple_700" />
 
                         <EditText
-                            android:id="@+id/EditText_sex"
+                            android:id="@+id/addData_EditText_water"
                             android:layout_width="fill_parent"
                             android:layout_height="@dimen/height_edit_text"
                             android:layout_weight="1"
