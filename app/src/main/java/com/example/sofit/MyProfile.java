@@ -20,18 +20,33 @@ import androidx.core.content.ContextCompat;
 import com.example.sofit.data.UserDataSource;
 import com.example.sofit.model.User;
 
+import java.util.ArrayList;
+
 public class MyProfile extends BaseActivity {
 
     private static final int PICK_IMAGE = 1;
     private ImageView mImage;
     Uri mImageUri;
-    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+
         setTitle("My Profile");
         createDrawer(this);
+
+        UserDataSource uds = new UserDataSource(getApplicationContext());
+        uds.open();
+        ArrayList<User> user = uds.getAllUsers();
+        uds.close();
+
+        TextView sex = findViewById(R.id.textView_sex_data);
+        sex.setText(user.get(0).isSex());
+        TextView weight = findViewById(R.id.textView_weight_data);
+        weight.setText(String.valueOf(user.get(0).getWeight()));
+        TextView height = findViewById(R.id.textView_height_data);
+        height.setText(String.valueOf(user.get(0).getHeight()));
 
         Button b = (Button)findViewById(R.id.button_actualizar_datos);
         b.setOnClickListener(new View.OnClickListener() {
@@ -41,29 +56,16 @@ public class MyProfile extends BaseActivity {
             }
         });
 
-        //Get the views
-        Button btnCambiarDatos = (Button)findViewById(R.id.button_actualizar_datos);
-        Button btnVerProgreso = (Button)findViewById(R.id.button_verProgreso);
-        TextView textViewSexo=(TextView) findViewById(R.id.profile_textView_sex);
-        TextView textViewHeight=(TextView) findViewById(R.id.profile_textView_height);
-        TextView textViewWeight=(TextView) findViewById(R.id.profile_textView_weight);
-
-        //Set the listeners
-        btnCambiarDatos.setOnClickListener(
-                view -> startActivity(new Intent(MyProfile.this, EditProfile.class))
-        );
-        btnVerProgreso.setOnClickListener(
-                view -> startActivity(new Intent(MyProfile.this, MyProgress.class))
-        );
+        Button b2 = (Button)findViewById(R.id.button_verProgreso);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyProfile.this, MyProgress.class));
+            }
+        });
 
         mImage = findViewById(R.id.imageView);
-        //Get the user data from database
-        getUserData();
 
-        //Set the data of the user
-        textViewSexo.setText(user.getSex());
-        textViewHeight.setText(user.getHeight()+ " cm");
-        textViewWeight.setText(user.getWeight()+" kg");
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String mImageUri = preferences.getString("image", null);
 
@@ -81,12 +83,7 @@ public class MyProfile extends BaseActivity {
             }
         });
     }
-    private void getUserData(){
-        UserDataSource userDataSource=new UserDataSource(getApplicationContext());
-        userDataSource.open();
-        user=userDataSource.getUserData();
-        userDataSource.close();
-    }
+
     public void imageSelect() {
         permissionsCheck();
         Intent intent;

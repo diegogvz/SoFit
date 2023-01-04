@@ -18,6 +18,10 @@ public class ModelExercise implements Parcelable{
         image = in.readString();
     }
 
+    public ModelExercise() {
+
+    }
+
 
     @Override
     public String toString() {

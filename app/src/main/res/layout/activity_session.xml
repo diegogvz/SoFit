@@ -44,6 +44,7 @@
                 android:id="@+id/btn_session_addExercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="104dp"
                 android:clickable="true"
                 android:contentDescription="@string/add"
                 app:layout_constraintBottom_toBottomOf="parent"
