@@ -41,11 +41,11 @@ public class MyProfile extends BaseActivity {
         ArrayList<User> user = uds.getAllUsers();
         uds.close();
 
-        TextView sex = findViewById(R.id.textView_sex_data);
-        sex.setText(user.get(0).isSex());
-        TextView weight = findViewById(R.id.textView_weight_data);
+        TextView sex = findViewById(R.id.profile_textView_sex);
+        sex.setText(user.get(0).getSex());
+        TextView weight = findViewById(R.id.profile_textView_weight);
         weight.setText(String.valueOf(user.get(0).getWeight()));
-        TextView height = findViewById(R.id.textView_height_data);
+        TextView height = findViewById(R.id.profile_textView_height);
         height.setText(String.valueOf(user.get(0).getHeight()));
 
         Button b = (Button)findViewById(R.id.button_actualizar_datos);

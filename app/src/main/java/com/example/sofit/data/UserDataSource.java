@@ -84,6 +84,32 @@ public class UserDataSource extends DataSource{
         return userList;
     }
 
+    public User getUserData(){
+        User user = new User();
+        //hacemos una query porque queremos devolver un cursor
+
+        Cursor cursor = database.query(MyDBHelper.TABLE_USER, allColumns,
+                null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            user.setName(cursor.getString(0));
+            user.setHeight(cursor.getInt(2));
+            user.setWeight(cursor.getInt(3));
+            user.setAge(cursor.getInt(1));
+            user.setSex(cursor.getString(4));
+            user.setImage(cursor.getString(5));
+
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        // Una vez obtenidos todos los datos y cerrado el cursor, devolvemos la
+        // lista.
+
+        return user;
+    }
+
     public void updateData(String name, int Height, int Weight, int Age, String sex){
         ContentValues values = new ContentValues();
 
