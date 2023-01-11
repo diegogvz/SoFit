@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -47,6 +46,8 @@ public class MyProfile extends BaseActivity {
         weight.setText(String.valueOf(user.get(0).getWeight()));
         TextView height = findViewById(R.id.profile_textView_height);
         height.setText(String.valueOf(user.get(0).getHeight()));
+        TextView age = findViewById(R.id.profile_textView_age);
+        age.setText(String.valueOf(user.get(0).getAge()));
 
         Button b = (Button)findViewById(R.id.button_actualizar_datos);
         b.setOnClickListener(new View.OnClickListener() {

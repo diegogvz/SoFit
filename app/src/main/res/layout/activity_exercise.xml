@@ -48,6 +48,17 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/textView_exercise_series"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/exercise_series_item_table_height"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/rocknroll_one"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/exercise_series"
+                            android:textColor="@color/purple_700"
+                            android:textSize="@dimen/big_font_size" />
+
+                        <TextView
                             android:id="@+id/TextView_exercise_reps"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/exercise_series_item_table_height"

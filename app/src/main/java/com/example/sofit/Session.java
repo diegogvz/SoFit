@@ -112,8 +112,9 @@ public class Session extends BaseActivity {
                 new ListaEjerciciosViewAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(ModelExercise item) {
-                        Intent i = new Intent(Session.this, com.example.sofit.Exercise.class);
-                        i.putExtra("exerciseId", item);
+                        Intent i = new Intent(Session.this, Exercise.class);
+                        i.putExtra("exerciseId", item.getName());
+                        i.putExtra("exercisePhoto", item.getImage());
                         startActivity(i);
                     }
                 },new ListaEjerciciosViewAdapter.DeleteListener() {
@@ -124,7 +125,9 @@ public class Session extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteExercise(item);
-                        startActivity(new Intent(Session.this, Session.class));
+                        Intent i = new Intent(Session.this, Session.class);
+                        i.putExtra("idSession", session);
+                        startActivity(i);
                     }
                 }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
                     @Override

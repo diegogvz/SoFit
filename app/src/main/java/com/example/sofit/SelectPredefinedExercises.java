@@ -19,8 +19,6 @@ import com.example.sofit.remote.ExerciseDBAPI;
 import com.example.sofit.server.ServerDataMapper;
 import com.example.sofit.server.exerciselist.ExerciseData;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -135,6 +133,8 @@ public class SelectPredefinedExercises extends AppCompatActivity {
 
         recycler_predefinedExercises.setAdapter(new ListaEjerciciosPredefinidosAdapter(exercises,item -> {
             Intent i = new Intent(SelectPredefinedExercises.this, AddExercise.class);
+            i.putExtra("predefinedExercise",item);
+            i.putExtra("idSession",getIntent().getExtras().getString("idSession"));
             startActivity(i);
         }));
 

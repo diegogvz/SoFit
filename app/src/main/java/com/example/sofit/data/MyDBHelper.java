@@ -255,12 +255,12 @@ public class MyDBHelper extends SQLiteOpenHelper {
          * Debe incluir la clave foranea de nombre de sesion
          */
         values = new ContentValues();
-        values.put(COL_EXERCISES_IMG, "bench_press");
+        values.put(COL_EXERCISES_IMG, "");
         values.put(COL_EXERCISES_NAME, "Bench Press");
         values.put(COL_EXERCISES_SESSION, "Chest");
         db.insert(TABLE_EXERCISES, null, values);
-        values.put(COL_EXERCISES_IMG, "bench_press2");
-        values.put(COL_EXERCISES_NAME, "Bench Press 2");
+        values.put(COL_EXERCISES_IMG, "");
+        values.put(COL_EXERCISES_NAME, "Bench Press2");
         values.put(COL_EXERCISES_SESSION, "Arms");
         db.insert(TABLE_EXERCISES, null, values);
 
@@ -272,21 +272,17 @@ public class MyDBHelper extends SQLiteOpenHelper {
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 10);
         values.put(COL_SERIES_EXERCISE, "Bench Press");
-        values.put(COL_EXERCISES_IMG, " ");
         db.insert(TABLA_SERIES, null, values);
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 9);
         values.put(COL_SERIES_EXERCISE, "Bench Press");
-        values.put(COL_EXERCISES_IMG, " ");
         db.insert(TABLA_SERIES, null, values);
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 8);
-        values.put(COL_EXERCISES_IMG, " ");
         values.put(COL_SERIES_EXERCISE, "Bench Press");
         db.insert(TABLA_SERIES, null, values);
         values.put(COL_SERIES_WEIGHT, 30);
         values.put(COL_SERIES_REPS, 8);
-        values.put(COL_EXERCISES_IMG, " ");
         values.put(COL_SERIES_EXERCISE, "Bench Press");
         db.insert(TABLA_SERIES, null, values);
 

@@ -1,14 +1,24 @@
 package com.example.sofit;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sofit.adapters.ListSerieViewAdapter;
 import com.example.sofit.data.SeriesDataSource;
+import com.example.sofit.model.Serie;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Exercise extends BaseActivity {
     SeriesDataSource seriesDataSource;
     private RecyclerView seriesRecycler;
+    String exercise = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,22 +28,52 @@ public class Exercise extends BaseActivity {
 
 
 
-        String exercise = "";
+
         if (extras != null) {
             exercise = extras.getString("exerciseId");
         }
         setTitle(exercise+" Exercise");
         setContentView(R.layout.activity_exercise);
 
-        createDrawer(this);
-        seriesRecycler = findViewById(R.id.seriesRecycler);
+        String image = extras.getString("exercisePhoto");
+        ImageView iv = findViewById(R.id.imageView4);
 
-//        seriesDataSource.open();
-//        List<Serie> series = seriesDataSource.getSeriesForExercise(exercise);
-//        seriesDataSource.close();
-//
-//        ListaSerieViewAdapter listaSerieViewAdapter = new ListaSerieViewAdapter(series);
-//        seriesRecycler.setAdapter(listaSerieViewAdapter);
+        if(!image.isEmpty()){
+            Picasso.get().load(image).into(iv);
+        }
+        else{
+            iv.setImageResource(R.drawable.exercise);
+        }
+
+        createDrawer(this);
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        seriesRecycler = findViewById(R.id.seriesRecycler);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        seriesRecycler.setLayoutManager(layoutManager);
+
+        seriesRecycler.setHasFixedSize(true);
+        seriesDataSource.open();
+        //List<Serie>series = new ArrayList<>();
+        List<Serie>series = seriesDataSource.getSeriesForExercise(exercise);
+        seriesDataSource.close();
+       // series.add(new Serie(2,100));
+        fillRecycler(series);
+        ListSerieViewAdapter listSeriesViewAdapter = new ListSerieViewAdapter(series);
+        seriesRecycler.setAdapter(listSeriesViewAdapter);
+    }
+
+    private void fillRecycler(List<Serie> series) {
+        List<Serie> seriesButtons = new ArrayList<>();
+        for (Serie ex : series) {
+            seriesButtons.add(ex);
+        }
+        ListSerieViewAdapter lpAdapter = new ListSerieViewAdapter(seriesButtons);
+
+        seriesRecycler.setAdapter(lpAdapter);
+    }
 }

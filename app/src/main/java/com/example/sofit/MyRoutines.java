@@ -64,7 +64,7 @@ public class MyRoutines extends BaseActivity {
 
     public void clickOnItem(Routine rutina) {
         Intent i = new Intent(MyRoutines.this, MyCurrentRoutine.class);
-        i.putExtra("routine", rutina.getNombreRutina());
+        i.putExtra("routineId", rutina.getNombreRutina());
         startActivity(i);
     }
 
