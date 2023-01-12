@@ -1,11 +1,8 @@
 package com.example.sofit;
 
 import android.app.AlertDialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -37,31 +34,11 @@ public class MyCurrentRoutine extends BaseActivity {
     public void cargarSesiones() {
         SessionDataSource sds = new SessionDataSource(getApplicationContext());
         sds.open();
-        sessions = sds.getAllSessions();
-        if (sessions.isEmpty()) {
-//            crearNotificationChannel();
-//            NotificationManager mNotificationManager =
-//                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "M_CH_ID");
-//            mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
-//                    .setContentTitle("NO HAY SESIONES EN ESTA RUTINA")
-//                    .setContentText("Añada una sesión a la rutina si así lo desea");
-//            mNotificationManager.notify(001,mBuilder.build());
-        }
+        sessions = sds.getSessionsForRoutine(getIntent().getExtras().getString("routineId"));
         sds.close();
     }
 
-    private void crearNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "CANAL";
-            String description = "DESCRIPCION CANAL";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("M_CH_ID", name, importance);
-            channel.setDescription(description);
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
+
 
     @Override
     protected void onResume() {
@@ -111,7 +88,9 @@ public class MyCurrentRoutine extends BaseActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MyCurrentRoutine.this, AddSession.class));
+                Intent i = new Intent(MyCurrentRoutine.this, AddSession.class);
+                i.putExtra("routineId",getIntent().getExtras().getString("routineId"));
+                startActivity(i);
             }
         });
     }

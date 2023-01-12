@@ -18,7 +18,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.sofit.data.ExerciseDataSource;
+import com.example.sofit.data.SeriesDataSource;
 import com.example.sofit.model.ModelExercise;
+import com.example.sofit.model.Serie;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
@@ -41,8 +43,8 @@ public class AddExercise extends BaseActivity {
 
         //Sacar los extras
         Bundle extras = getIntent().getExtras();
-        predefinedExercise =(ModelExercise) extras.getParcelable("predefinedExercise");
-        session = extras.getString("idSession");
+        this.predefinedExercise =(ModelExercise) extras.getParcelable("predefinedExercise");
+        this.session = extras.getString("idSession");
 
 
         Button predefinedExerciseButton = (Button) findViewById(R.id.button_select_predefined_exercise);
@@ -54,6 +56,7 @@ public class AddExercise extends BaseActivity {
 
         predefinedExerciseButton.setOnClickListener(view -> {
             Intent i = new Intent(AddExercise.this, SelectPredefinedExercises.class);
+            i.putExtra("idSession", session);
             startActivity(i);
         });
 
@@ -100,12 +103,12 @@ public class AddExercise extends BaseActivity {
 
     private void fillFormAddExercise() {
         //Load gif
-        Picasso.get().load(predefinedExercise.getImage()).into(imageViewExercise);
+        Picasso.get().load(predefinedExercise.getImage()).into((ImageView) findViewById(R.id.imageView2));
         //Set title
 
-        System.out.println("Ex obj name: "+predefinedExercise.getName());
-        editTextExerciseTitle.setText(predefinedExercise.getName());
-        System.out.println("EditText"+editTextExerciseTitle.getText());
+    //    System.out.println("Ex obj name: "+predefinedExercise.getName());
+        ((EditText)findViewById(R.id.editTextExerciseTitle)).setText(String.valueOf(predefinedExercise.getName()));
+//        System.out.println("EditText"+editTextExerciseTitle.getText());
     }
 
 
@@ -113,15 +116,33 @@ public class AddExercise extends BaseActivity {
         ModelExercise exercise = new ModelExercise();
 
         exercise.setName(String.valueOf(((EditText)findViewById(R.id.editTextExerciseTitle)).getText()));
-        exercise.setImage(String.valueOf(R.id.imageView2));
+        //exercise.setImage(String.valueOf(R.id.imageView2));
+        if(predefinedExercise!=null){
+            exercise.setImage(predefinedExercise.getImage());
+        }
+        else{
+            exercise.setImage("");
+        }
+
         ExerciseDataSource exerciseDataSource =
                 new ExerciseDataSource(getApplicationContext());
         exerciseDataSource.open();
-        String whichSession = getIntent().getExtras().getString("idSession");
-        exerciseDataSource.createExercise(exercise,whichSession);
+        //String whichSession = getIntent().getExtras().getString("idSession");
+        exerciseDataSource.createExercise(exercise,session);
         exerciseDataSource.close();
+        SeriesDataSource sds = new SeriesDataSource(getApplicationContext());
+        int numSeries = Integer.parseInt(((EditText)findViewById(R.id.TextEdit_series)).getText().toString());
+        while (numSeries>0){
+            sds.open();
+            int reps = Integer.parseInt(((EditText)findViewById(R.id.TextEdit_repetitions)).getText().toString());
+            int weight = Integer.parseInt(((EditText)findViewById(R.id.TextEdit_weight)).getText().toString());
+            sds.addSerieOnExercise(new Serie(reps,weight),exercise.getName());
+            sds.close();
+            numSeries--;
+        }
         Intent i = new Intent(AddExercise.this, Session.class);
-        i.putExtra("idSession", getIntent().getExtras().getString("idSession"));
+        //i.putExtra("idSession", getIntent().getExtras().getString("idSession"));
+        i.putExtra("idSession", session);
         startActivity(i);
     }
 
@@ -135,10 +156,10 @@ public class AddExercise extends BaseActivity {
             return false;
         }
 
-        if(Integer.parseInt(((EditText)findViewById(R.id.TextEdit_weight)).getText().toString()) <= 0
+        if(Integer.parseInt(((EditText)findViewById(R.id.TextEdit_weight)).getText().toString()) < 0
                 || Integer.parseInt(((EditText)findViewById(R.id.TextEdit_repetitions)).getText().toString()) <= 0
                 || Integer.parseInt(((EditText)findViewById(R.id.TextEdit_series)).getText().toString()) <= 0){
-            Snackbar.make(findViewById(R.id.tableLayout2),"Numerical data must be greater than 0",
+            Snackbar.make(findViewById(R.id.tableLayout2),"Numerical data (but weight) must be greater than 0",
                     Snackbar.LENGTH_LONG).show();
             return false;
         }

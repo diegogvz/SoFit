@@ -1,5 +1,6 @@
 package com.example.sofit.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -36,8 +37,24 @@ public class SeriesDataSource extends DataSource{
         while (!cursor.isAfterLast()) {
             final Serie serie = new Serie(cursor.getInt(0),cursor.getInt(1));
             series.add(serie);
+            cursor.moveToNext();
         }
         cursor.close();
         return series;
+    }
+
+    public long addSerieOnExercise(Serie serie,String exercise_id) {
+        ContentValues values = new ContentValues();
+
+        values.put(MyDBHelper.COL_SERIES_EXERCISE, exercise_id);
+        values.put(MyDBHelper.COL_SERIES_REPS, serie.getReps());
+        values.put(MyDBHelper.COL_SERIES_WEIGHT, serie.getWeight());
+
+
+        // Insertamos la valoracion
+        long insertId =
+                database.insert(MyDBHelper.TABLA_SERIES, null, values);
+
+        return insertId;
     }
 }

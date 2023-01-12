@@ -8,9 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,23 +17,15 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sofit.adapters.ListaEjerciciosViewAdapter;
 import com.example.sofit.data.SessionDataSource;
 import com.example.sofit.model.Session;
-
-import java.util.ArrayList;
 
 public class AddSession extends AppCompatActivity {
 
     private static final int PICK_IMAGE = 1;
     private ImageView mImage;
     Uri mImageUri;
-
-    private ArrayList<String> ejercicios = new ArrayList<>();
-    private RecyclerView listEjerciciosView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +53,12 @@ public class AddSession extends AppCompatActivity {
                     Session s = new Session();
                     s.setName(et.getText().toString());
                     s.setImage(String.valueOf(R.id.imageView5));
-                    s.setRoutine("");
+                    s.setRoutine(getIntent().getExtras().getString("routineId"));
                     addingSession(s);
                 }
-                startActivity(new Intent(AddSession.this, MyCurrentRoutine.class));
+                Intent i = new Intent(AddSession.this, MyCurrentRoutine.class);
+                i.putExtra("routineId", getIntent().getExtras().getString("routineId"));
+                startActivity(i);
             }
         });
 
