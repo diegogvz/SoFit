@@ -34,8 +34,8 @@
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.049"
-                tools:src="@drawable/sofit" />
+                app:layout_constraintVertical_bias="0.044"
+                tools:src="@tools:sample/avatars[0]" />
 
             <LinearLayout
                 android:id="@+id/LinearLayout02"

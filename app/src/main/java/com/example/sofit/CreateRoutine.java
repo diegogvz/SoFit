@@ -2,12 +2,10 @@ package com.example.sofit;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,14 +17,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.sofit.data.ImageConverter;
 import com.example.sofit.data.RoutineDataSource;
 import com.example.sofit.model.Routine;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class CreateRoutine extends AppCompatActivity {
 
     private static final int PICK_IMAGE = 1;
-    private ImageView mImage;
-    Uri mImageUri;
+    private ImageView imageView;
+    private Routine routine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,67 +37,71 @@ public class CreateRoutine extends AppCompatActivity {
 
         setTitle("Create Routine");
 
-        Button btnAceptar = (Button) findViewById(R.id.btnAceptar);
-        EditText name = (EditText) findViewById(R.id.editTextNombreRutina);
-        btnAceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!(name.getText().equals(" ")))
-                    clickOnItem();
-                else
-                    Toast.makeText(getApplicationContext(),
-                            getString(R.string.complete), Toast.LENGTH_SHORT).show();
+        Button btnAceptar = findViewById(R.id.btnAceptar);
+        EditText name = findViewById(R.id.editTextNombreRutina);
+        routine=new Routine();
+        btnAceptar.setOnClickListener(view -> {
+            if(name.getText().toString().matches("^\\s*$")) {
+                Toast.makeText(getApplicationContext(),
+                        getString(R.string.complete), Toast.LENGTH_SHORT).show();
+                return;
             }
+            insertRoutine();
+            startActivity(new Intent(CreateRoutine.this, MyRoutines.class));
         });
 
-        mImage = findViewById(R.id.imageView3);
+        imageView = findViewById(R.id.imageView3);
+        imageView.setImageResource(R.drawable.default_routine);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String mImageUri = preferences.getString("image", null);
-
-        if (mImageUri != null) {
-            mImage.setImageURI(Uri.parse(mImageUri));
-        } else {
-            mImage.setImageResource(R.drawable.routine);
-        }
-
-        ImageButton btnPhoto = (ImageButton) findViewById(R.id.imageButton4);
-        btnPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view){
-                imageSelect();
-            }
-        });
+        ImageButton btnPhoto = findViewById(R.id.btn_change_pic_routine);
+        btnPhoto.setOnClickListener(view -> openGallery());
     }
 
-    private void clickOnItem(){
-        Routine routine = new Routine();
-        EditText nombre = (EditText)findViewById(R.id.editTextNombreRutina);
-        routine.setNombreRutina(nombre.getText().toString());
-        routine.setUser(" ");
-        routine.setImage(String.valueOf(R.id.imageView3));
+    private void insertRoutine(){
+        EditText routineName = (EditText)findViewById(R.id.editTextNombreRutina);
         RoutineDataSource routineDataSource =
                 new RoutineDataSource(getApplicationContext());
+
+
+        routine.setName(routineName.getText().toString());
+        routine.setUser(" ");
+        routine.setImage(new byte[]{});
+
         routineDataSource.open();
         routineDataSource.createRoutine(routine);
         routineDataSource.close();
-        startActivity(new Intent(CreateRoutine.this, MyRoutines.class));
+
+    }
+    private void openGallery() {
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        gallery=Intent.createChooser(gallery,"Choose photo");
+        requestPermissions();
+        startActivityForResult(gallery, PICK_IMAGE);
     }
 
-    public void imageSelect() {
-        permissionsCheck();
-        Intent intent;
-        if (Build.VERSION.SDK_INT < 19) {
-            intent = new Intent(Intent.ACTION_GET_CONTENT);
-        } else {
-            intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+    public byte[] getBytesFromUri(Uri uri) {
+        ImageConverter ic=new ImageConverter();
+        try {
+            InputStream iStream = getContentResolver().openInputStream(uri);
+            byte[] inputData = ic.getBytes(iStream);
+            return inputData;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "Elige una foto"), PICK_IMAGE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+            Uri imageUri = data.getData();
+            routine.setImage(getBytesFromUri(imageUri));
+            imageView.setImageURI(imageUri);
+        }
     }
 
-    public void permissionsCheck() {
+    public void requestPermissions() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -105,21 +111,4 @@ public class CreateRoutine extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE) {
-            if (resultCode == RESULT_OK) {
-                if (data != null) {
-                    mImageUri=data.getData();
-                    SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(this);
-                    SharedPreferences.Editor editor=preferences.edit();
-                    editor.putString("image", String.valueOf(mImageUri));
-                    editor.commit();
-                    mImage.setImageURI(mImageUri);
-                    mImage.invalidate();
-                }
-            }
-        }
-    }
 }

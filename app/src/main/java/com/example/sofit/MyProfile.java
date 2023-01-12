@@ -72,7 +72,7 @@ public class MyProfile extends BaseActivity {
         if (mImageUri != null) {
             mImage.setImageURI(Uri.parse(mImageUri));
         } else {
-            mImage.setImageResource(R.drawable.sofit);
+            mImage.setImageResource(R.drawable.default_pfp);
         }
 
         Button btnImg = (Button) findViewById(R.id.button_fotoPerfil);

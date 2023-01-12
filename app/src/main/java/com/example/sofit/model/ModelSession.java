@@ -1,11 +1,11 @@
 package com.example.sofit.model;
 
-public class Session {
+public class ModelSession {
     private String name;
     private String routine;
-    private String image;
+    private byte[] image=new byte[]{};
 
-    public Session(){
+    public ModelSession(){
 
     }
 
@@ -17,15 +17,15 @@ public class Session {
         this.routine = routine;
     }
 
-    public Session(String name, String routine, String image){
+    public ModelSession(String name, String routine, byte[] image){
         this.name=name;
         this.routine=routine;
         this.image = image;
     }
 
-    public void setImage(String image){ this.image = image; }
+    public void setImage(byte[] image){ this.image = image; }
 
-    public String getImage(){ return this.image; }
+    public byte[] getImage(){ return this.image; }
 
     public String getName() {
         return name;

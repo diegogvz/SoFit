@@ -40,8 +40,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public static final String TABLE_ROUTINES = "routines";
 
     public static final String COL_ROUTINE_NAME = "name";
+    public static final String COL_ROUTINE_IMG = "image";
     public static final String COL_ROUTINE_USER = "user_id";
-    public static final String COL_ROUTINE_IMG = "routine_image";
 
     //--------------------------------------------------------------------
     /**
@@ -105,8 +105,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
             + TABLE_ROUTINES
             + "( " +
             COL_ROUTINE_NAME + " text primary key not null, " +
-            COL_ROUTINE_USER + " text not null, " +
-            COL_ROUTINE_IMG + " text not null " +
+            COL_ROUTINE_IMG + " BLOB not null, " +
+            COL_ROUTINE_USER + " text not null" +
             ");";
 
     private static final String CREATE_TABLE_SESSIONS = "create table "
@@ -114,7 +114,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             + "( " +
             COL_SESSIONS_NAME + " text primary key not null, " +
             COL_SESSIONS_ROUTINE + " text not null, " +
-            COL_SESSIONS_IMG + " text not null " +
+            COL_SESSIONS_IMG + " BLOB not null" +
             ");";
 
     private static final String CREATE_TABLE_EXERCISES =
@@ -225,10 +225,11 @@ public class MyDBHelper extends SQLiteOpenHelper {
         /**
          * ----Rutinas----
          */
+        byte[] no_image_bytes={};
         values = new ContentValues();
         values.put(COL_ROUTINE_NAME, "Strength");
+        values.put(COL_ROUTINE_IMG, no_image_bytes);
         values.put(COL_ROUTINE_USER,"Pepe");
-        values.put(COL_ROUTINE_IMG," ");
         db.insert(TABLE_ROUTINES, null, values);
 
 
@@ -238,15 +239,15 @@ public class MyDBHelper extends SQLiteOpenHelper {
          */
         values = new ContentValues();
         values.put(COL_SESSIONS_NAME, "Chest");
-        values.put(COL_SESSIONS_IMG, " ");
+        values.put(COL_SESSIONS_IMG, no_image_bytes);
         values.put(COL_SESSIONS_ROUTINE, "Strength");
         db.insert(TABLE_SESSIONS, null, values);
         values.put(COL_SESSIONS_NAME, "Arms");
-        values.put(COL_SESSIONS_IMG, " ");
+        values.put(COL_SESSIONS_IMG, no_image_bytes);
         values.put(COL_SESSIONS_ROUTINE, "Strength");
         db.insert(TABLE_SESSIONS, null, values);
         values.put(COL_SESSIONS_NAME, "Legs");
-        values.put(COL_SESSIONS_IMG, " ");
+        values.put(COL_SESSIONS_IMG, no_image_bytes);
         values.put(COL_SESSIONS_ROUTINE, "Strength");
         db.insert(TABLE_SESSIONS, null, values);
 
