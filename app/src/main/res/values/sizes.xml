@@ -9,6 +9,7 @@
     <dimen name="distance_margin_of_button_top">30dp</dimen>
     <dimen name="height_edit_text">60dp</dimen>
     <dimen name="height_recycler_element">50dp</dimen>
+    <dimen name="floating_button_bottom_margin">80dp</dimen>
 
 
     <dimen name="huge_text">40sp</dimen>

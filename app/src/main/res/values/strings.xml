@@ -106,4 +106,17 @@
     <string name="create">Create Routine</string>
     <string name="complete">Complete all the data</string>
     <string name="empty">No routines yet, create one</string>
+
+    <!-- _________________ CREAR RUTINA _________________ -->
+    <string name="create_routine_title">Create your routine!</string>
+    <string name="create_routine_change_pic">Change picture</string>
+    <!-- _______________________________________________ -->
+
+    <!-- _________________ MY CURRENT ROUTINE _________________ -->
+    <string name="current_routine_add_session">Add a session to this routine</string>
+    <!-- _______________________________________________ -->
+
+    <!-- _________________ SESSION  _________________ -->
+    <string name="session_add_exercise_to_session">Add an exercise to this session</string>
+    <!-- _______________________________________________ -->
 </resources>

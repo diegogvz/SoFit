@@ -1,29 +1,46 @@
 package com.example.sofit.model;
 
+import java.util.Arrays;
+
 public class Routine {
-    String nombreRutina;
-    String image;
+    String name;
+    byte[] image; //Blob
+    String imageUrl;
     String user;
+
+    @Override
+    public String toString() {
+        return "Routine{" +
+                "name='" + name + '\'' +
+                ", image=" + Arrays.toString(image) +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", user='" + user + '\'' +
+                '}';
+    }
 
     public Routine(){
 
     }
-    public Routine(String nombre_rutina,String user, String image) {
-        this.nombreRutina = nombre_rutina;
+    public Routine(String name,String user, byte[] image) {
+        this.name = name;
         this.user=user;
         this.image = image;
     }
 
-    public void setImage(String image){ this.image = image; }
-
-    public String getImage(){return this.image;}
-
-    public String getNombreRutina() {
-        return nombreRutina;
+    public void setImage(Object image){
+        this.image = (byte[]) image;
     }
 
-    public void setNombreRutina(String nombreRutina) {
-        this.nombreRutina = nombreRutina;
+    public byte[] getImage(){return this.image;}
+
+    public String getImageUrl(){return this.imageUrl;}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUser() {
@@ -33,4 +50,5 @@ public class Routine {
     public void setUser(String user) {
         this.user = user;
     }
+
 }

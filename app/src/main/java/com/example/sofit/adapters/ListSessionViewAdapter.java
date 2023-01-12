@@ -10,23 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.R;
-import com.example.sofit.model.Session;
+import com.example.sofit.model.ModelSession;
 
 import java.util.List;
 
 public class ListSessionViewAdapter extends RecyclerView.Adapter<ListSessionViewAdapter.DayViewHolder> {
 
     public interface OnItemClickListener {
-        void onItemClick(Session item);
+        void onItemClick(ModelSession item);
     }
     public interface DeleteListener {
-        void deleteItem(Session session);
+        void deleteItem(ModelSession session);
     }
-    private List<Session> sessions;
+    private List<ModelSession> sessions;
     private final OnItemClickListener listener;
     private final DeleteListener deleteListener;
 
-    public ListSessionViewAdapter(List<Session> listaSessions, OnItemClickListener listener, DeleteListener deleteListener) {
+    public ListSessionViewAdapter(List<ModelSession> listaSessions, OnItemClickListener listener, DeleteListener deleteListener) {
         this.sessions = listaSessions;
         this.listener = listener;
         this.deleteListener=deleteListener;
@@ -42,7 +42,7 @@ public class ListSessionViewAdapter extends RecyclerView.Adapter<ListSessionView
 
     @Override
     public void onBindViewHolder(@NonNull DayViewHolder holder, int position) {
-        Session session = sessions.get(position);
+        ModelSession session = sessions.get(position);
         holder.bindUser(session, listener, deleteListener);
 
     }
@@ -64,7 +64,7 @@ public class ListSessionViewAdapter extends RecyclerView.Adapter<ListSessionView
             imgbtn = (ImageButton) itemView.findViewById(R.id.imageButton);
         }
 
-         public void bindUser(final Session session, final OnItemClickListener listener, final DeleteListener deleteListener) {
+         public void bindUser(final ModelSession session, final OnItemClickListener listener, final DeleteListener deleteListener) {
 
              diaTextView.setText(session.getName());
 

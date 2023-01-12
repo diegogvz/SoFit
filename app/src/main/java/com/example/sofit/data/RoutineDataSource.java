@@ -36,7 +36,7 @@ public class RoutineDataSource extends DataSource{
         // Establecemos los valores que se insertaran
         ContentValues values = new ContentValues();
 
-        values.put(MyDBHelper.COL_ROUTINE_NAME, routineToInsert.getNombreRutina());
+        values.put(MyDBHelper.COL_ROUTINE_NAME, routineToInsert.getName());
         values.put(MyDBHelper.COL_ROUTINE_USER, routineToInsert.getUser());
         values.put(MyDBHelper.COL_ROUTINE_IMG, routineToInsert.getImage());
 
@@ -50,7 +50,30 @@ public class RoutineDataSource extends DataSource{
     public void deleteRoutine(Routine routineToDelete) {
 
         // Insertamos la valoracion
-        database.execSQL("DELETE FROM " + MyDBHelper.TABLE_ROUTINES + " WHERE name = '" + routineToDelete.getNombreRutina()+"'");
+        database.execSQL("DELETE FROM " + MyDBHelper.TABLE_ROUTINES + " WHERE name = '" + routineToDelete.getName()+"'");
+    }
+
+    /**
+     * Get the routine from the name
+     * @param routineName
+     * @return Routine
+     */
+    public Routine getRoutineFromName(String routineName){
+
+        String whereClause = "name = ?";
+        String[] whereArgs = new String[] {
+                routineName
+        };
+        Cursor cursor = database.query(MyDBHelper.TABLE_ROUTINES, allColumns,
+                whereClause, whereArgs, null, null, null);
+        Routine routine=null;
+        cursor.moveToFirst();
+        routine= new Routine();
+        routine.setName(cursor.getString(0));
+        routine.setUser(cursor.getString(1));
+        routine.setImage(cursor.getBlob(2));
+        cursor.close();
+        return routine;
     }
 
     /**
@@ -67,9 +90,9 @@ public class RoutineDataSource extends DataSource{
         while (!cursor.isAfterLast()) {
             final Routine rutina = new Routine();
 
-            rutina.setNombreRutina(cursor.getString(0));
-            rutina.setImage(cursor.getString(1));
-            rutina.setUser(cursor.getString(2));
+            rutina.setName(cursor.getString(0));
+            rutina.setUser(cursor.getString(1));
+            rutina.setImage(cursor.getBlob(2));
 
 
             routinesList.add(rutina);

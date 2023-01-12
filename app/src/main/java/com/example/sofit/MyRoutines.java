@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class MyRoutines extends BaseActivity {
 
-    ArrayList<Routine> rutinas = new ArrayList<Routine>();
+    ArrayList<Routine> routines = new ArrayList<Routine>();
     private RecyclerView listRutinasView;
 
     @Override
@@ -35,16 +35,16 @@ public class MyRoutines extends BaseActivity {
 
         loadRoutines();
 
-        Button btnCrear = (Button) findViewById(R.id.btnCrearRutia);
+        Button btnCrear = findViewById(R.id.btnCrearRutia);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        listRutinasView = (RecyclerView) findViewById(R.id.recylcerViewRutinas);
+        listRutinasView = findViewById(R.id.recylcerViewRutinas);
 
 
         listRutinasView.setHasFixedSize(true);
         listRutinasView.setLayoutManager(layoutManager);
 
-        ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(rutinas,
-                rutina -> clickOnItem(rutina),
+        ListRutinasViewAdapter lpAdapter = new ListRutinasViewAdapter(routines,
+                rutina -> clickOnRoutine(rutina),
                 rutina -> deleteItem(rutina)
         );
 
@@ -55,24 +55,36 @@ public class MyRoutines extends BaseActivity {
         );
     }
 
+    /**
+     * Get all routines from database
+     * Save them in an attribute
+     */
     private void loadRoutines() {
         RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
         routineDataSource.open();
-        rutinas = routineDataSource.getAllRoutines();
+        routines = routineDataSource.getAllRoutines();
         routineDataSource.close();
     }
 
-    public void clickOnItem(Routine rutina) {
+    /**
+     * Routine recycler onClick event
+     * @param routine
+     */
+    public void clickOnRoutine(Routine routine) {
         Intent i = new Intent(MyRoutines.this, MyCurrentRoutine.class);
-        i.putExtra("routineId", rutina.getNombreRutina());
+        i.putExtra("routineName", routine.getName());
         startActivity(i);
     }
 
-    public void deleteItem(Routine rutina) {
+    /**
+     * OnClick event the delete element of the routines recycler
+     * @param routine
+     */
+    public void deleteItem(Routine routine) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MyRoutines.this);
         builder.setMessage("Do you want to delete this routine?").setPositiveButton("Yes",
                 (dialog, which) -> {
-                    deleteRoutineFromDataBase(rutina);
+                    deleteRoutineFromDataBase(routine);
                     startActivity(new Intent(MyRoutines.this, MyRoutines.class));
                 }).setNegativeButton("NO",
                 (dialog, which) -> {
@@ -80,11 +92,14 @@ public class MyRoutines extends BaseActivity {
                 }).show();
     }
 
-    private void deleteRoutineFromDataBase(Routine rutina) {
-
+    /**
+     * Deletes routine from database given a routine model object
+     * @param routine
+     */
+    private void deleteRoutineFromDataBase(Routine routine) {
         RoutineDataSource routineDataSource = new RoutineDataSource(getApplicationContext());
         routineDataSource.open();
-        routineDataSource.deleteRoutine(rutina);
+        routineDataSource.deleteRoutine(routine);
         routineDataSource.close();
     }
 

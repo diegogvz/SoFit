@@ -30,11 +30,11 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/imageView_exercise"
                     android:layout_width="fill_parent"
                     android:layout_height="492dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@drawable/ic_launcher_background" />
+                    tools:srcCompat="@drawable/default_exercise" />
 
                 <TableLayout
                     android:layout_width="fill_parent"

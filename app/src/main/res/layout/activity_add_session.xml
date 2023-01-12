@@ -22,6 +22,36 @@
             android:layout_height="match_parent"
             tools:context=".AddSession">
 
+            <TextView
+                android:id="@+id/textView_change_pic_routine2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="28dp"
+                android:fontFamily="@font/rocknroll_one"
+                android:text="@string/create_routine_change_pic"
+                android:textColor="@color/purple_700"
+                android:textSize="@dimen/big_font_size"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_change_pic_session"
+                app:layout_constraintEnd_toStartOf="@+id/btn_change_pic_session"
+                app:layout_constraintTop_toTopOf="@+id/btn_change_pic_session"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageButton
+                android:id="@+id/btn_change_pic_session"
+                android:layout_width="71dp"
+                android:layout_height="43dp"
+                android:layout_marginBottom="160dp"
+                android:background="@color/white"
+                android:contentDescription="@string/ImageButton_addImage"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                app:layout_constraintVertical_bias="0.118"
+                app:srcCompat="@android:drawable/ic_menu_search"
+                tools:tint="@color/purple_500" />
+
             <EditText
                 android:id="@+id/editTextTituloSesion"
                 android:layout_width="fill_parent"
@@ -58,9 +88,9 @@
                 app:layout_constraintVertical_bias="0.055" />
 
             <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="234dp"
-                android:layout_height="221dp"
+                android:id="@+id/imageView_add_session"
+                android:layout_width="362dp"
+                android:layout_height="296dp"
                 app:layout_constraintBottom_toTopOf="@+id/btn_addsession_confirm"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.423"
@@ -68,20 +98,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.644"
                 tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@drawable/session" />
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/ImageButton_addImage"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.239"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.391"
-                app:srcCompat="@android:drawable/ic_input_add" />
+                tools:srcCompat="@drawable/default_session" />
 
             <Button
                 android:id="@+id/btn_addsession_confirm"
