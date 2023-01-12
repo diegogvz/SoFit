@@ -58,21 +58,17 @@ public class Exercise extends BaseActivity {
 
         seriesRecycler.setHasFixedSize(true);
         seriesDataSource.open();
-        //List<Serie>series = new ArrayList<>();
         List<Serie>series = seriesDataSource.getSeriesForExercise(exercise);
         seriesDataSource.close();
-       // series.add(new Serie(2,100));
         fillRecycler(series);
-        ListSerieViewAdapter listSeriesViewAdapter = new ListSerieViewAdapter(series);
-        seriesRecycler.setAdapter(listSeriesViewAdapter);
     }
 
     private void fillRecycler(List<Serie> series) {
-        List<Serie> seriesButtons = new ArrayList<>();
+        List<Serie> seriesAux = new ArrayList<>();
         for (Serie ex : series) {
-            seriesButtons.add(ex);
+            seriesAux.add(ex);
         }
-        ListSerieViewAdapter lpAdapter = new ListSerieViewAdapter(seriesButtons);
+        ListSerieViewAdapter lpAdapter = new ListSerieViewAdapter(seriesAux);
 
         seriesRecycler.setAdapter(lpAdapter);
     }

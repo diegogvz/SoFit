@@ -156,10 +156,10 @@ public class AddExercise extends BaseActivity {
             return false;
         }
 
-        if(Integer.parseInt(((EditText)findViewById(R.id.TextEdit_weight)).getText().toString()) <= 0
+        if(Integer.parseInt(((EditText)findViewById(R.id.TextEdit_weight)).getText().toString()) < 0
                 || Integer.parseInt(((EditText)findViewById(R.id.TextEdit_repetitions)).getText().toString()) <= 0
                 || Integer.parseInt(((EditText)findViewById(R.id.TextEdit_series)).getText().toString()) <= 0){
-            Snackbar.make(findViewById(R.id.tableLayout2),"Numerical data must be greater than 0",
+            Snackbar.make(findViewById(R.id.tableLayout2),"Numerical data (but weight) must be greater than 0",
                     Snackbar.LENGTH_LONG).show();
             return false;
         }
