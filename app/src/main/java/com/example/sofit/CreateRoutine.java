@@ -65,7 +65,8 @@ public class CreateRoutine extends AppCompatActivity {
 
         routine.setName(routineName.getText().toString());
         routine.setUser(" ");
-        routine.setImage(new byte[]{});
+        if(routine.getImage()==null)
+            routine.setImage(new byte[]{});
 
         routineDataSource.open();
         routineDataSource.createRoutine(routine);

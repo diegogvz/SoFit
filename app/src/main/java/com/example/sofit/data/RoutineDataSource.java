@@ -92,7 +92,7 @@ public class RoutineDataSource extends DataSource{
 
             rutina.setName(cursor.getString(0));
             rutina.setUser(cursor.getString(1));
-            rutina.setImage(cursor.getBlob(2));
+            //rutina.setImage(cursor.getBlob(2));
 
 
             routinesList.add(rutina);

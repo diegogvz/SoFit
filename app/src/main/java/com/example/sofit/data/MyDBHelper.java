@@ -42,6 +42,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public static final String COL_ROUTINE_NAME = "name";
     public static final String COL_ROUTINE_IMG = "image";
     public static final String COL_ROUTINE_USER = "user_id";
+    public static final String COL_USER_CURRENT_ROUTINE = "selected_routine";
 
     //--------------------------------------------------------------------
     /**
@@ -98,7 +99,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
             COL_USER_WEIGHT + " integer, " +
             COL_USER_AGE + " integer, " +
             COL_USER_SEX + " text, " +
-            COL_USER_IMG + " text " +
+            COL_USER_IMG + " BLOB, " +
+            COL_USER_CURRENT_ROUTINE + " text " +
             ");";
 
     private static final String CREATE_TABLE_ROUTINE = " create table "
@@ -159,17 +161,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
                       int version) {
         super(context, DATABASE_NAME, null, 5);
     }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
+    private void insertData(SQLiteDatabase db){
         ContentValues values;
-        //invocamos execSQL pq no devuelve ningún tipo de dataset
-        db.execSQL(CREATE_TABLE_USER);
-        db.execSQL(CREATE_TABLE_ROUTINE);
-        db.execSQL(CREATE_TABLE_SESSIONS);
-        db.execSQL(CREATE_TABLE_EXERCISES);
-        db.execSQL(CREATE_TABLE_PROGRESS);
-        db.execSQL(CREATE_TABLE_SERIES);
+        byte[] no_image_bytes={};
 
         Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name NOT IN ('android_metadata', 'sqlite_sequence', 'room_master_table') ",null);
         cursor.moveToFirst();
@@ -179,25 +173,18 @@ public class MyDBHelper extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
 
-
         /**
          * ---Usuario---
          */
-//        values = new ContentValues();
-//        values.put(COL_USER_NAME, "Pepe");
-//        values.put(COL_USER_AGE, 21);
-//        values.put(COL_USER_HEIGHT, 187);
-//        values.put(COL_USER_SEX, "Pepe");
-//        values.put(COL_USER_WEIGHT, 80);
-//        db.insert(TABLE_USER, null, values);
         values = new ContentValues();
         values.put(COL_USER_NAME, "Pepe");
         values.put(COL_USER_AGE, 21);
         values.put(COL_USER_HEIGHT, 187);
         values.put(COL_USER_SEX, "Pepe");
         values.put(COL_USER_WEIGHT, 80);
+        values.put(COL_USER_IMG,no_image_bytes);
+        values.put(COL_USER_CURRENT_ROUTINE,"Strength");
         db.insert(TABLE_USER, null, values);
-
         /**
          * ---Progress---
          */
@@ -225,7 +212,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
         /**
          * ----Rutinas----
          */
-        byte[] no_image_bytes={};
         values = new ContentValues();
         values.put(COL_ROUTINE_NAME, "Strength");
         values.put(COL_ROUTINE_IMG, no_image_bytes);
@@ -308,6 +294,18 @@ public class MyDBHelper extends SQLiteOpenHelper {
         db.insert(TABLA_SERIES, null, values);
 
         Log.i("ONCREATE", "EJECUTO CREACION");
+    }
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        //invocamos execSQL pq no devuelve ningún tipo de dataset
+        db.execSQL(CREATE_TABLE_USER);
+        db.execSQL(CREATE_TABLE_ROUTINE);
+        db.execSQL(CREATE_TABLE_SESSIONS);
+        db.execSQL(CREATE_TABLE_EXERCISES);
+        db.execSQL(CREATE_TABLE_PROGRESS);
+        db.execSQL(CREATE_TABLE_SERIES);
+
+        //insertData(db);
     }
     @SuppressLint("Range")
     public String getTableAsString(SQLiteDatabase db, String tableName) {

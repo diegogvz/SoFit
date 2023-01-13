@@ -114,7 +114,7 @@
                 app:layout_gravity="right|center_vertical" />
 
             <EditText
-                android:id="@+id/editTextHeight"
+                android:id="@+id/editText_edit_profile_Height"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_edit_text"
                 android:layout_weight="100"
@@ -142,7 +142,7 @@
                 app:layout_gravity="right|center_vertical" />
 
             <EditText
-                android:id="@+id/editTextWeight"
+                android:id="@+id/editText_edit_profile_Weight"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_edit_text"
                 android:layout_weight="100"
@@ -171,7 +171,7 @@
                 app:layout_gravity="right|center_vertical" />
 
             <EditText
-                android:id="@+id/editTextAge"
+                android:id="@+id/editText_edit_profile_Age"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_edit_text"
                 android:layout_weight="100"
@@ -200,7 +200,7 @@
                 app:layout_rowWeight="1" />
 
             <EditText
-                android:id="@+id/editTextSex"
+                android:id="@+id/editText_edit_profile_Sex"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_edit_text"
                 android:layout_weight="100"

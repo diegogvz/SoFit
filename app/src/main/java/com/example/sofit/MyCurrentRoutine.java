@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sofit.adapters.ListSessionViewAdapter;
 import com.example.sofit.data.RoutineDataSource;
 import com.example.sofit.data.SessionDataSource;
+import com.example.sofit.data.UserDataSource;
 import com.example.sofit.model.ModelSession;
 import com.example.sofit.model.Routine;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,7 +34,20 @@ public class MyCurrentRoutine extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_current_routine);
         Bundle extras = getIntent().getExtras();
-        routineName=extras.getString("routineName");
+        UserDataSource userDataSource=new UserDataSource(getApplicationContext());
+        userDataSource.open();
+        if(extras!=null)
+            routineName=extras.getString("routineName");
+        else
+            routineName=userDataSource.getUserData().getCurrentRoutine();
+        userDataSource.close();
+
+        if(routineName==null) {
+            routineName = "";
+            setTitle("No routine selected");
+            createDrawer(this);
+            return;
+        }
         setTitle("My current routine: " + routineName);
 
         getRoutineFromDB();
@@ -49,7 +63,8 @@ public class MyCurrentRoutine extends BaseActivity {
     }
     private void updateImage(){
         ImageView image= findViewById(R.id.imageView_my_current_routine);
-        if(routine.getImage().length!=0) {
+        System.out.println(routine.getImage().length);
+        if(routine.getImage().length>10) {
             Bitmap bitmap =
                     BitmapFactory.decodeByteArray(routine.getImage(), 0, routine.getImage().length);
             image.setImageBitmap(bitmap);

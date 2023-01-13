@@ -35,15 +35,9 @@ public class Exercise extends BaseActivity {
         setTitle(exercise+" Exercise");
         setContentView(R.layout.activity_exercise);
 
-        String image = extras.getString("exercisePhoto");
-        ImageView iv = findViewById(R.id.imageView4);
+        ImageView imageViewExercise = findViewById(R.id.imageView_exercise);
+        imageViewExercise.setImageResource(R.drawable.default_exercise);
 
-        if(!image.isEmpty()){
-            Picasso.get().load(image).into(iv);
-        }
-        else{
-            iv.setImageResource(R.drawable.exercise);
-        }
 
         createDrawer(this);
 

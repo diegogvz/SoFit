@@ -65,7 +65,7 @@
             android:textSize="@dimen/very_big_text" />
 
         <EditText
-            android:id="@+id/editTextWeight"
+            android:id="@+id/editText_edit_profile_Weight"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_edit_text"
             android:layout_marginStart="@dimen/margin_for_fill_screen_elements"

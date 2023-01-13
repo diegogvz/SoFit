@@ -117,29 +117,32 @@ public class MyProgress extends BaseActivity {
         ArrayList<Float> weightData=new ArrayList<>();
         for(ModelProgress mp:listOfData)
             weightData.add(mp.getWeight());
-        updateGraph(weightData);
+        if(weightData.size()>0)
+            updateGraph(weightData);
     }
 
     private void selectFatTab() {
         ArrayList<Float> fatData=new ArrayList<>();
         for(ModelProgress mp:listOfData)
             fatData.add(mp.getFat());
-        updateGraph(fatData);
+        if(fatData.size()>0)
+            updateGraph(fatData);
     }
 
     private void selectWaterTab() {
         ArrayList<Float> waterData=new ArrayList<>();
         for(ModelProgress mp:listOfData)
             waterData.add(mp.getWater());
-        updateGraph(waterData);
+        if(waterData.size()>0)
+            updateGraph(waterData);
     }
 
     private void selectMuscleTab() {
         ArrayList<Float> muscleData=new ArrayList<>();
         for(ModelProgress mp:listOfData)
             muscleData.add(mp.getMuscle());
-
-        updateGraph(muscleData);
+        if(muscleData.size()>0)
+            updateGraph(muscleData);
     }
     private void updateGraph(ArrayList<Float> progressData){
         graphView.removeAllSeries();

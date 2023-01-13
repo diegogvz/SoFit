@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sofit.adapters.ListRutinasViewAdapter;
 import com.example.sofit.data.RoutineDataSource;
+import com.example.sofit.data.UserDataSource;
 import com.example.sofit.model.Routine;
+import com.example.sofit.model.User;
 
 import java.util.ArrayList;
 
@@ -71,9 +73,19 @@ public class MyRoutines extends BaseActivity {
      * @param routine
      */
     public void clickOnRoutine(Routine routine) {
-        Intent i = new Intent(MyRoutines.this, MyCurrentRoutine.class);
-        i.putExtra("routineName", routine.getName());
-        startActivity(i);
+        Intent intent = new Intent(MyRoutines.this, MyCurrentRoutine.class);
+        UserDataSource userDataSource=new UserDataSource(getApplicationContext());
+
+        userDataSource.open();
+
+        User user = userDataSource.getUserData();
+        user.setCurrentRoutine(routine.getName());
+        userDataSource.updateData(user);
+
+        userDataSource.close();
+
+        intent.putExtra("routineName", routine.getName());
+        startActivity(intent);
     }
 
     /**

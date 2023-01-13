@@ -49,21 +49,13 @@ public class MyProfile extends BaseActivity {
         TextView age = findViewById(R.id.profile_textView_age);
         age.setText(String.valueOf(user.get(0).getAge()));
 
-        Button b = (Button)findViewById(R.id.button_actualizar_datos);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyProfile.this, EditProfile.class));
-            }
-        });
+        Button b = findViewById(R.id.button_actualizar_datos);
+        b.setOnClickListener(view ->
+                startActivity(new Intent(MyProfile.this, EditProfile.class)));
 
-        Button b2 = (Button)findViewById(R.id.button_verProgreso);
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyProfile.this, MyProgress.class));
-            }
-        });
+        Button b2 = findViewById(R.id.button_verProgreso);
+        b2.setOnClickListener(view ->
+                startActivity(new Intent(MyProfile.this, MyProgress.class)));
 
         mImage = findViewById(R.id.imageView);
 
@@ -76,13 +68,8 @@ public class MyProfile extends BaseActivity {
             mImage.setImageResource(R.drawable.default_pfp);
         }
 
-        Button btnImg = (Button) findViewById(R.id.button_fotoPerfil);
-        btnImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageSelect();
-            }
-        });
+        Button btnImg = findViewById(R.id.button_fotoPerfil);
+        btnImg.setOnClickListener(v -> imageSelect());
     }
 
     public void imageSelect() {

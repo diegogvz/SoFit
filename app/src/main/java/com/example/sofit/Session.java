@@ -147,7 +147,7 @@ public class Session extends BaseActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         deleteExercise(item);
                         Intent i = new Intent(Session.this, Session.class);
-                        i.putExtra("idSession", session);
+                        i.putExtra("idSession", session.getName());
                         startActivity(i);
                     }
                 }).setNegativeButton("NO", new DialogInterface.OnClickListener() {

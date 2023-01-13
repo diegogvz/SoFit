@@ -6,7 +6,17 @@ public class User {
     private int age;
     private int weight;
     private int height;
-    private String image;
+    private byte[] image;
+
+    public String getCurrentRoutine() {
+        return currentRoutine;
+    }
+
+    public void setCurrentRoutine(String currentRoutine) {
+        this.currentRoutine = currentRoutine;
+    }
+
+    private String currentRoutine;
 
     public User(){
 
@@ -19,7 +29,7 @@ public class User {
         this.weight = weight;
         this.height = height;
     }
-    public User(String name, String sex, int age, int weight, int height, String image) {
+    public User(String name, String sex, int age, int weight, int height, byte[] image) {
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -68,7 +78,7 @@ public class User {
         this.height = height;
     }
 
-    public void setImage(String image){ this.image = image; }
+    public void setImage(byte[] image){ this.image = image; }
 
-    public String getImage(){ return this.image; }
+    public byte[] getImage(){ return this.image; }
 }

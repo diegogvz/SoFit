@@ -54,7 +54,7 @@ public class ListSerieViewAdapter extends RecyclerView.Adapter<ListSerieViewAdap
             serietxt=(EditText)itemView.findViewById(R.id.editTextSeries);
             serietxt.setEnabled(false);
             reps=(EditText)itemView.findViewById(R.id.editTextReps);
-            weight=(EditText)itemView.findViewById(R.id.editTextWeight);
+            weight=(EditText)itemView.findViewById(R.id.editText_edit_profile_Weight);
         }
 
         public void bindUser(final Serie serie,int position) {

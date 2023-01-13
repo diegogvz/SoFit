@@ -2,7 +2,6 @@ package com.example.sofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -19,13 +18,8 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         setTitle("Log In");
-        Button btnEntrar = (Button) findViewById(R.id.btnEntrar);
-        btnEntrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickonItem();
-            }
-        });
+        Button btnEntrar = findViewById(R.id.btnEntrar);
+        btnEntrar.setOnClickListener(view -> clickonItem());
     }
 
     @Override
@@ -40,17 +34,17 @@ public class LogIn extends AppCompatActivity {
     private boolean seeIfUsed() {
         UserDataSource usd = new UserDataSource(getApplicationContext());
         usd.open();
-        User au  = usd.getUserData();
-        return au!=null;
+        User user  = usd.getUserData();
+        return user.getName()!=null && user.getName()!="";
     }
 
 
     private void clickonItem(){
         EditText name = (EditText) findViewById(R.id.editTextNombre);
-        EditText sex = (EditText) findViewById(R.id.editTextSex);
-        EditText weight = (EditText) findViewById(R.id.editTextWeight);
-        EditText height = (EditText) findViewById(R.id.editTextHeight);
-        EditText age = (EditText) findViewById(R.id.editTextAge);
+        EditText sex = (EditText) findViewById(R.id.editText_edit_profile_Sex);
+        EditText weight = (EditText) findViewById(R.id.editText_edit_profile_Weight);
+        EditText height = (EditText) findViewById(R.id.editText_edit_profile_Height);
+        EditText age = (EditText) findViewById(R.id.editText_edit_profile_Age);
 
         if(name.getText().toString().isEmpty() ||sex.getText().toString().isEmpty() || String.valueOf(weight.getText()).isEmpty()||
                 String.valueOf(height.getText()).isEmpty()|| String.valueOf(age.getText()).isEmpty()){

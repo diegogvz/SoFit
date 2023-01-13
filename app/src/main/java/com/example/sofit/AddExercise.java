@@ -20,9 +20,8 @@ public class AddExercise extends BaseActivity {
     private ModelExercise predefinedExercise;
     private String session;
     private EditText editTextExerciseTitle;
-    private ImageView imageViewExercise;
     private static final int PICK_IMAGE = 1;
-    private ImageView imageView;
+    private ImageView imageViewExercise;
     Uri mImageUri;
 
     @Override
@@ -31,6 +30,8 @@ public class AddExercise extends BaseActivity {
         setContentView(R.layout.activity_add_exercise);
         createDrawer(this);
         setTitle("Add Exercise");
+        imageViewExercise = findViewById(R.id.imageView_exercise);
+        editTextExerciseTitle=findViewById(R.id.editTextExerciseTitle);
 
 
         //Sacar los extras
@@ -66,15 +67,14 @@ public class AddExercise extends BaseActivity {
             startActivity(i);
         });
 
-        imageView = findViewById(R.id.imageView_exercise);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String mImageUri = preferences.getString("image", null);
 
         if (mImageUri != null) {
-            imageView.setImageURI(Uri.parse(mImageUri));
+            imageViewExercise.setImageURI(Uri.parse(mImageUri));
         } else {
-            imageView.setImageResource(R.drawable.exercise);
+            imageViewExercise.setImageResource(R.drawable.default_exercise);
         }
 
 
@@ -82,7 +82,7 @@ public class AddExercise extends BaseActivity {
 
     private void fillFormAddExercise() {
         //Load gif
-        Picasso.get().load(predefinedExercise.getImage()).into((ImageView) findViewById(R.id.imageView2));
+        Picasso.get().load(predefinedExercise.getImage()).into((ImageView) findViewById(R.id.imageView_exercise));
         //Set title
         editTextExerciseTitle.setText(predefinedExercise.getName());
 
